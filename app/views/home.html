@@ -21,7 +21,7 @@
             {{product.description}}
             </div>
             <div ng-show="!canEdit(product.$id)" class="price-qty">{{product.qty}} per pack <em>(approx {{product.dimensions}})</em><em class="pull-right"> - {{ product.price | currency : "&pound;" }}</em></div>
-            <textarea cols="55" ng-show="canEdit(product.$id)">{{product.description}}</textarea>
+            <textarea cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">{{product.description}}</textarea>
             <div ng-show="canEdit(product.$id)" class="price-qty"><input size="2" type="text" ng-model="product.qty"/> per pack (approx <input type="text" ng-model="product.dimensions" size="4"/>) - <input size="2" class="pull-right" ng-model="product.price"/></div>
         </div>
         <!--<button ng-click="basket.addToBasket(product)">Add to Basket</button>-->
