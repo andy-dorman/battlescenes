@@ -1,0 +1,23 @@
+{
+  "name": "battlescenes",
+  "description": "A shop for Battlescenes",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.24",
+    "angular-mocks": "~1.2.x",
+    "jquery": "1.10.2",
+    "bootstrap": "~3.2.0",
+    "angular-cookies": "~1.2.x",
+    "angular-resource": "~1.2.x",
+    "angular-ui-router": "~0.2.x",
+    "angularjs-toaster": "~0.4.x",
+    "ng-file-upload": "~1.2.x",
+    "angular-bootstrap-lightbox": "~0.2.x",
+    "angularfire" : "~0.8.2"
+  },
+  "resolutions": {
+    "angular": ">=1"
+  }
+}

@@ -1,0 +1,17 @@
+[
+    {
+        "category": "6mm",
+        "name": "Defence Line",
+        "price": 2
+    },
+    {
+        "category": "15mm",
+        "name": "Brick Outhouse",
+        "price": 8
+    },
+    {
+        "category": "28mm",
+        "name": "15mm Barricade",
+        "price": 5
+    }
+]

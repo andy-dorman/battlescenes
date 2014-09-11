@@ -1,0 +1,29 @@
+<h2>{{ greeting }}<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
+<section class="tabs" ng-controller="CategoryController as categoryCtrl">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
+    </ul>
+</section>
+<div class="container">
+    <section ng-repeat="product in products | filter :search" class="col-md-6 bottom-buffer">
+        <a ng-show="userService.currentUser" ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
+        <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
+        <div class="pull-left">
+            <div ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container">
+                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="128" class="pull-left"/>
+            </div>
+        </div>
+        <div class="pull-left col-md-8">
+            <h4 ng-show="!canEdit(product.$id)"><a href ui-sref="shop.product({productId: product.$id})">{{ product.name }}</a></h4>
+            <input ng-show="canEdit(product.$id)" ng-model="product.name" size="50" type="text"/>
+            <div ng-show="!canEdit(product.$id)">
+                
+            {{product.description}}
+            </div>
+            <div ng-show="!canEdit(product.$id)" class="price-qty">{{product.qty}} per pack <em>(approx {{product.dimensions}})</em><em class="pull-right"> - {{ product.price | currency : "&pound;" }}</em></div>
+            <textarea cols="55" ng-show="canEdit(product.$id)">{{product.description}}</textarea>
+            <div ng-show="canEdit(product.$id)" class="price-qty"><input size="2" type="text" ng-model="product.qty"/> per pack (approx <input type="text" ng-model="product.dimensions" size="4"/>) - <input size="2" class="pull-right" ng-model="product.price"/></div>
+        </div>
+        <!--<button ng-click="basket.addToBasket(product)">Add to Basket</button>-->
+    </section>
+</div>

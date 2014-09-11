@@ -1,0 +1,27 @@
+<h2>{{ greeting }}<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
+<section class="tabs" ng-controller="CategoryController as categoryCtrl">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
+    </ul>
+</section>
+<div class="container" ng-show="product">
+    <section class="bottom-buffer" id="product-view">
+        <div class="pull-left col-md-3">
+            <div class="product-image-container">
+                <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)">
+                    <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="{{ $index == 0 ? 230 : 50}}" class="pull-left img-thumbnail"/>
+                </a>
+            </div>
+        </div>
+        <div class="pull-left col-md-9">
+            <h3 ng-show="!userService.currentUser">{{ product.name }}<em class="pull-right"> - {{ product.price | currency : "&pound;" }}</em></h3>
+           <input ng-show="userService.currentUser" value="{{ product.name }}" type="text"/><em class="pull-right" ng-show="userService.currentUser"> - <input size="2" type="text" value="{{ product.price }}"/></em>
+
+            <div ng-show="!userService.currentUser">
+            {{product.description}}
+            </div>
+            <textarea cols="55" ng-show="userService.currentUser">{{product.description}}</textarea>
+        </div>
+        <button ng-click="basket.addToBasket(product)">Add to Basket</button>
+    </section>
+</div>

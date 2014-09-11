@@ -1,0 +1,11 @@
+<div class="modal-body" ng-swipe-left="Lightbox.nextImage()" ng-swipe-right="Lightbox.prevImage()">
+	<div class="lightbox-nav">
+		<a class="close" aria-hidden="true" ng-click="$dismiss()"><span class="glyphicon glyphicon-remove-sign"></span></a>
+		<a class="prev" ng-click="Lightbox.prevImage()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		<a class="next" ng-click="Lightbox.nextImage()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	<div class="lightbox-image-container">
+		<div class="lightbox-image-caption"><span>{{Lightbox.image.caption}}</span></div>
+		<img lightbox-src={{Lightbox.image.url}} alt="" ng-click="Lightbox.nextImage()">
+	</div>
+</div>
