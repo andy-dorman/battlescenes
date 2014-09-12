@@ -1,19 +1,19 @@
-<h2>{{ greeting }}<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
-<section class="tabs" ng-controller="CategoryController as categoryCtrl">
+<h2>Welcome to Battlescenes<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
+<section class="category-tabs tabs" ng-controller="CategoryController as categoryCtrl">
     <ul class="nav nav-pills">
-        <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
+        <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategoriesFromProducts(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
     </ul>
 </section>
-<div class="container">
-    <section ng-repeat="product in products | filter :search" class="col-md-6 bottom-buffer">
+<div class="row">
+    <section ng-repeat="product in products | filter :search" class="col-sm-6 bottom-buffer">
         <a ng-show="userService.currentUser" ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
         <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
-        <div class="pull-left">
+        <div class="pull-left col-sm-4">
             <div ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container">
-                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="128" class="pull-left"/>
+                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="128" class="pull-left img-responsive"/>
             </div>
         </div>
-        <div class="pull-left col-md-8">
+        <div class="pull-left col-sm-8">
             <h4 ng-show="!canEdit(product.$id)"><a href ui-sref="shop.product({productId: product.$id})">{{ product.name }}</a></h4>
             <input ng-show="canEdit(product.$id)" ng-model="product.name" size="50" type="text"/>
             <div ng-show="!canEdit(product.$id)">

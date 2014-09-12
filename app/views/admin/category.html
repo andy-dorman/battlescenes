@@ -1,5 +1,13 @@
 <h1>Add new category</h1>
-<form role="form" ng-submit="addCategory()">
+<form role="form" ng-submit="addCategory()" ng-show="categories.length">
+	<label for="parentCategory">Parent category</label>
+	<div class="form-group">
+		<label name="parentCategory" for="parentCategory">
+        <select ng-model="parentCategory" name="parentCategory">
+        <option value="">Select a category</option>
+        <option  ng-repeat="category in categories" value="{{category.$id}}">{{category.name}}</option>
+        </select>
+    </div>
     <div class="form-group">
         <label name="categoryName">Name</label>
         <input class="form-control" ng-model="newCategory.name" type="text" placeholder="category name"/>

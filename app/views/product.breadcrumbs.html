@@ -1,0 +1,5 @@
+<ul class="breadcrumbs" ng-show="product">
+    <li ng-if="product.category"><a ui-sref="shop.category({categoryId: saferize(product.category)})">{{product.category}}</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+    <li ng-if="product.subCategory"><a ui-sref="shop.subcategory({categoryId: saferize(product.category), subCategoryId: saferize(product.subCategory)})">{{product.subCategory}}</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+    <li>{{product.name}}</li>
+</ul>

@@ -18,9 +18,15 @@
             <input class="form-control" ng-model="newProduct.qty" placeholder="quantity"/>
         </div>
         <div class="form-group">
-            <select ng-model="newProduct.category">
+            <select ng-model="newProduct.category" ng-change="getSubCategories()">
             <option value="">Select a category</option>
             <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select ng-model="newProduct.subCategory">
+            <option value="">Select a sub-category</option>
+            <option ng-repeat="subCategory in subCategories" value="{{subCategory.name}}">{{subCategory.name}}</option>
             </select>
         </div>
         <div class="checkbox">

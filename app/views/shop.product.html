@@ -1,4 +1,5 @@
-<h2>{{ greeting }}<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
+<h2>Products<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h2>
+<product-breadcrumbs></product-breadcrumbs>
 <section class="tabs" ng-controller="CategoryController as categoryCtrl">
     <ul class="nav nav-pills">
         <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>

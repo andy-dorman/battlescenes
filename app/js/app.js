@@ -21,13 +21,19 @@
                 views: {
                     '': {
                         templateUrl: 'views/navigation.html',
-                        controller: 'NavigationController'
+                        controller: 'NavigationController',
+
                     },
                     'content@shop': {
                         templateUrl: 'views/home.html',
                         controller: 'ShopController'
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return { value : "Welcome to Battlescenes"}
+                    }
+                },
                 
             },
             'shop.products' : 
@@ -40,15 +46,46 @@
             {
                 url: '/product/:productId',
                 views: {
-                    '': {
-                        templateUrl: 'views/navigation.html',
-                        controller: 'NavigationController'
-                    },
                     'content@shop': {
                         templateUrl: 'views/shop.product.html',
                         controller: 'ItemController'
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return { value : "Products"}
+                    }
+                },
+            },
+            'shop.category' : 
+            {
+                url: '/category/:categoryId',
+                views: {
+                    'content@shop': {
+                        templateUrl: 'views/home.html',
+                        controller: 'ShopController'
+                    }
+                },
+                resolve: {
+                    title: function() {
+                        return { value : "Products"}
+                    }
+                },
+            },
+            'shop.subcategory' : 
+            {
+                url: '/category/:categoryId/:subCategoryId',
+                views: {
+                    'content@shop': {
+                        templateUrl: 'views/home.html',
+                        controller: 'ShopController'
+                    }
+                },
+                resolve: {
+                    title: function() {
+                        return { value : "Products"}
+                    }
+                },
             },
             'shop.about' :
             {
@@ -62,7 +99,6 @@
             {
                 url: '/login',
                 views: {
-                    '': { templateUrl: 'views/navigation.html' },
                     'content@shop': {
                         templateUrl: '/views/admin/login.html',
                         controller: 'LoginController'                    }
@@ -141,8 +177,9 @@
         }
     ]);
 
-    shop.controller("NavigationController", ['$scope', '$location', 'Filters',
-        function($scope, $location, Filters){
+    shop.controller("NavigationController", ['$scope', '$location', 'Filters', 'title', 'Basket',
+        function($scope, $location, Filters, title, basket){
+            $scope.basket = basket;
             $scope.pages = [
                 {
                     "link" : "shop.about",
@@ -163,6 +200,7 @@
                     "admin" : true
                 }
             ];
+            $scope.pageHeader = title.value;
 
             $scope.filters = Filters;
         }
@@ -214,19 +252,23 @@
             };
 
             $scope.search = function (item){
+                var query = $scope.filters.searchTerm.toLowerCase();;
+                var name = item.name.toLowerCase();
+                var desc = item.description.toLowerCase();
+
                 if($scope.userService.currentUser || item.live !== false) {
-                    if($scope.filters.category == "" && $scope.filters.searchTerm == "") {
+                    if($scope.filters.category == "" && query == "") {
                         return true;
                     }
                     if( $scope.filters.category == "" ) {
-                        if( item.name.indexOf($scope.filters.searchTerm) != -1
-                            || item.description.indexOf($scope.filters.searchTerm) != -1 )
+                        if( name.indexOf(query) != -1
+                            || desc.indexOf(query) != -1 )
                         {
                            return true;
                         }
                     } else {
-                        if( item.category.indexOf($scope.filters.category) != -1 && (item.name.indexOf($scope.filters.searchTerm) != -1
-                            || item.description.indexOf($scope.filters.searchTerm) != -1 ))
+                        if( item.category.indexOf($scope.filters.category) != -1 && (name.indexOf(query) != -1
+                            || desc.indexOf(query) != -1 ))
                         {
                            return true;
                         }
@@ -239,7 +281,6 @@
 
     shop.controller("ItemController", ['$scope', '$http', '$state', '$stateParams', 'ProductService', 'UserService', 'Filters', 'Basket', 'Lightbox',
         function($scope, $http, $state, $stateParams, ProductService, UserService, Filters, Basket, Lightbox) {
-            $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productId = $stateParams.productId;
             ProductService.getProducts.$loaded().then(function(products){
@@ -254,26 +295,38 @@
             $scope.filters = Filters;
             $scope.basket = Basket;
             $scope.images = [];
+            
+            $scope.breadcrumbResolver = function (defaultResolver, product) {
+                console.log(product);
+                if (isCurrent) {
+                    return '"' + item.name + '"';
+                }
 
+                return defaultResolver(product);
+            }
 
             $scope.openLightboxModal = function(index) {
                 Lightbox.openModal($scope.images, index);
             }
 
             $scope.search = function (item){
+                var query = $scope.filters.searchTerm.toLowerCase();;
+                var name = item.name.toLowerCase();
+                var desc = item.description.toLowerCase();
+
                 if($scope.userService.currentUser || item.live !== false) {
-                    if($scope.filters.category == "" && $scope.filters.searchTerm == "") {
+                    if($scope.filters.category == "" && query == "") {
                         return true;
                     }
                     if( $scope.filters.category == "" ) {
-                        if( item.name.indexOf($scope.filters.searchTerm) != -1
-                            || item.description.indexOf($scope.filters.searchTerm) != -1 )
+                        if( name.indexOf(query) != -1
+                            || desc.indexOf(query) != -1 )
                         {
                            return true;
                         }
                     } else {
-                        if( item.category.indexOf($scope.filters.category) != -1 && (item.name.indexOf($scope.filters.searchTerm) != -1
-                            || item.description.indexOf($scope.filters.searchTerm) != -1 ))
+                        if( item.category.indexOf($scope.filters.category) != -1 && (name.indexOf(query) != -1
+                            || desc.indexOf(query) != -1 ))
                         {
                            return true;
                         }
@@ -287,9 +340,9 @@
     shop.controller("CategoryController", ['$scope', 'ProductService', 'CategoryService', 'Filters',
         function($scope, ProductService, CategoryService, Filters) {
             $scope.categoryService = CategoryService;
+            $scope.categories = CategoryService.categories;
             
-
-            $scope.getCategories = function(products) {
+            $scope.getCategoriesFromProducts = function(products) {
                 var unique = {};
                 var distinctCategories = {};
                 for (var i in products) {
@@ -312,6 +365,7 @@
                 return index == $scope.categoryIndex;
             };
 
+
             $scope.setCategory = function(category, index) {
                 if($scope.categoryIndex == index) {
                     $scope.filters.category = "";
@@ -322,16 +376,19 @@
                 }
             };
 
-            var newCategory = {
-                    name: ''
-                };
             $scope.newCategory = {
-                    name: ''
-                };
+                name: ''
+            };
             
             $scope.addCategory = function() {
-                $scope.categoryService.addCategory($scope.newCategory);
-                $scope.newCategory = newCategory;
+                if($scope.parentCategory) {
+                    $scope.categoryService.addCategoryToParent($scope.parentCategory, $scope.newCategory);
+                } else {
+                    $scope.categoryService.addCategory($scope.newCategory);
+                }
+                
+                $scope.newCategory = {};
+                $scope.parentCategory = "";
             };
 
             $scope.selectedIndex;
@@ -340,6 +397,7 @@
 
     shop.controller("BasketController", function() {
         $scope.basket = [];
+        $scope.greeting = "Welcome to Battlescenes designs";
         $scope.addToBasket = function(product) {
             $scope.basket.push(product);
         };
@@ -354,6 +412,7 @@
         function($scope, ProductService, CategoryService) {
             $scope.productService = ProductService;
             $scope.categories = CategoryService.categories;
+            $scope.subCategories = [];
             $scope.uploadingImages = true;
             var newProduct = {};
             $scope.newProduct = {
@@ -364,6 +423,13 @@
                     live: ''
                 }
 
+            $scope.getSubCategories = function() {
+                $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category).subCategories;
+            }
+
+            $scope.getSubCategories = function() {
+                $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category).subCategories;
+            }
 
             $scope.addProduct = function() {
                 $scope.newProduct.images = $scope.images;
