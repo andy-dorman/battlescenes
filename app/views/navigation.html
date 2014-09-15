@@ -22,7 +22,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="userService.currentUser"><a ng-click="logout()" style="padding: 8px;" href><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></button></a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" ui-keypress="{13:'doSearch($event)'}">
         <div class="form-group">
           <input ng-model="filters.searchTerm" type="text" class="form-control" placeholder="Search">
         </div>

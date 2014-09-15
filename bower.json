@@ -15,7 +15,8 @@
     "angularjs-toaster": "~0.4.x",
     "ng-file-upload": "~1.2.x",
     "angular-bootstrap-lightbox": "~0.2.x",
-    "angularfire" : "~0.8.2"
+    "angularfire" : "~0.8.2",
+    "angular-ui-utils": "~0.0.x"
   },
   "resolutions": {
     "angular": ">=1"

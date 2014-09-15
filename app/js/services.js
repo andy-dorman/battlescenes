@@ -6,12 +6,14 @@
         function() {
             return {
                 category: "",
-                searchTerm: ""
+                searchTerm: "",
+                subcategory: ""
             }
         });
 
     bsServices.constant('FIREBASE_PRODUCT_URI', 'https://shining-fire-4276.firebaseio.com/products');
     bsServices.constant('FIREBASE_CATEGORIES_URI', 'https://shining-fire-4276.firebaseio.com/categories');
+    bsServices.constant('FIREBASE_ENQUIRIES_URI', 'https://shining-fire-4276.firebaseio.com/enquiries');
 
     bsServices.service("ProductService", ['$resource', '$firebase', 'FIREBASE_PRODUCT_URI',
         function($resource, $firebase, FIREBASE_PRODUCT_URI) {
@@ -96,5 +98,15 @@
                     isArray: true
                     }
             });
+        }]);
+
+    bsServices.service("ContactService", ['$resource', '$firebase', 'FIREBASE_ENQUIRIES_URI',
+        function($resource, $firebase, FIREBASE_ENQUIRIES_URI) {
+            var ref = new Firebase(FIREBASE_ENQUIRIES_URI);
+            var sync = $firebase(ref);
+            
+            return {
+                enqSync: sync
+            }
         }]);
 })();
