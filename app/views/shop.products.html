@@ -1,43 +1,46 @@
-<div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="row">
-    <section class="pull-left category-tabs tabs">
-        <ul class="nav nav-pills">
-            <li ng-class="{ active : category == filters.category }" ng-repeat="(category, count) in getCategoriesFromProducts(products)"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
-            <a category-link>{{category}}</a>
-            </li>
-            <li ng-show="filteredProducts.length > 0 && filters.category" style="line-height: 2em;left: 5px; margin-right: 7px;"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
-        </ul>
-
-    </section>
-
-    <section class="subcategory-tabs category-tabs tabs" style="left: 5px; position: relative; display: inline-block;">
-        <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
-            <li ng-class="{ active : subCategory == filters.subcategory}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(filteredProducts)">
-            <!--<a ng-click="setSubCategory(subcategory, $index)" href>{{subcategory}}</a>-->
-            <a sub-category-link>{{subcategory}}</a></li>
-        </ul>
-    </section>
-</div>
-<h1>Welcome to Battlescenes<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h1>
-<h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"</h2>
 <div class="row">
-    <section ng-repeat="product in (filteredProducts = (products | filter : search))" class="col-sm-6 bottom-buffer">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="col-md-12">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <li ng-class="{ active : category == filters.category }" ng-repeat="(category, count) in getCategoriesFromProducts(products)"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
+                <a category-link>{{category}}</a>
+                </li>
+                <li ng-show="filteredProducts.length > 0 && filters.category" style="line-height: 2em;left: 5px; margin-right: 7px;"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
+
+        </section>
+
+        <section class="subcategory-tabs category-tabs tabs" style="left: 5px; position: relative; display: inline-block;">
+            <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
+                <li ng-class="{ active : subCategory == filters.subcategory}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(filteredProducts)">
+                <!--<a ng-click="setSubCategory(subcategory, $index)" href>{{subcategory}}</a>-->
+                <a sub-category-link>{{subcategory}}</a></li>
+            </ul>
+        </section>
+    </div>
+</div>
+<h1>Welcome to Battlescenes<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
+<h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"</h2>
+<div ng-class="row | $index%2" ng-repeat="product in (filteredProducts = (products | filter : search))">
+    <section class="bottom-buffer col-sm-6">
         <a ng-show="userService.currentUser" ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
         <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
         <div class="col-sm-4">
             <a href ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container">
-                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="128" class="img-responsive"/>
+                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" class="img-responsive"/>
             </a>
         </div>
         <div class="col-sm-8">
             <h4 ng-show="!canEdit(product.$id)"><a href ui-sref="shop.product({productId: product.$id})">{{ product.name }}</a></h4>
-            <input ng-show="canEdit(product.$id)" ng-model="product.name" size="50" type="text"/>
+            <input ng-show="canEdit(product.$id)" class="titleInput" ng-model="product.name" size="50" type="text"/>
             <div ng-show="!canEdit(product.$id)" class="description">
             {{product.description}}
             </div>
             <div ng-show="!canEdit(product.$id)" class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em class="pull-right">&nbsp;- {{ product.price | currency : "&pound;" }}</em></div>
-            <textarea cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">{{product.description}}</textarea>
-            <div ng-show="canEdit(product.$id)" class="price-qty"><input size="2" type="text" ng-model="product.qty"/> per pack (approx <input type="text" ng-model="product.dimensions" size="4"/>) - <input size="2" class="pull-right" ng-model="product.price"/></div>
+            <textarea class="description" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">{{product.description}}</textarea>
+            <div ng-show="canEdit(product.$id)" class="price-qty"><input size="2" type="text" ng-model="product.qty"/> per pack (approx <input type="text" ng-model="product.dimensions" size="4"/>) - £<input size="2" class="pull-right" ng-model="product.price"/></div>
         </div>
         <!--<button ng-click="basket.addToBasket(product)">Add to Basket</button>-->
+
     </section>
 </div>

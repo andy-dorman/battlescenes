@@ -23,9 +23,14 @@
 	                img.onload = function() {
 	                    canvas.id = "tmpCanvas";
 	                    var thumbSize = attrs.width;
-	                    var scale = thumbSize/this.width;
-	                    canvas.width = thumbSize;
-	                    canvas.height = parseInt(this.height * scale, 10);
+	                    if(thumbSize) {
+	                    	var scale = thumbSize/this.width;
+	                    	canvas.width = thumbSize;
+	                    	canvas.height = parseInt(this.height * scale, 10);
+	                    } else {
+	                    	canvas.width = this.width;
+	                    	canvas.height = this.height;
+	                    }
 
 	                    if(canvas.getContext) {
 	                        var context = canvas.getContext("2d");

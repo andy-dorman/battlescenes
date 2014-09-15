@@ -1,5 +1,5 @@
 <product-breadcrumbs></product-breadcrumbs>
-<h1>{{product.name}}<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div></h1>
+<h1>{{product.name}}<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
 <section class="tabs" ng-controller="CategoryController as categoryCtrl">
     <ul class="nav nav-pills">
         <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
@@ -7,14 +7,14 @@
 </section>
 <div class="container" ng-show="product">
     <section class="bottom-buffer" id="product-view">
-        <div class="pull-left col-md-3">
+        <div class="pull-left col-md-4">
             <div class="product-image-container">
-                <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)">
-                    <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" width="{{ $index == 0 ? 230 : 50}}" class="pull-left img-thumbnail"/>
+                <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)" class="gallery-thumbnail">
+                    <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" class="pull-left img-thumbnail"/>
                 </a>
             </div>
         </div>
-        <div class="pull-left col-md-9">
+        <div class="pull-left col-md-8">
             <div class="description">
             {{product.description}}
             </div>
