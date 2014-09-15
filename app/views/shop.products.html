@@ -19,7 +19,7 @@
         </section>
     </div>
 </div>
-<h1>Welcome to Battlescenes<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
+<h1>Battlescene Designs<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
 <h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"</h2>
 <div ng-class="row | $index%2" ng-repeat="product in (filteredProducts = (products | filter : search))">
     <section class="bottom-buffer col-sm-6">

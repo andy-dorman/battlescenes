@@ -56,17 +56,37 @@
         // set a custom template
         LightboxProvider.templateUrl = '/views/lightbox/lightbox.html';
         LightboxProvider.calculateModalDimensions = function (dimensions) {
-            return {
-              'width': Math.max(500, dimensions.imageDisplayWidth + 42),
-              'height': Math.max(500, dimensions.imageDisplayHeight + 42)
-            };
+            var imgWidth = dimensions.imageDisplayWidth;
+            var imgHeight = dimensions.imageDisplayHeight;
+            var winWidth = dimensions.windowWidth;
+            var winHeight = dimensions.windowHeight;
+            /*if(winWidth < winHeight) {
+                //Portrait mode...
+                //
+                if(imgWidth > imgHeight) {
+                    //lansdscape image
+                    //
+                    scale = imgHeight/imgWidth;
+                    console.log("scale", scale);
+                    return {
+                        'width': Math.max(winWidth - 20, imgWidth + 42),
+                        'height': Math.max((winHeight*scale) - 20, (imgHeight * scale) + 42)
+                    };
+                }
+            } else {*/
+
+                return {
+                  'width': dimensions.imageDisplayWidth > winWidth ? winWidth - 22 : dimensions.imageDisplayWidth + 42,
+                  'height': Math.max(dimensions.imageDisplayHeight + 72, dimensions.imageDisplayHeight + 72)
+                };
+            //}
           };
         LightboxProvider.calculateImageDimensionLimits = function (dimensions) {
             return {
               'minWidth': 100,
               'minHeight': 100,
-              'maxWidth': dimensions.windowWidth - 102,
-              'maxHeight': dimensions.windowHeight - 136
+              'maxWidth': dimensions.windowWidth - 62,
+              'maxHeight': dimensions.windowHeight - 102
             };
         };
         window.routes = {
@@ -431,6 +451,7 @@
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
                     imageObj.url = theImage.data;
+                    imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
             });

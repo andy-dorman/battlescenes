@@ -81,10 +81,14 @@ textarea.description {
 	left: auto;
 }
 
+.lightbox-image-caption {
+	position: relative;
+}
+
 .lightbox-nav a.close {
 	background: none;
-	top: -25px;
-	right: -10px;
+	top: -8px;
+	right: 10px;
 	border-radius: 15px;
 	opacity: 1;
 	width: 30px;
