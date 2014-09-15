@@ -61,6 +61,14 @@
               'height': Math.max(500, dimensions.imageDisplayHeight + 42)
             };
           };
+        LightboxProvider.calculateImageDimensionLimits = function (dimensions) {
+            return {
+              'minWidth': 100,
+              'minHeight': 100,
+              'maxWidth': dimensions.windowWidth - 102,
+              'maxHeight': dimensions.windowHeight - 136
+            };
+        };
         window.routes = {
             'shop' : 
             {
