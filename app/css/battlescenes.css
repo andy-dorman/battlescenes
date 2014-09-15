@@ -10,9 +10,11 @@
 	margin-bottom: 20px;
 }
 
-.bottom-buffer {
+.bottom-buffer,
+.bottom-buffer img {
 	margin-bottom: 20px;
 }
+
 
 .bottom-buffer h4 {
 	margin-top: 0;
