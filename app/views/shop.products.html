@@ -22,9 +22,11 @@
 <h1>Battlescene Designs<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
 <h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
 <section class="bottom-buffer col-sm-6" ng-class="{notlive : !product.live }" ng-repeat="product in (filteredProducts = (products | filter : search))">
-    <a ng-show="userService.currentUser" ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-    <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
-    <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right"><span class="glyphicon glyphicon-trash"></span></a>
+    <div class="row" ng-show="userService.currentUser">
+        <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
+        <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
+        <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right"><span class="glyphicon glyphicon-trash"></span></a>
+    </div>
     <div class="col-sm-4">
         <a href ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container">
             <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" class="img-responsive"/>
@@ -49,7 +51,10 @@
         </div>
         <div ng-show="!canEdit(product.$id)" class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em class="pull-right">&nbsp;- {{ product.price | currency : "&pound;" }}</em></div>
         <textarea class="description" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">{{product.description}}</textarea>
-        <div ng-show="canEdit(product.$id)" class="form-group price-qty"><input size="2" type="text" ng-model="product.qty"/> per pack (approx <input type="text" ng-model="product.dimensions" size="4"/>) - £<input size="2" class="pull-right" ng-model="product.price"/></div>
+        <div ng-show="canEdit(product.$id)" class="form-group price-qty">
+        <div class="form-group"><input size="2" type="text" ng-model="product.qty"/> per pack
+        </div>
+        <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="4"/>) - £<input size="2" class="pull-right" ng-model="product.price"/></div>
         <div class="checkbox">
             <label ng-show="canEdit(product.$id)" for="live"><input type="checkbox" ng-model="product.live" name="live"/>Live</label>
         </div>

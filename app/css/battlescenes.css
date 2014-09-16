@@ -1,6 +1,6 @@
 .logo {
 	display :block;
-	margin-top: -50px;
+	margin-top: -20px;
 	margin-bottom: 20px;
 
 }
@@ -145,21 +145,25 @@ a:hover {
 }
 
 .form-group.price-qty {
-	bottom: 30px;
+	bottom: 0px;
+	margin-top: 20px;
 }
 
 .description {
 	padding-bottom: 40px;
 }
 
+
 textarea.description {
+	width: 100%;
 	padding-bottom: 0px;
-	margin-bottom: 40px;
+	margin-bottom: 140px;
 	height: 100px;
 }
 
 .titleInput {
 	margin-bottom: 10px;
+	width: 100%;
 }
 
 .lightbox-nav {
@@ -263,7 +267,7 @@ textarea.description {
 }
 
 .delete {
-	right: 30px;
+	right: 45px;
 	position: relative;
 	font-size: 10px;
 	top: -2px;
