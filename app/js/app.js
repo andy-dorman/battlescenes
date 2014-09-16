@@ -184,7 +184,7 @@
             },
             'shop.subcategory' : 
             {
-                url: '/category/:categoryId/:subCategoryId',
+                url: '/category/:categoryId/:subcategoryId',
                 views: {
                     'content@shop': {
                         templateUrl: 'views/shop.products.html',
@@ -364,14 +364,20 @@
             });
           };
 
+          /*$scope.resetPassword = function(email){
+            $scope.userService.loginService.sendResetPasswordEmail(email, function(error) {
+                $scope.error = error;
+            });
+          };*/
+
           $scope.resetForm = function(){
             $scope.newUser = {email: '', password: ''};
           };
         }
     ]);
 
-    shop.controller("ShopController", ['$scope', '$http', '$state', '$stateParams', 'ProductService', 'UserService', 'Filters', 'Basket',
-        function($scope, $http, $state, $stateParams, ProductService, UserService, Filters, Basket) {
+    shop.controller("ShopController", ['$scope', '$http', '$state', '$stateParams', 'ProductService', 'CategoryService', 'UserService', 'Filters', 'Basket',
+        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, Basket) {
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
@@ -380,11 +386,12 @@
             $scope.basket = Basket;
             $scope.edit = [];
             $scope.category = $stateParams.categoryId;
-            $scope.subCategory = $stateParams.subCategoryId;
+            $scope.subcategory = $stateParams.subcategoryId;
             $scope.filters.searchTerm = $stateParams.query || "";
+            $scope.categories = CategoryService.categories;
 
             $scope.filters.category = $stateParams.categoryId || "";
-            $scope.filters.subcategory = $stateParams.subCategoryId || "";
+            $scope.filters.subcategory = $stateParams.subcategoryId || "";
 
             $scope.toggleEdit = function (productId) {
                 if($scope.edit.indexOf(productId) != -1) {
@@ -394,9 +401,17 @@
                 }
             };
 
-            $scope.save = function (product) {                
+            $scope.save = function (product) {
                 $scope.products.$save(product);
                 $scope.toggleEdit(product.$id);
+            };
+
+            $scope.delete = function (product) {
+                var removeProduct = confirm("Are you sure you want to remove \"" + product.name + "\" from the shop?");
+                if(removeProduct) {
+                    $scope.products.$remove(product);
+                    $scope.toggleEdit(product.$id);
+                }
             };
 
             $scope.canEdit = function (productId) {
@@ -405,12 +420,12 @@
 
             $scope.search = function (item){
                 var query = $scope.filters.searchTerm.toLowerCase();
-                var subCategory = $scope.filters.subcategory.toLowerCase();
+                var subcategory = $scope.filters.subcategory.toLowerCase();
                 var category = $scope.filters.category.toLowerCase();
                 var name = item.name.toLowerCase();
                 var desc = item.description.toLowerCase();
                 var itemCat = item.category.toLowerCase();
-                var itemSub = item.subCategory ? item.subCategory.toLowerCase() : undefined;
+                var itemSub = item.subcategory ? item.subcategory.toLowerCase() : undefined;
 
                 if($scope.userService.currentUser || item.live !== false) {
                     if($scope.filters.subcategory == "" && $scope.filters.category == "" && query == "") {
@@ -422,14 +437,14 @@
                         {
                            return true;
                         }
-                    } else if ( category != "" && subCategory != "") {
-                        if( ((itemSub != undefined && itemSub.indexOf(subCategory) != -1) && (itemCat.indexOf(category) != -1))
+                    } else if ( category != "" && subcategory != "") {
+                        if( ((itemSub != undefined && itemSub.indexOf(subcategory) != -1) && (itemCat.indexOf(category) != -1))
                             && (name.indexOf(query) != -1 || desc.indexOf(query) != -1 ))
                         {
                            return true;
                         }
                     } else {
-                        if( ((item.subCategory != undefined && $scope.filters.subcategory != "" && item.subCategory.indexOf($scope.filters.subcategory) != -1) || ($scope.filters.category != "" && item.category.indexOf($scope.filters.category) != -1))
+                        if( ((item.subcategory != undefined && $scope.filters.subcategory != "" && item.subcategory.indexOf($scope.filters.subcategory) != -1) || ($scope.filters.category != "" && item.category.indexOf($scope.filters.category) != -1))
                             && (name.indexOf(query) != -1 || desc.indexOf(query) != -1 ))
                         {
                            return true;
@@ -438,6 +453,13 @@
                 }
                 return false;
             };
+
+            $scope.getSubCategories = function(category) {
+                if($scope.categories.$getRecord(category)) {
+                    return $scope.categories.$getRecord(category).subCategories;
+                }
+                return false;
+            }
         }
     ]);
 
@@ -504,7 +526,7 @@
     shop.controller("CategoryController", ['$scope', '$stateParams', 'ProductService', 'CategoryService', 'Filters',
         function($scope, $stateParams, ProductService, CategoryService, Filters) {
             $scope.category = $stateParams.categoryId;
-            $scope.subcategory = $stateParams.subCategoryId;
+            $scope.subcategory = $stateParams.subcategoryId;
             $scope.categoryService = CategoryService;
             $scope.categories = CategoryService.categories;
             $scope.products = ProductService.getProducts;
@@ -528,6 +550,11 @@
                 return distinctCategories;
             };
 
+            $scope.alphaSort = function(cat) {
+                console.log(cat);
+                return 1;
+            };
+
             $scope.isSet = function(index) {
                 return index == $scope.categoryIndex;
             };
@@ -540,12 +567,12 @@
                 var unique = {};
                 var distinctSubCategories = {};
                 for (var i in products) {
-                    if (typeof(unique[products[i].subCategory]) == "undefined" && products[i].subCategory != undefined) {
-                        distinctSubCategories[products[i].subCategory] = 0;
+                    if (typeof(unique[products[i].subcategory]) == "undefined" && products[i].subcategory != undefined) {
+                        distinctSubCategories[products[i].subcategory] = 0;
                         //distinctCategories.push(products[i].category);
-                        unique[products[i].subCategory] = 0;
+                        unique[products[i].subcategory] = 0;
                     }
-                    distinctSubCategories[products[i].subCategory]++;
+                    distinctSubCategories[products[i].subcategory]++;
                 }
                 for(var subcategory in distinctSubCategories) {
                     if(subcategory == "undefined") {
@@ -559,14 +586,14 @@
                 return index == $scope.categoryIndex;
             };
 
-            $scope.subCategoryIsSet = function(index, categoryIndex) {
+            $scope.subcategoryIsSet = function(index, categoryIndex) {
                 
-                return index == $scope.subCategoryIndex;
+                return index == $scope.subcategoryIndex;
             };
 
             $scope.setCategory = function(category, index) {
                 $scope.filters.subcategory = "";
-                $scope.subCategoryIndex = -1;
+                $scope.subcategoryIndex = -1;
                 if($scope.categoryIndex == index) {
                     $scope.filters.category = "";
                     $scope.categoryIndex = -1;
@@ -576,15 +603,15 @@
                 }
             };
 
-            $scope.setSubCategory = function(subcategory, index) {
-                $scope.subCategoryIndex = -1;
-                console.log($scope.subCategoryIndex == index);
-                if($scope.subCategoryIndex == index) {
+            $scope.setsubcategory = function(subcategory, index) {
+                $scope.subcategoryIndex = -1;
+                console.log($scope.subcategoryIndex == index);
+                if($scope.subcategoryIndex == index) {
 
                     $scope.filters.subcategory = "";
-                    $scope.subCategoryIndex = -1;
+                    $scope.subcategoryIndex = -1;
                 } else {
-                    $scope.subCategoryIndex = index;
+                    $scope.subcategoryIndex = index;
                     $scope.filters.subcategory = subcategory;
                 }
             };
@@ -635,6 +662,7 @@
                     qty: '',
                     live: ''
                 }
+            $scope.productErrors = [];
 
             $scope.getSubCategories = function() {
                 $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category).subCategories;
@@ -645,6 +673,42 @@
             }
 
             $scope.addProduct = function() {
+                console.log($scope.newProduct);
+                $scope.productErrors = [];
+                if($scope.newProduct.name == "" || newProduct.name == undefined) {
+                    var error = {};
+                    error.name = "Name";
+                    error.msg = "You need to enter a name for your product";
+                    $scope.productErrors.push(error);
+                }
+                if(newProduct.price == "" || newProduct.price == undefined) {
+                    var error = {};
+                    error.name = "Price";
+                    error.msg = "You need to enter a price for your product";
+                    $scope.productErrors.push(error);
+                }
+                if(newProduct.description == "" || newProduct.description == undefined) {
+                    var error = {};
+                    error.name = "Description";
+                    error.msg = "You need to enter a description for your product";
+                    $scope.productErrors.push(error);
+                }
+                if(newProduct.qty == "" || newProduct.qty == undefined) {
+                    var error = {};
+                    error.name = "Qty";
+                    error.msg = "You need to enter a qty for your product";
+                    $scope.productErrors.push(error);
+                }
+                if(newProduct.category == "" || newProduct.category == undefined) {
+                    var error = {};
+                    error.name = "Category";
+                    error.msg = "You need to provide a category for your product";
+                    $scope.productErrors.push(error);
+                }
+                if($scope.productErrors.length > 0) {
+                    console.log($scope.productErrors);
+                    return false;
+                }
                 $scope.newProduct.images = $scope.images;
 
                 var safename = ($scope.newProduct.category + "-" + $scope.newProduct.name.replace(/\s/g, "-")).toLowerCase();

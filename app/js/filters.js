@@ -15,5 +15,21 @@
 	        }
 
 	    };
-	});
+	})
+	.filter('toRows', function(){
+        return function(items, itemsPerRow) {
+            var filtered = [];
+            if(items) {
+	            for(var i = 0; i < items.length; i+=2) {
+	                var rowArray = [];
+	                rowArray.push(items[i]);
+	                if(items[i+1]) {
+	                    rowArray.push(items[i+1]);
+	                }
+	                filtered.push(rowArray);
+	            }
+	        }
+            return filtered;
+        }
+    });
 })();

@@ -1,7 +1,13 @@
 <?php
+
+/* TODO
+	Implement csrf token - instantiated on index.html (index.php) and passed along with $http calls
+	Bookmarked a method of doing this...
+**/
+
 //define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
-define("BSCENES_EMAIL", "andydrman@yahoo.co.uk");
-define("MY_EMAIL", "battlescenedesigns@hotmail.co.uk");
+define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
+define("MY_EMAIL", "andydorman@gmail.com");
 define("BSCENES_THANKS_SUBJECT", "Thank you for you enquiry");
 
 $errors = array();
@@ -29,10 +35,10 @@ if(empty($errors)) {
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$customerHeaders = $headers . 'From: ' . BSCENES_EMAIL . "\r\n" .
-    'Reply-To: ' . $customerEmail . "\r\n" .
+    'Reply-To: ' . $customerEmail . "\r\n" . 
     'cc:' . MY_EMAIL . "\r\n";
 	$bscenesHeaders = $headers . 'From: ' . $customerEmail . "\r\n" .
-    'Reply-To: ' . BSCENES_EMAIL . "\r\n" .
+    'Reply-To: ' . BSCENES_EMAIL . "\r\n" . 
     'cc:' . MY_EMAIL . "\r\n";
     $thankyouMsg = "<p>Thank you for for enquiry.</p><p>We will be in touch shortly</p>";
 	//mail(to,subject,message,headers,parameters)

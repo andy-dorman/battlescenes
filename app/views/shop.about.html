@@ -1,21 +1,23 @@
-<div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="row">
-    <section class="pull-left category-tabs tabs">
-        <ul class="nav nav-pills">
-            <li ng-class="{ active : category == filters.category }" ng-repeat="(category, count) in getCategoriesFromProducts(products)"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
-            <a category-link>{{category}}</a>
-            </li>
-            <li ng-show="filteredProducts.length > 0 && filters.category" style="line-height: 2em;left: 5px; margin-right: 7px;"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
-        </ul>
+<div class="row">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="col-md-12">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <li ng-class="{ active : category == filters.category }" ng-repeat="(category, count) in getCategoriesFromProducts(products)"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
+                <a category-link>{{category}}</a>
+                </li>
+                <li ng-show="filteredProducts.length > 0 && filters.category" style="line-height: 2em;left: 5px; margin-right: 7px;"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
 
-    </section>
+        </section>
 
-    <section class="subcategory-tabs category-tabs tabs" style="left: 5px; position: relative; display: inline-block;">
-        <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
-            <li ng-class="{ active : subCategory == filters.subcategory}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(filteredProducts)">
-            <!--<a ng-click="setSubCategory(subcategory, $index)" href>{{subcategory}}</a>-->
-            <a sub-category-link>{{subcategory}}</a></li>
-        </ul>
-    </section>
+        <section class="subcategory-tabs category-tabs tabs" style="left: 5px; position: relative; display: inline-block;">
+            <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
+                <li ng-class="{ active : subcategory == filters.subcategory}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(filteredProducts)">
+                <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
+                <a sub-category-link>{{subcategory}}</a></li>
+            </ul>
+        </section>
+    </div>
 </div>
 <h1>About Battlescene Designs</h1>
 <p>Some text about Battlescene Designs...</p>

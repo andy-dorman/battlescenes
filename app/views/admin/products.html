@@ -1,13 +1,19 @@
 <div class="col-md-6">
     <h1>Add new product</h1>
     <form role="form" ng-submit="addProduct(image)">
+        <div class="error" ng-show="productErrors.length > 0">
+            <h4 ng-repeat-start="error in productErrors">{{error.name}}</h4>
+            <p ng-repeat-end>
+            {{error.msg}}
+            </p>
+        </div>
         <div class="form-group">
             <label name="productName">Name</label>
             <input class="form-control" ng-model="newProduct.name" type="text" placeholder="product name"/>
         </div>
         <div class="form-group">
             <label name=productDescription>Description</label>
-            <textarea class="form-control" ng-model="newProduct.description"></textarea>
+            <textarea class="form-control" ng-model="newProduct.description" placeholder="Product description"></textarea>
         </div>
         <div class="form-group">
             <label name="productPrice">Price</label>
@@ -24,9 +30,9 @@
             </select>
         </div>
         <div class="form-group">
-            <select ng-model="newProduct.subCategory">
+            <select ng-model="newProduct.subcategory">
             <option value="">Select a sub-category</option>
-            <option ng-repeat="subCategory in subCategories" value="{{subCategory.name}}">{{subCategory.name}}</option>
+            <option ng-repeat="subcategory in subCategories" value="{{subcategory.name}}">{{subcategory.name}}</option>
             </select>
         </div>
         <div class="checkbox">

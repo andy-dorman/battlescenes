@@ -22,6 +22,7 @@
 						while (myNode.lastChild) {
 						    myNode.removeChild(myNode.lastChild);
 						}
+						scope.uploadingImages = true;
 					}
 				});
 	 
@@ -32,8 +33,10 @@
 	 					&& 	imgObj.galleryImage != null && imgObj.galleryImage != undefined
 	 					&& 	imgObj.galleryThumbnail != null && imgObj.galleryThumbnail != undefined) {*/
 	 					var safename = imgObj.safename
-	 					delete imgObj.safename;
-	 					scope.images[safename] = imgObj;
+	 					if(safename) {
+		 					delete imgObj.safename;
+		 					scope.images[safename] = imgObj;
+		 				}
 	 				}
 	 			}
 
@@ -45,6 +48,7 @@
 				};
 	 
 				var load_image = function(imageInput) {
+					console.log(scope.images);
 					if (imageInput.files.length === 0) { 
 						return;
 					}
@@ -108,62 +112,6 @@
 	                    }
 	                }
 	            }
-/*
-	            var generateGalleryImage = function( e, imgObj ) {
-	                var canvas = document.createElement('canvas');
-	                var img = new Image();
-	                img.src = e.target.result;
-	                img.onload = function() {
-	                    canvas.id = "tmpCanvas";
-	                    var thumbSize = '228';
-	                    var scale = thumbSize/this.width;
-	                    canvas.width = thumbSize;
-	                    canvas.height = parseInt(this.height * scale, 10);
-
-	                    if(canvas.getContext) {
-	                        var context = canvas.getContext("2d");
-	                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-	                        var dataUrl = canvas.toDataURL();
-	                        //scope.image.galleryImage = dataUrl;
-	                        imgObj.galleryImage = dataUrl;
-	                        if( dataUrl != null && dataUrl != undefined ) {
-	                            var newThumb = document.createElement('img');
-	                            newThumb.src = dataUrl;
-	                            document.getElementById('thumbHolder').appendChild(newThumb);
-	                            pushImage(imgObj);
-	                        }
-	                    }
-	                }
-	            }
-
-	            var generateGalleryThumbnail = function( e, imgObj ) {
-	                var canvas = document.createElement('canvas');
-	                var img = new Image();
-	                img.src = e.target.result;
-	                img.onload = function() {
-	                    canvas.id = "tmpCanvas";
-	                    var thumbSize = '50';
-	                    var scale = thumbSize/this.width;
-	                    canvas.width = thumbSize;
-	                    canvas.height = parseInt(this.height * scale, 10);
-
-	                    if(canvas.getContext) {
-	                        var context = canvas.getContext("2d");
-	                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-	                        var dataUrl = canvas.toDataURL();
-	                        //scope.image.galleryImage = dataUrl;
-	                        imgObj.galleryThumbnail = dataUrl;
-	                        
-							if( dataUrl != null && dataUrl != undefined ) {
-	                            var newThumb = document.createElement('img');
-	                            newThumb.src = dataUrl;
-	                            document.getElementById('thumbHolder').appendChild(newThumb);
-	                            pushImage(imgObj);
-	                        }                
-	                    }
-	                }
-	            }
-	            */
 
 	            var addThumbs = function( file, imgObj ) {
                     var imageType = /image.*/;
@@ -184,22 +132,6 @@
                         })(imgObj);
 
                         thumbReader.readAsDataURL(file);
-/*
-                        galleryReader.onload = (function(imgObj) {
-                        	return function(evt) {
-                        		generateGalleryImage( evt, imgObj );
-                        	};
-                        })(imgObj);
-
-                        galleryReader.readAsDataURL(file);
-
-                        galleryThumbReader.onload = (function(imgObj) {
-                        	return function(evt) {
-                        		generateGalleryThumbnail( evt, imgObj );
-                        	};
-                        })(imgObj);
-
-                        galleryThumbReader.readAsDataURL(file);*/
                     }
 	            }
 	 

@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="bower/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css"/>
         <link href="css/battlescenes.css" rel="stylesheet"/>
     </head>
-    <body class="container-fluid jumbotron">
+    <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
         <script type="text/javascript" src="bower/angular/angular.js"></script>
         <script type="text/javascript" src="bower/angular-touch/angular-touch.js"></script>
@@ -28,6 +28,7 @@
         <script type="text/javascript" src="js/basket.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/filters.js"></script>
+        <script type="text/javascript" src="bower/angular-bindonce/bindonce.min.js"></script>
         <script type="text/javascript" src="js/product-breadcrumbs-directive.js"></script>
         <script type="text/javascript" src="js/category-links-directive.js"></script>
         <script type="text/javascript" src="js/fp-image-upload.js"></script>
@@ -35,7 +36,7 @@
         <script type="text/javascript" src="bower/firebase/firebase.js"></script>
         <script type="text/javascript" src="bower/angularfire/dist/angularfire.min.js"></script>
         <script type="text/javascript" src="bower/firebase-simple-login/firebase-simple-login.js"></script>
-        <div class="row" ui-view></div ui-view>
+        <div class="row container-fluid" ui-view></div ui-view>
     </body>
 
 </html>
