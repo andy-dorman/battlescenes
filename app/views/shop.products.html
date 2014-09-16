@@ -20,7 +20,7 @@
     </div>
 </div>
 <h1>Battlescene Designs<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
-<h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"</h2>
+<h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
 <section class="bottom-buffer col-sm-6" ng-class="{notlive : !product.live }" ng-repeat="product in (filteredProducts = (products | filter : search))">
     <a ng-show="userService.currentUser" ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
     <a ng-show="userService.currentUser && canEdit(product.$id)" ng-click="save(product)" class="pull-right save"></a>
