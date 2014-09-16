@@ -7,6 +7,18 @@
         <link rel="stylesheet" type="text/css" href="bower/angular-loading-bar/build/loading-bar.css"/>
         <link rel="stylesheet" type="text/css" href="bower/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css"/>
         <link href="css/battlescenes.css" rel="stylesheet"/>
+        <!--[if lte IE 9]>
+        <script>
+        document.createElement('header');
+        document.createElement('nav');
+        document.createElement('section');
+        document.createElement('article');
+        document.createElement('aside');
+        document.createElement('footer');
+        document.createElement('hgroup');
+        </script>    
+        <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
+        <![endif]-->
     </head>
     <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
