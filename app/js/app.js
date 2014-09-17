@@ -754,6 +754,7 @@
                 $scope.productService.create(safename, $scope.newProduct);
                 $scope.newProduct = {};
                 $scope.images = {};
+                $scope.uploader.clearQueue();
             }
         }
     ]);
