@@ -2,7 +2,7 @@
 (function() {
     //var shop = angular.module('shop', ['bsServices', 'basket', 'ngResource', 'ngCookies', 'ui.router']);
     var shop = angular.module('shop',
-        ['bsServices', 'basket', 'ngCookies', 'ui.keypress', 'ui.event', 'ui.router', 'firebase', 'stateSecurity', 'userService', 'bootstrapLightbox', 'shopFilters',
+        ['bsServices', 'basket', 'ngCookies', 'ui.keypress', 'ui.event', 'ui.router', 'firebase', 'angularFileUpload',  'stateSecurity', 'userService', 'bootstrapLightbox', 'shopFilters',
         function($httpProvider) {
           // Use x-www-form-urlencoded Content-Type
           $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -663,11 +663,31 @@
         };
     });
 
-    shop.controller("ProductController", ['$scope', 'ProductService', 'CategoryService',
-        function($scope, ProductService, CategoryService) {
+    shop.controller("ProductController", ['$scope', 'ProductService', 'CategoryService', 'FileUploader',
+        function($scope, ProductService, CategoryService, FileUploader) {
             $scope.productService = ProductService;
             $scope.categories = CategoryService.categories;
             $scope.subCategories = [];
+            var uploader = $scope.uploader = new FileUploader({
+                url: 'upload.php'
+            });
+            // FILTERS
+
+            uploader.filters.push({
+                name: 'imageFilter',
+                fn: function(item /*{File|FileLikeObject}*/, options) {
+                    var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+                }
+            });
+
+            uploader.onSuccessItem = function(fileItem, response, status, headers) {                
+                var image = {};
+                image.filename = fileItem._file.name;
+                var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
+                $scope.images[safename] = image;
+            };
+
             $scope.uploadingImages = true;
             var newProduct = {};
             $scope.newProduct = {
@@ -721,7 +741,6 @@
                     $scope.productErrors.push(error);
                 }
                 if($scope.productErrors.length > 0) {
-                    console.log($scope.productErrors);
                     return false;
                 }
                 $scope.newProduct.images = $scope.images;
