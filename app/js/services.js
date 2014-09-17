@@ -25,7 +25,11 @@
             }));*/
             var products = $firebase(ref);
             var refByLive = new Firebase(FIREBASE_URI + '/productsByLive');
+            
             var liveProducts = $firebase(refByLive);
+
+            var refByLiveCategory = new Firebase(FIREBASE_URI + '/productsLiveByCategory');
+            var liveCategories = new Firebase(FIREBASE_URI + '/productsLiveByCategory');
 
             var addProduct = function(product) {
                 products.$add(product, function(err) {
@@ -53,7 +57,9 @@
                 create: function (name, product) {
                   return products.$set(name, product).then(function (ref) {
                     var productId = ref.name();
-                    liveProducts.$set(name, product);
+                    if(product.live) {
+                        liveProducts.$set(name, product);
+                    }
                     return productId;
                   });
                 },

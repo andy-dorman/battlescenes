@@ -586,19 +586,18 @@
                 return str.replace(/\s/g, "-").toLowerCase();
             }
 
-            $scope.getSubCategoriesFromProducts = function(products) {
+            $scope.getSubCategoriesFromProducts = function(products, category) {
                 var unique = {};
                 var distinctSubCategories = {};
                 for (var i in products) {
-                    if (typeof(unique[products[i].subcategory]) == "undefined" && products[i].subcategory != undefined) {
+                    if (typeof(unique[products[i].subcategory]) == "undefined" && products[i].subcategory != undefined && products[i].category == category) {
                         distinctSubCategories[products[i].subcategory] = 0;
-                        //distinctCategories.push(products[i].category);
                         unique[products[i].subcategory] = 0;
                     }
                     distinctSubCategories[products[i].subcategory]++;
                 }
                 for(var subcategory in distinctSubCategories) {
-                    if(subcategory == "undefined") {
+                    if(subcategory == "undefined" || isNaN(distinctSubCategories[subcategory])) {
                         delete distinctSubCategories[subcategory];
                     }
                 }

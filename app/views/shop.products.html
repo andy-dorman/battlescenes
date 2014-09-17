@@ -12,7 +12,7 @@
 
     <section class="subcategory-tabs category-tabs tabs">
         <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
-            <li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(filteredProducts)">
+            <li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)">
             <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
             <a sub-category-link>{{subcategory}}</a></li>
         </ul>
