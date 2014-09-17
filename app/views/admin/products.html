@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label name="productName">Name</label>
-            <input class="form-control" ng-model="newProduct.name" type="text" placeholder="product name"/>
+            <input class="form-control" ng-model="newProduct.name" type="text" placeholder="Product name"/>
         </div>
         <div class="form-group">
             <label name=productDescription>Description</label>
@@ -17,11 +17,15 @@
         </div>
         <div class="form-group">
             <label name="productPrice">Price</label>
-            <input class="form-control" ng-model="newProduct.price" type="text" placeholder="price (£)"/>
+            <input class="form-control" ng-model="newProduct.price" type="text" placeholder="Price (£)"/>
         </div>
         <div class="form-group">
             <label name="productQty">Quantity</label>
-            <input class="form-control" ng-model="newProduct.qty" placeholder="quantity"/>
+            <input class="form-control" ng-model="newProduct.qty" placeholder="Quantity"/>
+        </div>
+        <div class="form-group">
+            <label name="productDim">Dimensions</label>
+            <input class="form-control" ng-model="newProduct.dimensions" placeholder="Dimensions"/>
         </div>
         <div class="form-group">
             <select ng-model="newProduct.category" ng-change="getSubCategories()">

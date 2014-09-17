@@ -35,7 +35,7 @@
 	                    if(canvas.getContext) {
 	                        var context = canvas.getContext("2d");
 	                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-	                        var dataUrl = canvas.toDataURL();
+	                        var dataUrl = canvas.toDataURL();;
 
 	                        if( dataUrl != null && dataUrl != undefined ) {	                            
 	                            imgEl.attr('src', dataUrl);
@@ -44,8 +44,9 @@
 	                }
 	            }
 
-	            generateThumbnail(elem);
+	            //generateThumbnail(elem);
 	            //console.log(attrs);
+	            elem.attr('src', imgData);
 
                 //reader.readAsDataURL(file);
 				/*dataRef.once('value', function (snapshot) {

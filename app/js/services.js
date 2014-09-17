@@ -59,12 +59,13 @@
                 },
                 set: function(productId, product) {
                     var productCopy = angular.copy(product);
+
                     delete productCopy.$id;
                     delete productCopy.$priority;
                     //Get current live value stored against current prodId
                     //
                     var oldname = $firebase(refByLive.child(product.$id)).$asObject();
-
+                    console.log(product.images.hedgeset1jpg.data == productCopy.images.hedgeset1jpg.data);
                     //Get current product by current prodId
                     //
                     var currentProduct = $firebase(ref.child(product.$id)).$asObject();
