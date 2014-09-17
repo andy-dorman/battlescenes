@@ -85,7 +85,11 @@ button, input, optgroup, select, textarea {
 	background: #333;
 }
 
-.nav>li>a:hover, .nav>li>a:focus, .nav-pills>li.active>a:hover {
+.nav>li>a:hover {
+	background: none;
+}
+
+.nav>li>a:focus, .nav-pills>li.active>a:hover {
 	background: #555;
 	color: #e4e4e4;
 }

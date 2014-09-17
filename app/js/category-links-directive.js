@@ -32,5 +32,23 @@
 			}
 		}
 
-	})
+	}).directive('bscenesSrc', function(){
+		return {
+			restrict: 'A',
+			link: function ( scope, elem, attrs ) {
+				var getImgUrl = function(filename) {
+					var imgUrl = "";
+					
+					if(window.location.host == "bscenes") {
+						imgUrl = "http://battlescene.aomegasolutions.com/uploads/" + filename;
+					} else {
+						imgUrl = "/uploads/" + filename;
+					}
+
+					return imgUrl;
+				}
+				elem.attr('src', getImgUrl(attrs.bscenesSrc));
+			}
+		}
+	});
 })();

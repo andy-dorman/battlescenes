@@ -5,7 +5,7 @@
         <div class="pull-left col-sm-4">
             <div class="product-image-container">
                 <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)" class="gallery-thumbnail">
-                    <img ng-src="/uploads/{{ image.filename }}" class="pull-left img-thumbnail"/>
+                    <img bscenes-src="{{ image.filename }}" class="pull-left img-thumbnail"/>
                 </a>
             </div>
         </div>

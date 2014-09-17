@@ -500,7 +500,7 @@
                 for ( var image in $scope.product.images ) {
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
-                    imageObj.url = "/uploads/" + theImage.filename;
+                    imageObj.url = (window.location.host == "bscenes" ? "http://battlescene.aomegasolutions.com" : "") + "/uploads/" + theImage.filename;
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
