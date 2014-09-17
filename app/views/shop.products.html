@@ -30,7 +30,7 @@
         </div>
         <div class="col-sm-4">
             <a href ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container">
-                <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" class="img-responsive"/>
+                <img ng-src="/uploads/{{ image.filename }}" class="img-responsive"/>
             </a>
         </div>
         <div class="col-sm-8">

@@ -354,3 +354,7 @@ textarea.description {
 		width: 100%;
 	}
 }
+
+#image-queue {
+	margin-bottom: 20px;
+}
