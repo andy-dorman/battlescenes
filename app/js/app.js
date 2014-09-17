@@ -495,8 +495,15 @@
             $scope.categories = CategoryService.categories;
             $scope.filters = Filters;
             $scope.basket = Basket;
-            $scope.images = $scope.product.images;
-            
+            $scope.$watch('product', function(){
+                for ( var image in $scope.product.images ) {
+                    var theImage = $scope.product.images[image];
+                    var imageObj = {};
+                    imageObj.url = theImage.data;
+                    imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
+                    $scope.images.push(imageObj);
+                }
+            });
             $scope.breadcrumbResolver = function (defaultResolver, product) {
                 if (isCurrent) {
                     return '"' + item.name + '"';
