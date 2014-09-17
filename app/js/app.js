@@ -495,7 +495,8 @@
             $scope.categories = CategoryService.categories;
             $scope.filters = Filters;
             $scope.basket = Basket;
-            $scope.$watch('product', function(){
+            $scope.images = [];
+            $scope.product.$watch(function(){
                 for ( var image in $scope.product.images ) {
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
