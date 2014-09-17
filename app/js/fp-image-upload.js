@@ -48,7 +48,6 @@
 				};
 	 
 				var load_image = function(imageInput) {
-					console.log(scope.images);
 					if (imageInput.files.length === 0) { 
 						return;
 					}

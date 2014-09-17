@@ -21,6 +21,7 @@
         <![endif]-->
     </head>
     <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+        <div ui-view></div>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
         <script type="text/javascript" src="bower/angular/angular.js"></script>
         <script type="text/javascript" src="bower/angular-touch/angular-touch.js"></script>
@@ -48,7 +49,7 @@
         <script type="text/javascript" src="bower/firebase/firebase.js"></script>
         <script type="text/javascript" src="bower/angularfire/dist/angularfire.min.js"></script>
         <script type="text/javascript" src="bower/firebase-simple-login/firebase-simple-login.js"></script>
-        <div class="row container-fluid" ui-view></div ui-view>
+        
     </body>
 
 </html>

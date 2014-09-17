@@ -1,24 +1,21 @@
 <product-breadcrumbs></product-breadcrumbs>
 <h1>{{product.name}}<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
-<section class="tabs" ng-controller="CategoryController as categoryCtrl">
-    <ul class="nav nav-pills">
-        <li ng-class="{ active : isSet($index) }" ng-repeat="(category, count) in getCategories(products)"><a ng-click="setCategory(category, $index)" href>{{category}}</a></li>
-    </ul>
-</section>
-<div class="container" ng-show="product">
+<div class="row" ng-show="product.name">
     <section class="bottom-buffer" id="product-view">
-        <div class="pull-left col-md-4">
+        <div class="pull-left col-sm-4">
             <div class="product-image-container">
                 <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)" class="gallery-thumbnail">
                     <img fb-src="{{ image.filename }}" data-src="{{ image.data }}" class="pull-left img-thumbnail"/>
                 </a>
             </div>
         </div>
-        <div class="pull-left col-md-8">
+        <div class="pull-left col-sm-5">
             <div class="description">
+            <p>
             {{product.description}}
+            </p>
             </div>
-            <div class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em class="pull-right">&nbsp;- {{ product.price | currency : "&pound;" }}</em></div>
+            <div class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : "&pound;" }}</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link"><span class="glyphicon glyphicon-envelope"></span></a></div>
         </div>
         <!--<button ng-click="basket.addToBasket(product)">Add to Basket</button>-->
     </section>

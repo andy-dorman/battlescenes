@@ -279,8 +279,9 @@
         }
     ]);
 
-    shop.controller("ContactCtrl", ['$scope', '$location', '$http', 'ContactService',
-        function($scope, $location, $http, ContactService){
+    shop.controller("ContactCtrl", ['$scope', '$location', '$http', 'ContactService', 'Filters',
+        function($scope, $location, $http, ContactService, Filters){
+            $scope.Filters = Filters;
             $scope.http = $http;
             $scope.contactService = ContactService;
             $scope.contacts = $scope.contactService.enqSync;
@@ -291,6 +292,10 @@
                 email: "",
                 message: ""
             };
+
+            $scope.Filters.searchTerm = "";
+            $scope.Filters.category = "";
+            $scope.Filters.subcategory = "";
 
             $scope.sendMessage = function() {
                 $scope.errors = [];
@@ -381,7 +386,16 @@
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
-            $scope.products = ProductService.getProducts;
+            //$scope.products = ProductService.getProducts;
+
+            UserService.authenticated.on("value", function(snap){
+              if (snap.val() === true) {
+                $scope.products = ProductService.all.$asArray();
+              } else {
+                $scope.products = ProductService.live.$asArray();
+              }
+            });
+            
             $scope.filters = Filters;
             $scope.basket = Basket;
             $scope.edit = [];
@@ -402,15 +416,15 @@
             };
 
             $scope.save = function (product) {
-                $scope.products.$save(product);
+                var safename = (product.category + "-" + product.name.replace(/\s/g, "-")).toLowerCase();
                 $scope.toggleEdit(product.$id);
+                $scope.productService.set(safename, product);
             };
 
             $scope.delete = function (product) {
                 var removeProduct = confirm("Are you sure you want to remove \"" + product.name + "\" from the shop?");
                 if(removeProduct) {
-                    $scope.products.$remove(product);
-                    $scope.toggleEdit(product.$id);
+                    $scope.productService.delete(product);
                 }
             };
 
@@ -467,7 +481,7 @@
         function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, Basket, Lightbox) {
             $scope.userService = UserService;
             $scope.productId = $stateParams.productId;
-            ProductService.getProducts.$loaded().then(function(products){
+            /*ProductService.getProducts.$loaded().then(function(products){
                 $scope.product = products.$getRecord($stateParams.productId);
                 for ( var image in $scope.product.images ) {
                     var theImage = $scope.product.images[image];
@@ -476,14 +490,14 @@
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
-            });
+            });*/
+            $scope.product = ProductService.find($stateParams.productId);
             $scope.categories = CategoryService.categories;
             $scope.filters = Filters;
             $scope.basket = Basket;
-            $scope.images = [];
+            $scope.images = $scope.product.images;
             
             $scope.breadcrumbResolver = function (defaultResolver, product) {
-                console.log(product);
                 if (isCurrent) {
                     return '"' + item.name + '"';
                 }
@@ -529,7 +543,8 @@
             $scope.subcategory = $stateParams.subcategoryId;
             $scope.categoryService = CategoryService;
             $scope.categories = CategoryService.categories;
-            $scope.products = ProductService.getProducts;
+            //$scope.products = ProductService.getProducts;
+            $scope.products;
             
             $scope.getCategoriesFromProducts = function(products) {
                 var unique = {};
@@ -673,33 +688,33 @@
             }
 
             $scope.addProduct = function() {
-                console.log($scope.newProduct);
                 $scope.productErrors = [];
-                if($scope.newProduct.name == "" || newProduct.name == undefined) {
+
+                if($scope.newProduct.name == "" || $scope.newProduct.name == undefined) {
                     var error = {};
                     error.name = "Name";
                     error.msg = "You need to enter a name for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.price == "" || newProduct.price == undefined) {
+                if(newProduct.price == "" || $scope.newProduct.price == undefined) {
                     var error = {};
                     error.name = "Price";
                     error.msg = "You need to enter a price for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.description == "" || newProduct.description == undefined) {
+                if(newProduct.description == "" || $scope.newProduct.description == undefined) {
                     var error = {};
                     error.name = "Description";
                     error.msg = "You need to enter a description for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.qty == "" || newProduct.qty == undefined) {
+                if(newProduct.qty == "" || $scope.newProduct.qty == undefined) {
                     var error = {};
                     error.name = "Qty";
                     error.msg = "You need to enter a qty for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.category == "" || newProduct.category == undefined) {
+                if(newProduct.category == "" || $scope.newProduct.category == undefined) {
                     var error = {};
                     error.name = "Category";
                     error.msg = "You need to provide a category for your product";
@@ -715,9 +730,8 @@
                 $scope.uploadingImages = false;
                 //safename = imageUpload.name.replace(/\.|\#|\$|\[|\]|-|\//g, "");
 
-                if(newProduct.name != "") {
-                    $scope.productService.products.$set(safename, $scope.newProduct);
-                }
+                    //$scope.productService.products.$set(safename, $scope.newProduct);
+                $scope.productService.create(safename, $scope.newProduct);
                 $scope.newProduct = {};
                 $scope.images = {};
             }
