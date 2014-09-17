@@ -668,6 +668,7 @@
             $scope.productService = ProductService;
             $scope.categories = CategoryService.categories;
             $scope.subCategories = [];
+            $scope.images = {};
             var uploader = $scope.uploader = new FileUploader({
                 url: 'upload.php'
             });
