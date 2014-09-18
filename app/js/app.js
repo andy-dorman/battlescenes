@@ -582,7 +582,7 @@
               }
             });
             $scope.filters = Filters;
-            $scope.filters.category = $stateParams.categoryId;
+            $scope.filters.category = $stateParams.categoryId || "";
             
             $scope.getCategoriesFromProducts = function(products) {
                 var unique = {};
