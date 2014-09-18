@@ -116,8 +116,7 @@
                 url: '/about',
                 views: {
                     'content@shop': {
-                        templateUrl: 'views/shop.about.html',
-                        controller: 'CategoryController'
+                        templateUrl: 'views/shop.about.html'
                     }
                 },
             },
@@ -126,8 +125,17 @@
                 url: '/contact',
                 views: {
                     'content@shop': {
-                        templateUrl: 'views/shop.contact.html',
-                        controller: 'CategoryController'
+                        templateUrl: 'views/shop.contact.html'
+                    }
+                },
+            },
+            'shop.basket' : 
+            {
+                url: '/basket',
+                views: {
+                    'content@shop': {
+                        templateUrl: 'views/shop.basket.html',
+                        controller: 'BasketController'
                     }
                 },
             },
@@ -279,19 +287,32 @@
         }
     ]);
 
-    shop.controller("ContactCtrl", ['$scope', '$location', '$http', 'ContactService', 'Filters',
-        function($scope, $location, $http, ContactService, Filters){
+    shop.controller("ContactCtrl", ['$scope', '$location', '$http', 'ContactService', 'Filters', 'BasketService',
+        function($scope, $location, $http, ContactService, Filters, BasketService){
             $scope.Filters = Filters;
             $scope.http = $http;
             $scope.contactService = ContactService;
             $scope.contacts = $scope.contactService.enqSync;
             $scope.errors = [];
             $scope.msgSuccess = false;
+            $scope.basket = BasketService;
             $scope.newContact = {
                 name: "",
                 email: "",
                 message: ""
             };
+
+            if($scope.basket.count() > 0) {
+                var basket = $scope.basket.items;
+                for(var item in basket) {
+                    var item = basket[item];
+                    $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "'s" : "") + " (" + item.category + ")\n";
+                }
+
+                if($scope.newContact.message != "") {
+                    $scope.newContact.message = "Hi there,\n\nI'm interested in the following items:\n\n" + $scope.newContact.message;
+                }
+            }
 
             $scope.Filters.searchTerm = "";
             $scope.Filters.category = "";
@@ -381,8 +402,8 @@
         }
     ]);
 
-    shop.controller("ShopController", ['$scope', '$http', '$state', '$stateParams', 'ProductService', 'CategoryService', 'UserService', 'Filters', 'Basket',
-        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, Basket) {
+    shop.controller("ShopController", ['$scope', '$http', '$state', '$stateParams', 'ProductService', 'CategoryService', 'UserService', 'Filters', 'BasketService',
+        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService) {
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
@@ -397,7 +418,7 @@
             });
             
             $scope.filters = Filters;
-            $scope.basket = Basket;
+            $scope.basket = BasketService;
             $scope.edit = [];
             $scope.category = $stateParams.categoryId;
             $scope.subcategory = $stateParams.subcategoryId;
@@ -545,14 +566,23 @@
         }
     ]);
 
-    shop.controller("CategoryController", ['$scope', '$stateParams', 'ProductService', 'CategoryService', 'Filters',
-        function($scope, $stateParams, ProductService, CategoryService, Filters) {
+    shop.controller("CategoryController", ['$scope', '$stateParams', 'ProductService', 'CategoryService', 'UserService', 'Filters',
+        function($scope, $stateParams, ProductService, CategoryService, UserService, Filters) {
             $scope.category = $stateParams.categoryId;
             $scope.subcategory = $stateParams.subcategoryId;
             $scope.categoryService = CategoryService;
             $scope.categories = CategoryService.categories;
             //$scope.products = ProductService.getProducts;
-            $scope.products;
+            $scope.products = ProductService.products;
+            UserService.authenticated.on("value", function(snap){
+              if (snap.val() === true) {
+                $scope.products = ProductService.all.$asArray();
+              } else {
+                $scope.products = ProductService.live.$asArray();
+              }
+            });
+            $scope.filters = Filters;
+            $scope.filters.category = $stateParams.categoryId;
             
             $scope.getCategoriesFromProducts = function(products) {
                 var unique = {};
@@ -657,19 +687,11 @@
         }
     ]);
 
-    shop.controller("BasketController", function() {
-        $scope.basket = [];
-        $scope.greeting = "Welcome to Battlescenes designs";
-        $scope.addToBasket = function(product) {
-            $scope.basket.push(product);
-        };
-        $scope.basketCount = function() {
-            var basket = $scope.basket;
-            return basket.length;
-            //return basket.length > 0 ? basket.length + " item" + (basket.length > 1 ? "s" : "") + " in your basket" : "Basket empty";
-        };
-    });
-
+    shop.controller("BasketController", ['$scope', 'BasketService',
+        function($scope, BasketService) {
+            $scope.basket = BasketService;
+        }
+    ]);
     shop.controller("ProductController", ['$scope', 'ProductService', 'CategoryService', 'FileUploader',
         function($scope, ProductService, CategoryService, FileUploader) {
             $scope.productService = ProductService;

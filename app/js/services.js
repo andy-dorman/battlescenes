@@ -180,4 +180,72 @@
                 enqSync: sync
             }
         }]);
+
+    bsServices.service("BasketService", function() {
+        var items = {};
+        var Basket = {
+            items : items,
+            add : function(product) {
+                if(items[product.$id]) {
+                    items[product.$id].count++;
+                } else {
+                    var image;
+                    for (var image in product.images) {
+                        image = image;
+                        break;
+                    }
+                    var item = {
+                        category: product.category,
+                        count: 1,
+                        name: product.name,
+                        price: product.price
+                    };
+
+                    if(image) {
+                        item.img = product.images[image].filename
+                    }
+                    items[product.$id] = item;
+                }
+            },
+            total : function () {
+                var basket = items;
+                var price = 0;
+                for(var item in basket) {
+                    if(basket[item] != undefined) {
+                        price += parseInt(basket[item].count) * parseFloat(basket[item].price);
+                    }
+                }
+                return price;
+            },
+            count : function() {
+                var basket = items;
+                var count = 0;
+                for(var item in basket) {
+                    if(basket[item] != undefined) {
+                        count += basket[item].count;
+                    }
+                }
+                return count;
+            },
+            basketText : function() {
+                var text = this.total() > 0 ? "\xA3" + this.total().toFixed(2) + " - " + this.count() + (this.count() > 1 ? " items" : "item") : "empty";
+                return text;
+            },
+            itemCount: function(product) {
+                if(items[product.$id]) {
+                    return items[product.$id].count;
+                }
+            },
+
+            empty : function() {
+                items = {};
+            },
+
+            contains : function(product) {
+                return items[product.$id];
+            }
+        }
+
+        return Basket;
+    });
 })();

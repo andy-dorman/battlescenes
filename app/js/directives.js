@@ -16,7 +16,8 @@
 			}
 		}
 
-	}).directive('subCategoryLink',function(){
+	})
+	.directive('subCategoryLink',function(){
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {
@@ -32,7 +33,8 @@
 			}
 		}
 
-	}).directive('bscenesSrc', function(){
+	})
+	.directive('bscenesSrc', function(){
 		return {
 			restrict: 'A',
 			link: function ( scope, elem, attrs ) {
@@ -49,6 +51,39 @@
 				}
 				elem.attr('src', getImgUrl(attrs.bscenesSrc));
 			}
+		}
+	})
+	.directive('productBreadcrumbs',function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'views/directives/product.breadcrumbs.html',
+			controller: function($scope) {
+				$scope.saferize = function (str) {
+					return str.replace(/\s/g, "-").toLowerCase();
+				}
+			}
+		}
+
+	})
+	.directive('categoryFilters', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'views/directives/category.filters.html',
+			controller: 'CategoryController'
+		}
+	})
+	.directive('basketContents', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'views/directives/basket.contents.html',
+			controller: 'BasketController'
+		}
+	})
+	.directive('basket', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'views/directives/basket.html',
+			controller: 'BasketController'
 		}
 	});
 })();
