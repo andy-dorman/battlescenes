@@ -3,6 +3,10 @@
 	cursor: pointer;
 }
 
+.basket-empty .glyphicon {
+	top: 3px;
+	left: 4px;
+}
 .glyphicon-bookmark {
 
 }
