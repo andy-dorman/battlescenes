@@ -11,6 +11,7 @@
             </div>
         </div>
         <div class="pull-left col-sm-5">
+            <a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)">{{basket.itemCount(product)}}</span></span></a>
             <div class="description">
             <p>
             {{product.description}}

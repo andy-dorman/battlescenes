@@ -3,6 +3,10 @@
 	cursor: pointer;
 }
 
+.glyphicon-bookmark {
+
+}
+
 .basket-img {
 	width: 100px;
 }
@@ -15,6 +19,9 @@
 	color: #c00;
 }
 
+.glyphicon-bookmark {
+	font-size: 18px;
+}
 .bookmark span span {
 	position: absolute;
 	left: 0px;
