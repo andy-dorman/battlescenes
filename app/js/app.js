@@ -328,6 +328,10 @@
             $scope.Filters.category = "";
             $scope.Filters.subcategory = "";
 
+            var capitalise = function (string)
+            {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
             $scope.sendMessage = function() {
                 $scope.errors = [];
 
@@ -342,7 +346,7 @@
                         if(data.errors) {
                             for(var error in data.errors) {
                                 $scope.errors.push({
-                                    "name": error,
+                                    "name": capitalise(error),
                                     "message": data.errors[error]
                                 });
                             }
