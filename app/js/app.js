@@ -266,10 +266,16 @@
         }
         $urlRouterProvider.otherwise('');
     }
-    ]);
-
+    ])
+    .run(function($rootScope){
+        $rootScope.$on('$stateChangeStart', 
+        function(event, toState, toParams, fromState, fromParams){
+            $('.navbar-collapse').collapse('hide');
+        });
+    });
     shop.controller("RootController", ['$scope', '$location', 'UserService',
         function($scope, $location, UserService){
+
             $scope.userService = UserService;
             $scope.getCurrentUser = function() {
                 $scope.userService.loginService.$getCurrentUser().then(function(user){
@@ -344,7 +350,7 @@
         }
     ]);
 
-    shop.controller("NavigationController", ['$scope', '$location', '$state', 'Filters', 'title', 'Basket',
+    shop.controller("NavigationController", ['$scope', '$rootScope', '$location', '$state', 'Filters', 'title', 'Basket',
         function($scope, $location, $state, Filters, title, basket){
             $scope.basket = basket;
             $scope.pages = [
@@ -367,6 +373,7 @@
                     "admin" : true
                 }
             ];
+
             $scope.pageHeader = title.value;
 
             $scope.filters = Filters;
