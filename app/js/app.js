@@ -316,11 +316,11 @@
                 var basket = $scope.basket.items;
                 for(var item in basket) {
                     var item = basket[item];
-                    $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "'s" : "") + " (" + item.category + ")\n";
+                    $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "'s" : "") + " (" + item.category + ") - \u00a3" + ((parseFloat(item.price)*item.count).toFixed(2)) + "\n";
                 }
 
                 if($scope.newContact.message != "") {
-                    $scope.newContact.message = "Hi there,\n\nI'm interested in the following items:\n\n" + $scope.newContact.message;
+                    $scope.newContact.message = "Hi there,\n\nI'm interested in the following items:\n\n" + $scope.newContact.message + "\nTotal: \u00a3" + (parseFloat($scope.basket.total()).toFixed(2));
                 }
             }
 
