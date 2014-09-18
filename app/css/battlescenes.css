@@ -404,3 +404,7 @@ textarea.description {
 #image-queue {
 	margin-bottom: 20px;
 }
+
+tbody tr td:first-child {
+	width: 100px;
+}
