@@ -197,6 +197,7 @@
                         image = image;
                         break;
                     }
+
                     var item = {
                         category: product.category,
                         count: 1,
@@ -204,8 +205,11 @@
                         price: product.price,
                         id : productId
                     };
-                    if(image) {
+
+                    if(image != undefined && image != null) {
                         item.img = product.images[image].filename
+                    } else {
+                        item.img = product.img || "";
                     }
                     items[productId] = item;
                 }
@@ -215,6 +219,7 @@
                         $cookieStore.put('basketCookie', []);
                         basketCookie = $cookieStore.get('basketCookie');
                     }
+                    console.log(items[product.$id]);
                     basketCookie.push(items[product.$id]);
                     $cookieStore.put('basketCookie', basketCookie);
                 }
