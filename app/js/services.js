@@ -1,6 +1,6 @@
 ;(function(){
     "use strict";
-    var bsServices = angular.module('bsServices', ['ngResource', 'firebase']);
+    var bsServices = angular.module('bsServices', ['ngResource', 'ngCookies', 'firebase']);
 
     bsServices.factory("Filters",
         function() {
@@ -181,13 +181,16 @@
             }
         }]);
 
-    bsServices.service("BasketService", function() {
+    bsServices.service("BasketService", ['$cookieStore', function($cookieStore) {
         var items = {};
+        var $cookieStore = $cookieStore;
         var Basket = {
             items : items,
-            add : function(product) {
-                if(items[product.$id]) {
-                    items[product.$id].count++;
+            add : function(product, skipCookie) {
+                var skipCookie = skipCookie || false;
+                var productId = skipCookie ? product.id : product.$id;
+                if(items[productId]) {
+                    items[productId].count++;
                 } else {
                     var image;
                     for (var image in product.images) {
@@ -198,13 +201,27 @@
                         category: product.category,
                         count: 1,
                         name: product.name,
-                        price: product.price
+                        price: product.price,
+                        id : productId
                     };
-
                     if(image) {
                         item.img = product.images[image].filename
                     }
-                    items[product.$id] = item;
+                    items[productId] = item;
+                }
+                if(!skipCookie) {
+                    var basketCookie = $cookieStore.get('basketCookie');
+                    if(basketCookie == undefined) {
+                        $cookieStore.put('basketCookie', []);
+                        basketCookie = $cookieStore.get('basketCookie');
+                    }
+                    basketCookie.push(items[product.$id]);
+                    $cookieStore.put('basketCookie', basketCookie);
+                }
+            },
+            init : function(items) {
+                for(var item in items) {
+                    this.add(items[item], true);
                 }
             },
             total : function () {
@@ -247,5 +264,5 @@
         }
 
         return Basket;
-    });
+    }]);
 })();

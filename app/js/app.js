@@ -273,9 +273,13 @@
             $('.navbar-collapse').collapse('hide');
         });
     });
-    shop.controller("RootController", ['$scope', '$location', 'UserService',
-        function($scope, $location, UserService){
-
+    shop.controller("RootController", ['$scope', '$location', 'UserService', 'BasketService', '$cookieStore',
+        function($scope, $location, UserService, BasketService, $cookieStore){
+            $scope.basket = BasketService;
+            var basketCookie = $cookieStore.get('basketCookie');
+            if(basketCookie != undefined && basketCookie != null) {
+                $scope.basket.init(basketCookie);
+            }
             $scope.userService = UserService;
             $scope.getCurrentUser = function() {
                 $scope.userService.loginService.$getCurrentUser().then(function(user){
