@@ -1,5 +1,5 @@
-.bookmark {
-	display: block;
+.bookmark,
+.basket-empty {
 	cursor: pointer;
 }
 

@@ -256,6 +256,7 @@
 
             empty : function() {
                 items = {};
+                $cookieStore.remove('basketCookie');
             },
 
             contains : function(product) {
