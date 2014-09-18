@@ -316,7 +316,7 @@
                 var basket = $scope.basket.items;
                 for(var item in basket) {
                     var item = basket[item];
-                    $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "'s" : "") + " (" + item.category + ") - \u00a3" + ((parseFloat(item.price)*item.count).toFixed(2)) + "\n";
+                    $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "s" : "") + " (" + item.category + ") - \u00a3" + ((parseFloat(item.price)*item.count).toFixed(2)) + "\n";
                 }
 
                 if($scope.newContact.message != "") {
