@@ -219,7 +219,6 @@
                         $cookieStore.put('basketCookie', []);
                         basketCookie = $cookieStore.get('basketCookie');
                     }
-                    console.log(items[product.$id]);
                     basketCookie.push(items[product.$id]);
                     $cookieStore.put('basketCookie', basketCookie);
                 }
