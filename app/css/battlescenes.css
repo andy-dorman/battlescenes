@@ -61,8 +61,12 @@
 	padding-right: 0;
 }
 
-#empty-basket {
+#clear-basket {
 	margin-bottom: 16px;
+}
+
+#empty-basket {
+	margin-left: 8px;
 }
 
 .logo {
@@ -226,12 +230,13 @@ a:hover {
 .price-qty {
 	position: absolute;
 	bottom: 0px;
-	width: 100%;
+	width: 85%;
 }
 
 .contact-link {
 	position: absolute;
-	right: 30px;
+	right: 15px;
+	bottom: 0px;
 }
 
 .form-group.price-qty {
