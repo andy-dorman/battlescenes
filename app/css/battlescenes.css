@@ -26,7 +26,8 @@
 .glyphicon-bookmark {
 	font-size: 18px;
 }
-.bookmark span span {
+.bookmark span span,
+.basket-row .glyphicon span {
 	position: absolute;
 	left: 0px;
 	width: 19px;
@@ -36,10 +37,34 @@
 	top: -1px;
 }
 
+.basket-row .glyphicon span {
+	left: 1px;
+	top: 3px;
+}
+
+.basket-row .glyphicon span {
+	color: #333;
+}
+
 .basket-row {
 	margin-right: 0;
 	margin-bottom: 10px;
+	display: inline-block;
+	margin-left: 55px;
 }
+.basket-row .glyphicon {
+	font-size: 23px;
+	top: 6px;
+}
+
+.basket-row .col-sm-12 {
+	padding-right: 0;
+}
+
+#empty-basket {
+	margin-bottom: 16px;
+}
+
 .logo {
 	display :block;
 	margin-top: 0px;
@@ -101,13 +126,20 @@ button, input, optgroup, select, textarea {
 	background: #333;
 }
 
+.navbar-header {
+	width: 270px;
+}
+
 .navbar-header form {
 	position: relative;
 	margin: 10px;
 }
+.navbar-header .form-group {
+	float: left;
+}
 .navbar-header form input { 
 	float: left;
-	width: 120%;
+	width: 154%;
 	margin-left: -25px;
 }
 
@@ -395,9 +427,18 @@ textarea.description {
 	}
 	.navbar-header form input { 
 		float: left;
-		width: 120%;
+		width: 150%;
 		margin-left: -10px;
-		width: 100%;
+	}
+	.navbar-header {
+		width: auto;
+	}
+	.basket-row {
+		margin-left: 90px;
+	}
+	.basket-row .col-sm-12 {
+		padding: 0;
+		margin-right: -15px;
 	}
 }
 

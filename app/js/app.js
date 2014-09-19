@@ -270,7 +270,8 @@
     .run(function($rootScope){
         $rootScope.$on('$stateChangeStart', 
         function(event, toState, toParams, fromState, fromParams){
-            $('.navbar-collapse').collapse('hide');
+            console.log("collapsing");
+            $('#navbar-collapse').collapse('hide');
         });
     });
     shop.controller("RootController", ['$scope', '$location', 'UserService', 'BasketService', '$cookieStore',
