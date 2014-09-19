@@ -116,9 +116,10 @@
                 url: '/about',
                 views: {
                     'content@shop': {
-                        templateUrl: 'views/shop.about.html'
+                        templateUrl: 'views/shop.about.html',
+                        controller: 'ShopController'
                     }
-                },
+                }
             },
             'shop.contact' : 
             {
@@ -358,7 +359,7 @@
         }
     ]);
 
-    shop.controller("NavigationController", ['$scope', '$rootScope', '$location', '$state', 'Filters', 'title', 'Basket',
+    shop.controller("NavigationController", ['$scope', '$location', '$state', 'Filters', 'title', 'Basket',
         function($scope, $location, $state, Filters, title, basket){
             $scope.basket = basket;
             $scope.pages = [
@@ -385,10 +386,10 @@
             $scope.pageHeader = title.value;
 
             $scope.filters = Filters;
+            $scope.searchTerm = $scope.filters.searchTerm;
 
             $scope.doSearch = function() {
                 $state.go('shop.search',{ query: $scope.filters.searchTerm});
-
             }
         }
     ]);
@@ -422,6 +423,7 @@
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
+
             //$scope.products = ProductService.getProducts;
 
             UserService.authenticated.on("value", function(snap){

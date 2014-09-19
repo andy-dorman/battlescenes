@@ -2,7 +2,7 @@
     "use strict";
     var bsServices = angular.module('bsServices', ['ngResource', 'ngCookies', 'firebase']);
 
-    bsServices.factory("Filters",
+    bsServices.service("Filters",
         function() {
             return {
                 category: "",
