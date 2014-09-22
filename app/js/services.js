@@ -200,7 +200,7 @@
 
                     var item = {
                         category: product.category,
-                        count: 1,
+                        count: product.count || 1,
                         name: product.name,
                         price: product.price,
                         id : productId
@@ -219,7 +219,17 @@
                         $cookieStore.put('basketCookie', []);
                         basketCookie = $cookieStore.get('basketCookie');
                     }
-                    basketCookie.push(items[product.$id]);
+                    var itemAdded = false;
+                    for (var i = 0; i < basketCookie.length; i++) {
+                        if(basketCookie[i].id == productId) {
+                            basketCookie.splice(i,1, items[productId]);
+                            itemAdded = true;
+                            break;
+                        }
+                    }
+                    if(itemAdded === false) {
+                        basketCookie.push(items[productId]);
+                    }
                     $cookieStore.put('basketCookie', basketCookie);
                 }
             },
