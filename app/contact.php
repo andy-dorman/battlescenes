@@ -32,8 +32,8 @@ if (!verifyXSRF()) {
 	Bookmarked a method of doing this...
 **/
 
-define("BSCENES_EMAIL", "andydorman@gmail.com");
-//define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
+//define("BSCENES_EMAIL", "andydorman@gmail.com");
+define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
 define("MY_EMAIL", "andydorman@gmail.com");
 define("BSCENES_THANKS_SUBJECT", "Thank you for you enquiry");
 
