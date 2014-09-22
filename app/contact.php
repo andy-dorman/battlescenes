@@ -1,12 +1,39 @@
 <?php
+function verifyXSRF() {
+
+    /*
+    $headers = apache_request_headers();
+    $headerToken = "";
+    foreach ($headers as $header => $value) {
+        if ($header == "X-XSRF-TOKEN") {
+            $headerToken = $value;
+            break;          
+        }
+    }
+    */
+
+    //more efficient, see comments
+    $headerToken = $_SERVER['HTTP_X_XSRF_TOKEN'];
+    if ($headerToken != $_SESSION['XSRF-TOKEN']) return false;
+    return true;
+}
+
+session_start();
+if (!verifyXSRF()) {
+	$errors['Cross site scripting'] = "Cross site scripting attack detected.";
+	$data['success'] = false;
+	$data['errors'] = $errors;
+
+	die(json_encode($data));
+}
 
 /* TODO
 	Implement csrf token - instantiated on index.html (index.php) and passed along with $http calls
 	Bookmarked a method of doing this...
 **/
 
+define("BSCENES_EMAIL", "andydorman@gmail.com");
 //define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
-define("BSCENES_EMAIL", "battlescenedesigns@hotmail.co.uk");
 define("MY_EMAIL", "andydorman@gmail.com");
 define("BSCENES_THANKS_SUBJECT", "Thank you for you enquiry");
 
