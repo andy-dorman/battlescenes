@@ -50,7 +50,7 @@
 	margin-right: 0;
 	margin-bottom: 10px;
 	display: inline-block;
-	margin-left: 55px;
+	margin-left: -1px;
 }
 .basket-row .glyphicon {
 	font-size: 23px;
@@ -100,12 +100,47 @@
 	margin-right: 15px;
 }
 
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav>li>a,
+.pagination>li>a,
+.pagination>li>span,
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover {
 	color: #0F0;
+	background: none;
 }
 
+.pagination>li>a:hover {
+
+}
+
+.pagination>li>a,
+.pagination>li>span {
+	border-color: #0f0;
+	background-color: transparent;
+}
+
+.pagination>.disabled>a:active,
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>a,
+.pagination>li>a:hover {
+	color: #0F0;
+	border-color: #090;
+	background-color: transparent;
+}
+
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover {
+	color: #090;
+}
 .navbar-default .navbar-nav>li>a:hover {
 	color: #0C0;
+}
+.pagination>.active>a,
+.pagination>.active>a:hover {
+	color: #333;
+	background-color: #0f0;
+	border-color: #0f0;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -143,7 +178,7 @@ button, input, optgroup, select, textarea {
 }
 .navbar-header form input { 
 	float: left;
-	width: 154%;
+	width: 92%;
 	margin-left: -25px;
 }
 

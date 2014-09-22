@@ -2,7 +2,7 @@
 (function() {
     //var shop = angular.module('shop', ['bsServices', 'basket', 'ngResource', 'ngCookies', 'ui.router']);
     var shop = angular.module('shop',
-        ['bsServices', 'basket', 'ngCookies', 'ui.keypress', 'ui.event', 'ui.router', 'firebase', 'angularFileUpload',  'stateSecurity', 'userService', 'bootstrapLightbox', 'shopFilters',
+        ['angularUtils.directives.dirPagination', 'bsServices', 'basket', 'ngCookies', 'ui.keypress', 'ui.event', 'ui.router', 'firebase', 'angularFileUpload',  'stateSecurity', 'userService', 'bootstrapLightbox', 'shopFilters',
         function($httpProvider) {
           // Use x-www-form-urlencoded Content-Type
           $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -423,6 +423,7 @@
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
+            $scope.pageSize = 10;
 
             //$scope.products = ProductService.getProducts;
 
