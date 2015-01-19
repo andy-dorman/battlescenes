@@ -2,10 +2,11 @@
 <h1>{{product.name}}<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
 <div class="row" ng-show="product.name">
     <section class="bottom-buffer" id="product-view">
-        <div class="pull-left col-sm-4">
+        <div class="pull-left col-sm-4 gallery">
             <div class="product-image-container">
-                <a ng-repeat="image in product.images" ng-click="openLightboxModal($index)" class="gallery-thumbnail">
-                    <img bscenes-src="{{ image.filename }}" class="pull-left img-thumbnail"/>
+                <!--ng-click="openLightboxModal($index)"-->
+                <a ng-repeat="image in images" class="gallery-thumbnail" href="{{ image.url }}">
+                    <img ng-src="{{ image.url }}" title="{{image.caption}}" bn-load="imageLoaded( image )" class="pull-left"/>
                 </a>
             </div>
         </div>

@@ -1,0 +1,13 @@
+<category-filters></category-filters>
+<h1>{{page.title}}</h1>
+<h2>{{page.createdAt | date}}</h2>
+<div common-mark="page.content"></div>
+
+<ul ng-cloak="pages && pages.length > 1">
+    <li ng-repeat="(key, value) in pages">
+        {{value[0].createdAt | date : 'MMMM, yyyy'}}
+        <ul>
+            <li ng-repeat="page in value"><a ui-sref="shop.page({section: page.section, page: page.$id})">{{page.title}}</a></li>
+        </ul>
+    </li>
+</ul>

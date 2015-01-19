@@ -2,6 +2,7 @@
 <h1 class="hidden">Battlescene Designs</h1>
 <h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
 <div class="row">
+    <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
     <section class="product-panel bottom-buffer col-sm-6" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
         <div class="row" ng-show="userService.currentUser">
             <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>

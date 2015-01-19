@@ -1,48 +1,44 @@
 <div class="col-md-6">
-    <h1>Add new product</h1>
-    <form role="form" ng-submit="addProduct()">
-        <div class="error" ng-show="productErrors.length > 0">
-            <h4 ng-repeat-start="error in productErrors">{{error.name}}</h4>
+    <h1>Edit pages</h1>
+        <div class="form-group">
+            <select ng-model="newPage.section" class="form-control" id="page-sections" ng-change="getPages()">
+                <option value="">Select a section</option>
+                <option ng-repeat="section in sections" value="{{section.title}}">{{section.title}}</option>
+            </select>
+        </div>
+    <form role="form" class="form-inline">
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label name="sectionTitle" class="sr-only">New section</label>
+            <input class="form-control" style="width: 250px;" ng-model="newSection.title" type="text" placeholder="New section"/>
+            <button ng-click="addSection()" class="btn">Add section</button>
+        </div>
+    </form>
+    <form role="form" ng-submit="addPage()">
+        <div class="form-group">
+            <select ng-model="page" ng-change="setPage()" class="form-control">
+                <option value="">new page</option>
+                <option ng-repeat="page in pages" value="{{$index}}">{{page.title}}</option>
+            </select>
+        </div>
+        <div class="error" ng-show="pageErrors.length > 0">
+            <h4 ng-repeat-start="error in pageErrors">{{error.name}}</h4>
             <p ng-repeat-end>
-            {{error.msg}}
+                {{error.msg}}
             </p>
         </div>
         <div class="form-group">
-            <label name="productName">Name</label>
-            <input class="form-control" ng-model="newProduct.name" type="text" placeholder="Product name"/>
+            <label name="pageTitle">Title</label>
+            <input class="form-control" ng-model="newPage.title" type="text" placeholder="Page title"/>
         </div>
         <div class="form-group">
-            <label name=productDescription>Description</label>
-            <textarea class="form-control" ng-model="newProduct.description" placeholder="Product description"></textarea>
+            <label name="pageContent">Content</label>
+            <textarea class="form-control" ng-model="newPage.content" placeholder="Page content"></textarea>
         </div>
-        <div class="form-group">
-            <label name="productPrice">Price</label>
-            <input class="form-control" ng-model="newProduct.price" type="text" placeholder="Price (£)"/>
-        </div>
-        <div class="form-group">
-            <label name="productQty">Quantity</label>
-            <input class="form-control" ng-model="newProduct.qty" placeholder="Quantity"/>
-        </div>
-        <div class="form-group">
-            <label name="productDim">Dimensions</label>
-            <input class="form-control" ng-model="newProduct.dimensions" placeholder="Dimensions"/>
-        </div>
-        <div class="form-group">
-            <select ng-model="newProduct.category" ng-change="getSubCategories()" class="form-control">
-            <option value="">Select a category</option>
-            <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <select ng-model="newProduct.subcategory" class="form-control">
-            <option value="">Select a sub-category</option>
-            <option ng-repeat="subcategory in subCategories" value="{{subcategory.name}}">{{subcategory.name}}</option>
-            </select>
-        </div>
+        <div common-mark="newPage.content"></div>
         <div class="checkbox">
-            <label name="productLive">
-            <input type="checkbox" ng-model="newProduct.live"/>Make product live
-        </label>
+            <label name="pageLive">
+                <input type="checkbox" ng-model="newPage.live"/>Make page live
+            </label>
         </div>
         <div class="form-group">
             <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
@@ -78,6 +74,6 @@
                 </li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-success">Save product</button>
+        <button type="submit" class="btn btn-success">Save Page</button>
     </form>
 </div>

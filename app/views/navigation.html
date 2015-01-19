@@ -21,7 +21,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-repeat="page in pages" ui-sref-active="active">
+        <li ng-repeat="section in sections" ui-sref-active="active">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser && section.admin) || !section.admin" href>{{section.name}}</a>
+        </li>
+        <li ng-repeat="page in pageLocs" ui-sref-active="active">
         <a ui-sref="{{page.link}}" ng-show="(userService.currentUser && page.admin) || !page.admin" href>{{page.name}}</a>
         </li>
       </ul>

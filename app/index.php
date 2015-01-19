@@ -7,12 +7,9 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
 <!DOCTYPE html>
 <html lang="en" ng-app="shop" ng-controller="RootController">
     <head>
+        <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="bower/bootstrap/dist/css/bootstrap.min.css"/>
-        <link href="bower/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
-        <link rel="stylesheet" type="text/css" href="bower/angular-loading-bar/build/loading-bar.css"/>
-        <link rel="stylesheet" type="text/css" href="bower/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css"/>
-        <link href="css/battlescenes.css" rel="stylesheet"/>
+        <link href="css/battlescene.css" rel="stylesheet"/>
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -22,7 +19,7 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
         document.createElement('aside');
         document.createElement('footer');
         document.createElement('hgroup');
-        </script>    
+        </script>
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
     </head>
@@ -30,34 +27,7 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
         <div ui-view></div>
         <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
         <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-        <script type="text/javascript" src="bower/angular/angular.js"></script>
-        <script type="text/javascript" src="bower/angular-touch/angular-touch.js"></script>
-        <script type="text/javascript" src="bower/angular-utils-pagination/dirPagination.js"></script>
-        <script type="text/javascript" src="bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script type="text/javascript" src="bower/angular-loading-bar/build/loading-bar.js"></script>
-        <script type="text/javascript" src="bower/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
-        <script type="text/javascript" src="bower/angular-resource/angular-resource.js"></script>
-        <script type="text/javascript" src="bower/angular-cookies/angular-cookies.min.js"></script>
-        <script type="text/javascript" src="bower/angular-ui-router/release/angular-ui-router.min.js"></script>
-        <script type="text/javascript" src="bower/angular-ui-utils/modules/event/event.js"></script>
-        <script type="text/javascript" src="bower/angular-ui-utils/modules/keypress/keypress.js"></script>
-        <script type="text/javascript" src="bower/angular-cookies/angular-cookies.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/stateSecurity.js"></script>
-        <script type="text/javascript" src="js/services/userService.js"></script>
-        <script type="text/javascript" src="js/users/authenticationService.js"></script>
-        <script type="text/javascript" src="js/services.js"></script>
-        <script type="text/javascript" src="js/basket.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/filters.js"></script>
-        <script type="text/javascript" src="bower/angular-file-upload/angular-file-upload.min.js"></script>
-        <script type="text/javascript" src="js/directives.js"></script>
-        <script type="text/javascript" src="js/fp-image-upload.js"></script>
-        <script type="text/javascript" src="js/fp-src.js"></script>
-        <script type="text/javascript" src="bower/firebase/firebase.js"></script>
-        <script type="text/javascript" src="bower/angularfire/dist/angularfire.min.js"></script>
-        <script type="text/javascript" src="bower/firebase-simple-login/firebase-simple-login.js"></script>
+        <script type="text/javascript" src="js/battlescene.js"></script>
     </body>
 
 </html>
