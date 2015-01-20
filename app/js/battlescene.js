@@ -58319,7 +58319,9 @@ login state (instead of showing them a login form).
                     queryRef.on("value", function(results) {
                         //products = results;
                         results.forEach(function(product) {
-                            products.unshift(product.val());
+                            var prod = prouct.val();
+                            prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
+                            products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
                         $scope.products = products;
@@ -58337,7 +58339,9 @@ login state (instead of showing them a login form).
                     queryRef.on("value", function(results) {
                         //products = results;
                         results.forEach(function(product) {
-                            products.unshift(product.val());
+                            var prod = prouct.val();
+                            prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
+                            products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
                         $scope.products = products;
@@ -58520,7 +58524,6 @@ login state (instead of showing them a login form).
             $scope.filters.category = $stateParams.categoryId || "";
 
             $scope.getCategoriesFromProducts = function(products) {
-                console.log("getting cats...");
                 var unique = {};
                 var distinctCategories = {};
                 for (var i in products) {
