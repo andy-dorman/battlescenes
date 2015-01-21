@@ -57898,7 +57898,7 @@ login state (instead of showing them a login form).
                         }
                     } else {
                         $scope.userService.currentUser = authData.uid;
-                        $state.go($rootScope.targetPage);
+                        $state.go($rootScope.targetPage || "shop.admin");
                         $rootScope.targetPage = "";
                         $scope.resetForm();
                     }

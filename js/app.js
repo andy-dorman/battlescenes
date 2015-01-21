@@ -584,7 +584,7 @@
                         }
                     } else {
                         $scope.userService.currentUser = authData.uid;
-                        $state.go($rootScope.targetPage);
+                        $state.go($rootScope.targetPage || "shop.admin");
                         $rootScope.targetPage = "";
                         $scope.resetForm();
                     }
