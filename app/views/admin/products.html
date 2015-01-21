@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <h1>Add new product</h1>
-    <form role="form" ng-submit="addProduct()">
+    <form role="form">
         <div class="error" ng-show="productErrors.length > 0">
             <h4 ng-repeat-start="error in productErrors">{{error.name}}</h4>
             <p ng-repeat-end>
@@ -44,40 +44,40 @@
             <input type="checkbox" ng-model="newProduct.live"/>Make product live
         </label>
         </div>
-        <div class="form-group">
-            <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
-            <ul ng-show="images.length > 0" class="response">
-                <li class="sel-file" ng-repeat="f in images">
-                    <div ng-thumb="{ file: f, width: 100 }"></div>
-                    <div id="image-queue" ng-show="f.progress > 0">
-                        <div>
-                            <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
-                            </div>
+    </form>
+    <div class="form-group">
+        <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
+        <ul ng-show="images.length > 0" class="response">
+            <li class="sel-file" ng-repeat="f in images">
+                <div ng-thumb="{ file: f, width: 100 }"></div>
+                <div id="image-queue" ng-show="f.progress > 0">
+                    <div>
+                        <div class="progress" style="">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
                         </div>
                     </div>
+                </div>
 
-                    <button class="btn btn-default" ng-click="f.upload.abort();f.upload.aborted=true" ng-show="f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted">Abort</button>
-                    <div class="image-details">
-                        CommonMark code: ![foo](/uploads/{{f.name}} "A suitable image title")
-                    </div>
-                    <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail" class="">details</a>
-                    <div ng-show="f.showDetail">
-                        <br>
-                        <div data-ng-show="f.result.result == null" class="ng-binding"></div>
-                        <ul>
-                            <li ng-repeat="item in f.result.result" class="ng-scope">
-                                <div data-ng-show="item.name" class="ng-binding">{{item.name}}</div>
-                                <div data-ng-show="item.fieldName" class="ng-binding">{{item.fieldName}}</div>
-                                <div data-ng-show="item.size" class="ng-binding">size on the server: {{item.size}}</div>
-                                <div data-ng-show="item.value" class="ng-binding ng-hide">value: {{item.value}}</div>
-                            </li><!-- end ngRepeat: item in f.result.result -->
-                        </ul>
-                        <div data-ng-show="f.result.requestHeaders" class="reqh ng-binding">request headers: {{f.result.requestHeders}}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <button type="submit" class="btn btn-success">Save product</button>
-    </form>
+                <button class="btn btn-default" ng-click="f.upload.abort();f.upload.aborted=true" ng-show="f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted">Abort</button>
+                <div class="image-details">
+                    {{f.name}}
+                </div>
+                <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail" class="">details</a>
+                <div ng-show="f.showDetail">
+                    <br>
+                    <div data-ng-show="f.result.result == null" class="ng-binding"></div>
+                    <ul>
+                        <li ng-repeat="item in f.result.result" class="ng-scope">
+                            <div data-ng-show="item.name" class="ng-binding">{{item.name}}</div>
+                            <div data-ng-show="item.fieldName" class="ng-binding">{{item.fieldName}}</div>
+                            <div data-ng-show="item.size" class="ng-binding">size on the server: {{item.size}}</div>
+                            <div data-ng-show="item.value" class="ng-binding ng-hide">value: {{item.value}}</div>
+                        </li><!-- end ngRepeat: item in f.result.result -->
+                    </ul>
+                    <div data-ng-show="f.result.requestHeaders" class="reqh ng-binding">request headers: {{f.result.requestHeders}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="addProduct()">Save product</button>
 </div>

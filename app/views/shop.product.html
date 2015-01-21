@@ -1,11 +1,11 @@
 <product-breadcrumbs></product-breadcrumbs>
-<h1>{{product.name}}<!--<div class="pull-right small"><span class="glyphicon glyphicon-shopping-cart"></span>({{ basket.basketCount() }})</div>--></h1>
+<h1>{{product.name}}</h1>
 <div class="row" ng-show="product.name">
-    <section class="bottom-buffer" id="product-view">
+    <section class="bottom-buffer col-sm-12" id="product-view">
         <div class="pull-left col-sm-4 gallery">
             <div class="product-image-container">
                 <!--ng-click="openLightboxModal($index)"-->
-                <a ng-repeat="image in images" class="gallery-thumbnail" href="{{ image.url }}">
+                <a ng-repeat="image in images" class="gallery-thumbnail" href="{{ image.url }}" ng-click="removeImage($event, image)">
                     <img ng-src="{{ image.url }}" title="{{image.caption}}" bn-load="imageLoaded( image )" class="pull-left"/>
                 </a>
             </div>
@@ -19,6 +19,44 @@
             </div>
             <div class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : "&pound;" }}</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link"><span class="glyphicon glyphicon-envelope"></span></a></div>
         </div>
-        <!--<button ng-click="basket.addToBasket(product)">Add to Basket</button>-->
+    </section>
+    <section class="col-sm-12" ng-show="userService.currentUser">
+        <form class="col-sm-7">
+            <div class="form-group">
+                <button class="btn btn-default" ng-file-select="" ng-model="newImages" class="upload-button" ng-file-change="upload(newImages)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
+                <ul ng-show="newImages.length > 0" class="response">
+                    <li class="sel-file" ng-repeat="f in newImages">
+                        <div ng-thumb="{ file: f, width: 100 }"></div>
+                        <div id="image-queue" ng-show="f.progress > 0">
+                            <div>
+                                <div class="progress" style="">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-default" ng-click="f.upload.abort();f.upload.aborted=true" ng-show="f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted">Abort</button>
+                        <div class="image-details">
+                            {{f.name}}
+                        </div>
+                        <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail" class="">details</a>
+                        <div ng-show="f.showDetail">
+                            <br>
+                            <div data-ng-show="f.result.result == null" class="ng-binding"></div>
+                            <ul>
+                                <li ng-repeat="item in f.result.result" class="ng-scope">
+                                    <div data-ng-show="item.name" class="ng-binding">{{item.name}}</div>
+                                    <div data-ng-show="item.fieldName" class="ng-binding">{{item.fieldName}}</div>
+                                    <div data-ng-show="item.size" class="ng-binding">size on the server: {{item.size}}</div>
+                                    <div data-ng-show="item.value" class="ng-binding ng-hide">value: {{item.value}}</div>
+                                </li><!-- end ngRepeat: item in f.result.result -->
+                            </ul>
+                            <div data-ng-show="f.result.requestHeaders" class="reqh ng-binding">request headers: {{f.result.requestHeders}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <button ng-click="saveProduct(product)" class="btn btn-success col-sm-2">Save<span ng-show="saved">d...</span></button>
     </section>
 </div>

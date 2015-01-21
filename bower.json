@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jquery": "1.10.2",
+    "jquery": "git://github.com/components/jquery.git",
     "angular-ui-router": "~0.2.x",
     "angular-ui-utils": "~0.0.x",
     "angular-commonmark": "Hypercubed/angular-commonmark#~0.0.4",

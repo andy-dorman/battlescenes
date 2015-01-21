@@ -37,7 +37,7 @@
             <div ng-show="canEdit(product.$id)" class="form-group price-qty">
             <div class="form-group"><input size="2" type="text" ng-model="product.qty"/> per pack
             </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="4"/>) - £<input size="2" style="margin-left: 4px;" ng-model="product.price"/></div>
+            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10"/>) - £<input size="5" style="margin-left: 4px;" ng-model="product.price"/></div>
             <div class="checkbox">
                 <label ng-show="canEdit(product.$id)" for="live"><input type="checkbox" ng-model="product.live" name="live"/>Live</label>
             </div>

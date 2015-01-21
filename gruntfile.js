@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 				},
 				reporter: require("jshint-stylish-ex")
 			},
-			all: [ "Gruntfile.js", "js/*.js", "js/**/*.js" ]
+			all: [ "gruntfile.js", "js/*.js", "js/**/*.js" ]
 		},
 		/*karma: {
 		  options: {
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
 			},
 			app: {
 			    src: [
-					"libs/jquery/jquery.js",
+					"libs/jquery/dist/jquery.js",
 					"libs/firebase/firebase.js",
 					"libs/angular/angular.js",
 					"libs/baguettebox.js/dist/baguetteBox.min.js",
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 					"libs/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js",
 					"libs/angular-utils-pagination/dirPagination.js",
 					"libs/angular-resource/angular-resource.js",
-					"libs/ng-cookies/dist/ng-cookies.min.js",
+					"node_modules/angular-cookies/angular-cookies.js",
 					"libs/angular-ui-router/release/angular-ui-router.js",
 					"libs/angular-ui-utils/modules/event/event.js",
 					"libs/angular-ui-utils/modules/keypress/keypress.js",
@@ -125,6 +125,7 @@ module.exports = function(grunt) {
 					"js/directives.js",
 					"js/fp-image-upload.js",
 					"js/fp-src.js",
+					"libs/bootstrap/dist/js/bootstrap.js",
 					"tmp/*.js"
 			     ],
 			    dest: "app/js/battlescene.js"
@@ -167,14 +168,14 @@ module.exports = function(grunt) {
         },
 		watch: {
 		  dev: {
-		    files: [ "Gruntfile.js", "./js/*.js", "*.html" ],
+		    files: [ "gruntfile.js", "./js/*.js", "*.html" ],
 		    tasks: [ "jshint", "html2js:dist", "compass:dist", "concat:app", "cssmin", "clean:temp" ],
 		    options: {
 		      atBegin: true
 		    }
 		  },
 		  min: {
-		    files: [ "Gruntfile.js", "./js/*.js", "*.html" ],
+		    files: [ "gruntfile.js", "./js/*.js", "*.html" ],
 		    tasks: [ "jshint", "karma:unit", "html2js:dist", "compass:dist", "concat:app", "cssmin", "clean:temp", "uglify" ],
 		    options: {
 		      atBegin: true

@@ -3,7 +3,7 @@
     //"angularUtils.directives.dirPagination",
     var shop = angular.module("shop",
         //[ "hc.commonmark", "bsServices", "basket", "ngCookies", "ui.keypress", "ui.event", "ui.router", "firebase", "$upload",  "stateSecurity", "userService", "bootstrapLightbox", "shopFilters", "waitForAuth",
-        [ "hc.commonmark", "bsServices", "basket", "ngCookie", "ui.keypress", "ui.event", "ui.router", "firebase", "angularFileUpload", "userService", "shopFilters", "angularUtils.directives.dirPagination",
+        [ "hc.commonmark", "bsServices", "basket", "ngCookies", "ui.keypress", "ui.event", "ui.router", "firebase", "angularFileUpload", "userService", "shopFilters", "angularUtils.directives.dirPagination",
         function($httpProvider) {
           // Use x-www-form-urlencoded Content-Type
           $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
@@ -61,7 +61,7 @@
     ]);
     shop.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
     function($stateProvider, $urlRouterProvider, $locationProvider, $state) {
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
         window.routes = {
             "shop":
             {
@@ -394,7 +394,7 @@
         $rootScope.$on("$stateChangeStart",
         function(event, toState, toParams, fromState, fromParams) {
             $("#navbar-collapse.in").each(function() {
-                this.collapse("hide");
+                $(this).removeClass("in");
             });
         });
         $rootScope.$on("$stateChangeError",
@@ -408,13 +408,14 @@
             });
         });
         //shop.controller("RootController", [ "$scope", "$location", "UserService", "BasketService", "$cookieStore",
-        shop.controller("RootController", [ "$scope", "$location", "UserService", "BasketService", "cookies", "Auth",
+        shop.controller("RootController", [ "$scope", "$location", "UserService", "BasketService", "$cookieStore", "Auth",
         //function($scope, $location, UserService, BasketService, $cookieStore) {
-        function($scope, $location, UserService, BasketService, cookies, Auth) {
+        function($scope, $location, UserService, BasketService, $cookieStore, Auth) {
 
             $scope.basket = BasketService;
-            var basketCookie = cookies.basketCookie;
-            if (basketCookie !== undefined && basketCookie !== null) {
+            var basketCookie = $cookieStore.get("basketCookie");
+
+            if (basketCookie !== undefined && basketCookie !== null && basketCookie !== "") {
                 $scope.basket.init(basketCookie);
             }
             $scope.userService = UserService;
@@ -629,7 +630,7 @@
                     queryRef.on("value", function(results) {
                         //products = results;
                         results.forEach(function(product) {
-                            var prod = prouct.val();
+                            var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
                             products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
@@ -649,7 +650,7 @@
                     queryRef.on("value", function(results) {
                         //products = results;
                         results.forEach(function(product) {
-                            var prod = prouct.val();
+                            var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
                             products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
@@ -732,51 +733,88 @@
         }
     ]);
 
-    shop.controller("ItemController", ["$scope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService",
-        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService) {
+    shop.controller("ItemController", ["$scope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "$upload",
+        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, $upload) {
             $scope.userService = UserService;
             $scope.productId = $stateParams.productId;
-            /*ProductService.getProducts.$loaded().then(function(products){
-                $scope.product = products.$getRecord($stateParams.productId);
-                for ( var image in $scope.product.images ) {
-                    var theImage = $scope.product.images[image];
-                    var imageObj = {};
-                    imageObj.url = theImage.data;
-                    imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
-                    $scope.images.push(imageObj);
-                }
-            });*/
+            $scope.productService = ProductService;
+            $scope.stateParams = $stateParams;
+            $scope.saved = false;
+
             if (UserService.CurrentUser) {
                 $scope.product = ProductService.find($stateParams.productId);
             } else {
                 $scope.product = ProductService.findAll($stateParams.productId);
             }
+
             $scope.categories = CategoryService.categories;
             $scope.filters = Filters;
             $scope.basket = BasketService;
             $scope.images = [];
+            $scope.newImages = {};
             var loadedImages = 0;
             $scope.imageLoaded = function( image ) {
                 loadedImages++;
-                if (loadedImages === Object.keys($scope.product.images).length) {
-                    if(typeof oldIE === "undefined" && Object.keys) {
-                        baguetteBox.run(".gallery",
-                        {
-                            captions: true
-                        });
+                if(UserService.CurrentUser === null) {
+                    if (loadedImages === Object.keys($scope.product.images).length) {
+                        if(typeof oldIE === "undefined" && Object.keys) {
+                            baguetteBox.run(".gallery",
+                            {
+                                captions: true
+                            });
+                        }
                     }
                 }
             };
 
-            $scope.product.$watch(function(){
+            $scope.product.$watch(function() {
+                loadImages();
+            });
+
+            var loadImages = function () {
+                $scope.images = [];
                 for ( var image in $scope.product.images ) {
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
+                    imageObj.$id = image;
                     imageObj.url = (window.location.host === "bscenes" ? "http://battlescene.aomegasolutions.com" : "") + "/uploads/" + theImage.filename;
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
+            };
+
+            $scope.$watch("newImages", function() {
+                for (var i = 0; i < $scope.newImages.length; i++) {
+                    var file = $scope.newImages[i];
+                    $scope.upload = $upload.upload({
+                        url: "upload.php",
+                        data: { myObj: $scope.myModelObj },
+                        file: file
+                    })
+                    .progress(progress(file)).
+                    success(success);
+                }
             });
+            var progress = function(file) {
+                return function (evt) {
+                    reportProgress(evt, file);
+                };
+            };
+            var reportProgress = function(evt, file) {
+                file.progress = parseInt(100.0 * evt.loaded / evt.total);
+            };
+            var success = function(data, status, headers, config) {
+                var image = {};
+                image.filename = config.file.name;
+                var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
+                $scope.saved = false;
+                if (!$scope.product.images) {
+                    $scope.product.images = {};
+                }
+                $scope.product.images[safename] = image;
+                loadImages();
+            };
+
             $scope.breadcrumbResolver = function(defaultResolver, product) {
                 if (isCurrent) {
                     return "'" + item.name + "'";
@@ -784,9 +822,12 @@
 
                 return defaultResolver(product);
             };
-
-            $scope.openLightboxModal = function(index) {
-                Lightbox.openModal($scope.images, index);
+            $scope.removeImage = function(e, image) {
+                e.preventDefault();
+                var index = $scope.images.indexOf(image);
+                $scope.images.splice(index, 1);
+                delete $scope.product.images[image.$id];
+                $scope.saved = false;
             };
 
             $scope.search = function(item) {
@@ -811,6 +852,21 @@
                     }
                 }
                 return false;
+            };
+
+            $scope.saveProduct = function(product) {
+                var safename = (product.category + "-" + product.name.replace(/\s/g, "-")).toLowerCase();
+
+                delete product.$id;
+                delete product.$$conf;
+                delete product.$priority;
+
+                $scope.productService.all.$set(safename, product);
+                if (product.live) {
+                    $scope.productService.live.$set(safename, product);
+                }
+                $scope.newImages = {};
+                $scope.saved = true;
             };
         }
     ]);
@@ -948,41 +1004,34 @@
             $scope.productService = ProductService;
             $scope.categories = CategoryService.categories;
             $scope.subCategories = [];
-            $scope.images = {};
+            $scope.productImages = {};
             $scope.$watch("images", function() {
                 for (var i = 0; i < $scope.images.length; i++) {
                     var file = $scope.images[i];
                     $scope.upload = $upload.upload({
-                        url: "upload.php", // upload.php script, node.js route, or servlet url
-                        //method: 'POST' or 'PUT',
-                        //headers: {'Authorization': 'xxx'}, // only for html5
-                        //withCredentials: true,
+                        url: "upload.php",
                         data: { myObj: $scope.myModelObj },
-                        file: file // single file or a list of files. list is only for html5
-                        //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
-                        //fileFormDataName: myFile, // file formData name ('Content-Disposition'), server side request form name
-                        // could be a list of names for multiple files (html5). Default is 'file'
-                        //formDataAppender: function(formData, key, val){}  // customize how data is added to the formData.
-                        // See #40#issuecomment-28612000 for sample code
-
-                    }).progress(progress).
+                        file: file
+                    })
+                    .progress(progress(file)).
                     success(success);
-                    //.error(...)
-                    //.then(success, error, progress); // returns a promise that does NOT have progress/abort/xhr functions
-                    //.xhr(function(xhr){xhr.upload.addEventListener(...)}) // access or attach event listeners to
-                    //the underlying XMLHttpRequest
                 }
             });
-            var progress = function(evt) {
-                console.log("progress: " + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.file.name);
+            var progress = function(file) {
+                return function (evt) {
+                    reportProgress(evt, file);
+                };
+            };
+            var reportProgress = function(evt, file) {
+                file.progress = parseInt(100.0 * evt.loaded / evt.total);
             };
             var success = function(data, status, headers, config) {
-                // file is uploaded successfully
-                console.log("file " + config.file.name + "is uploaded successfully. Response: " + data);
+                console.log("success");
                 var image = {};
                 image.filename = config.file.name;
+                console.log(config);
                 var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
-                $scope.images[safename] = image;
+                $scope.productImages[safename] = image;
             };
 
             var newProduct = {};
@@ -1006,50 +1055,45 @@
             $scope.addProduct = function() {
                 $scope.productErrors = [];
                 var error = {};
-                if($scope.newProduct.name !== "" || $scope.newProduct.name !== undefined) {
+                if ($scope.newProduct.name === "" || $scope.newProduct.name === undefined) {
                     error = {};
                     error.name = "Name";
                     error.msg = "You need to enter a name for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.price !== "" || $scope.newProduct.price !== undefined) {
+                if (newProduct.price === "" || $scope.newProduct.price === undefined) {
                     error = {};
                     error.name = "Price";
                     error.msg = "You need to enter a price for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.description !== "" || $scope.newProduct.description !== undefined) {
+                if (newProduct.description === "" || $scope.newProduct.description === undefined) {
                     error = {};
                     error.name = "Description";
                     error.msg = "You need to enter a description for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.qty !== "" || $scope.newProduct.qty !== undefined) {
+                if (newProduct.qty === "" || $scope.newProduct.qty === undefined) {
                     error = {};
                     error.name = "Qty";
                     error.msg = "You need to enter a qty for your product";
                     $scope.productErrors.push(error);
                 }
-                if(newProduct.category !== "" || $scope.newProduct.category !== undefined) {
+                if (newProduct.category === "" || $scope.newProduct.category === undefined) {
                     error = {};
                     error.name = "Category";
                     error.msg = "You need to provide a category for your product";
                     $scope.productErrors.push(error);
                 }
-                if($scope.productErrors.length > 0) {
+                if ($scope.productErrors.length > 0) {
                     return false;
                 }
-                $scope.newProduct.images = $scope.images;
+                $scope.newProduct.images = $scope.productImages;
 
                 var safename = ($scope.newProduct.category + "-" + $scope.newProduct.name.replace(/\s/g, "-")).toLowerCase();
-                $scope.uploadingImages = false;
-                //safename = imageUpload.name.replace(/\.|\#|\$|\[|\]|-|\//g, "");
-
-                    //$scope.productService.products.$set(safename, $scope.newProduct);
                 $scope.productService.create(safename, $scope.newProduct);
                 $scope.newProduct = {};
-                $scope.images = {};
-                $scope.uploader.clearQueue();
+                $scope.productImages = {};
             };
         }
     ]);
@@ -1067,24 +1111,12 @@
             for (var i = 0; i < $scope.images.length; i++) {
                 var file = $scope.images[i];
                 $scope.upload = $upload.upload({
-                    url: "upload.php", // upload.php script, node.js route, or servlet url
-                    //method: 'POST' or 'PUT',
-                    //headers: {'Authorization': 'xxx'}, // only for html5
-                    //withCredentials: true,
+                    url: "upload.php",
                     data: { myObj: $scope.myModelObj },
-                    file: file // single file or a list of files. list is only for html5
-                    //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
-                    //fileFormDataName: myFile, // file formData name ('Content-Disposition'), server side request form name
-                    // could be a list of names for multiple files (html5). Default is 'file'
-                    //formDataAppender: function(formData, key, val){}  // customize how data is added to the formData.
-                    // See #40#issuecomment-28612000 for sample code
+                    file: file
                 })
                 .progress(progress(file)).
                 success(success);
-                //.error(...)
-                //.then(success, error, progress); // returns a promise that does NOT have progress/abort/xhr functions
-                //.xhr(function(xhr){xhr.upload.addEventListener(...)}) // access or attach event listeners to
-                //the underlying XMLHttpRequest
             }
         });
         var progress = function(file) {
@@ -1093,12 +1125,9 @@
             };
         };
         var reportProgress = function(evt, file) {
-            //console.log("progress: " + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.file.name);
             file.progress = parseInt(100.0 * evt.loaded / evt.total);
         };
         var success = function(data, status, headers, config) {
-            // file is uploaded successfully
-            //console.log("file " + config.file.name + "is uploaded successfully. Response: " + data);
         };
         // FILTERS
         /*

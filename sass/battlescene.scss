@@ -265,7 +265,7 @@ a:hover {
 .price-qty {
 	position: absolute;
 	bottom: 0px;
-	width: 85%;
+	width: 80%;
 }
 
 .contact-link {
@@ -273,6 +273,15 @@ a:hover {
 	right: 15px;
 	bottom: 0px;
 }
+
+#product-view .contact-link {
+	right: 30px;
+}
+
+#product-view .price-qty {
+	width: 100%;
+}
+
 
 .form-group.price-qty {
 	bottom: 0px;
@@ -529,4 +538,40 @@ label[name="pageContent"] + textarea {
 	width: 100px;
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.sidebar,
+.sidebar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar ul {
+	margin-left: 20px;
+}
+
+.sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+.date-link,
+.date-link:link,
+.date-link:active,
+.date-link:visited,
+.date-link:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+h2.product-saved {
+	opacity: 1;
+}
+
+h2.product-saved.saved {
+	-webkit-transition: 1s linear all; /* Chrome */
+	transition: 1s linear all;
+	opacity: 0;
 }

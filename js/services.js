@@ -1,7 +1,7 @@
 ;(function() {
     "use strict";
     //var bsServices = angular.module("bsServices", [ "ngResource", "ngCookies", "firebase" ]);
-    var bsServices = angular.module("bsServices", [ "ngResource", "ngCookie", "firebase" ]);
+    var bsServices = angular.module("bsServices", [ "ngResource", "ngCookies", "firebase" ]);
 
     bsServices.service("Filters",
         function() {
@@ -228,9 +228,6 @@
         function($resource, $firebase, FIREBASE_URI) {
             var ref = new Firebase(FIREBASE_URI + "/products");
 
-            /*console.log(ref.child("safename").startAt("6mm-defence-bunker").endAt("6mm-defence-bunker").once(function(snap){
-                console.log(snap.val());
-            }));*/
             var products = $firebase(ref);
             var refByLive = new Firebase(FIREBASE_URI + "/productsByLive");
 
@@ -387,7 +384,7 @@
             };
         }]);
 
-    bsServices.service("BasketService", ["cookies", function(cookies) {
+    bsServices.service("BasketService", ["$cookieStore", function($cookieStore) {
         var items = {};
         var Basket = {
             items : items,
@@ -420,10 +417,10 @@
                 }
 
                 if(!skipCookie) {
-                    var basketCookie = cookies.basketCookie;
-                    if(basketCookie === undefined) {
-                        $cookies.basketCookie = [];
-                        basketCookie = cookies.basketCookie;
+                    var basketCookie = $cookieStore.get("basketCookie");
+                    if(basketCookie === undefined || basketCookie === "") {
+                        $cookieStore.put("basketCookie", []);
+                        basketCookie = $cookieStore.get("basketCookie");
                     }
                     var itemAdded = false;
                     for (var i = 0; i < basketCookie.length; i++) {
@@ -436,7 +433,7 @@
                     if(itemAdded === false) {
                         basketCookie.push(items[productId]);
                     }
-                    cookies.basketCookie = basketCookie;
+                    $cookieStore.put("basketCookie", basketCookie);
                 }
             },
             init: function(items) {
