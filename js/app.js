@@ -266,7 +266,7 @@
             },
             "shop.addProduct":
             {
-                url: "/add-product",
+                url: "/admin/products",
                 views: {
                     "": { templateUrl: "views/navigation.html" },
                     "content@shop": {
@@ -291,7 +291,7 @@
             },
             "shop.addCategory":
             {
-                url: "/add-category",
+                url: "/admin/categories",
                 views: {
                     "": { templateUrl: "views/navigation.html" },
                     "content@shop": {
@@ -314,7 +314,7 @@
             },
             "shop.addPage":
             {
-                url: "/add-page",
+                url: "/admin/pages",
                 views: {
                     "": { templateUrl: "views/navigation.html" },
                     "content@shop": {
@@ -525,17 +525,17 @@
                 });
                 pages.push({
                     "link": "shop.addProduct",
-                    "name": "Add product",
+                    "name": "Products",
                     "admin": true
                 });
                 pages.push({
                     "link": "shop.addCategory",
-                    "name": "Add category",
+                    "name": "Categories",
                     "admin": true
                 });
                 pages.push({
                     "link": "shop.addPage",
-                    "name": "Add page",
+                    "name": "Pages",
                     "admin": true
                 });
 
