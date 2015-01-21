@@ -1245,10 +1245,20 @@
                     $scope.page = data;
                     pages = PageService.getLivePageBySection(section).$asArray().$loaded(function(data){
                         if (data.length > 1) {
+                            data.sort(function(a, b) {
+                                a = new Date(a.createdAt);
+                                b = new Date(b.createdAt);
+                                return a>b ? -1 : a<b ? 1 : 0;
+                            });
                             $scope.pages = sortPages(data);
                         }
                     });
                 } else {
+                    data.sort(function(a, b) {
+                        a = new Date(a.createdAt);
+                        b = new Date(b.createdAt);
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    });
                     $scope.page = data[0];
                     if (data.length > 1) {
                         $scope.pages = sortPages(data);

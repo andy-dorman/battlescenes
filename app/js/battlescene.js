@@ -58559,10 +58559,20 @@ login state (instead of showing them a login form).
                     $scope.page = data;
                     pages = PageService.getLivePageBySection(section).$asArray().$loaded(function(data){
                         if (data.length > 1) {
+                            data.sort(function(a, b) {
+                                a = new Date(a.createdAt);
+                                b = new Date(b.createdAt);
+                                return a>b ? -1 : a<b ? 1 : 0;
+                            });
                             $scope.pages = sortPages(data);
                         }
                     });
                 } else {
+                    data.sort(function(a, b) {
+                        a = new Date(a.createdAt);
+                        b = new Date(b.createdAt);
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    });
                     $scope.page = data[0];
                     if (data.length > 1) {
                         $scope.pages = sortPages(data);
@@ -61468,7 +61478,6 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
   $templateCache.put("../app/views/shop.product.html",
     "<product-breadcrumbs></product-breadcrumbs>\n" +
     "<h1>{{product.name}}</h1>\n" +
-    "<h4 ng-show=\"saved\">Saved</h4>\n" +
     "<div class=\"row\" ng-show=\"product.name\">\n" +
     "    <section class=\"bottom-buffer col-sm-12\" id=\"product-view\">\n" +
     "        <div class=\"pull-left col-sm-4 gallery\">\n" +
@@ -61492,9 +61501,9 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "    <section class=\"col-sm-12\" ng-show=\"userService.currentUser\">\n" +
     "        <form class=\"col-sm-7\">\n" +
     "            <div class=\"form-group\">\n" +
-    "                <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(images)\" ng-multiple=\"false\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
-    "                <ul ng-show=\"images.length > 0\" class=\"response\">\n" +
-    "                    <li class=\"sel-file\" ng-repeat=\"f in images\">\n" +
+    "                <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(newImages)\" ng-multiple=\"false\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
+    "                <ul ng-show=\"newImages.length > 0\" class=\"response\">\n" +
+    "                    <li class=\"sel-file\" ng-repeat=\"f in newImages\">\n" +
     "                        <div ng-thumb=\"{ file: f, width: 100 }\"></div>\n" +
     "                        <div id=\"image-queue\" ng-show=\"f.progress > 0\">\n" +
     "                            <div>\n" +
@@ -61526,7 +61535,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "                </ul>\n" +
     "            </div>\n" +
     "        </form>\n" +
-    "        <button ng-click=\"saveProduct(product)\" class=\"btn btn-success col-sm-2\">Save</button>\n" +
+    "        <button ng-click=\"saveProduct(product)\" class=\"btn btn-success col-sm-2\">Save<span ng-show=\"saved\">d...</span></button>\n" +
     "    </section>\n" +
     "</div>\n" +
     "");
