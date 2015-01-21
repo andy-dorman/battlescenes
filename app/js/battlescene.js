@@ -61494,6 +61494,9 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "            <p>\n" +
     "            {{product.description}}\n" +
     "            </p>\n" +
+    "            <p>\n" +
+    "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
+    "            </p>\n" +
     "            </div>\n" +
     "            <div class=\"price-qty\">{{product.qty}} per pack <em ng-show=\"product.dimensions\">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : \"&pound;\" }}</em><a ui-sref=\"shop.contact\" alt=\"Contact us about this product\" title=\"Contact us about this product\" class=\"contact-link\"><span class=\"glyphicon glyphicon-envelope\"></span></a></div>\n" +
     "        </div>\n" +
@@ -61575,7 +61578,11 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "            <p>\n" +
     "            {{product.description}}\n" +
     "            </p>\n" +
+    "            <p>\n" +
+    "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
+    "            </p>\n" +
     "            </div>\n" +
+    "\n" +
     "            <div ng-show=\"!canEdit(product.$id)\" class=\"price-qty\">{{product.qty}} per pack <em ng-show=\"product.dimensions\">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : \"&pound;\" }}</em></div>\n" +
     "            <a ui-sref=\"shop.contact\" alt=\"Contact us about this product\" title=\"Contact us about this product\" class=\"contact-link\"><span class=\"glyphicon glyphicon-envelope\"></span></a>\n" +
     "            <textarea class=\"description\" cols=\"55\" ng-show=\"canEdit(product.$id)\" ng-model=\"product.description\">{{product.description}}</textarea>\n" +

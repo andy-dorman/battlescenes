@@ -16,6 +16,9 @@
             <p>
             {{product.description}}
             </p>
+            <p>
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
             </div>
             <div class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : "&pound;" }}</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link"><span class="glyphicon glyphicon-envelope"></span></a></div>
         </div>
