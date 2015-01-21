@@ -1,5 +1,5 @@
 
-<div class="form-signin col-md-4 col-md-offset-4">
+<div class="row form-signin col-md-4 col-md-offset-4">
 	<h3>Login</h3>
     <div ng-show="error">
     {{error}}
@@ -11,7 +11,7 @@
     <input ng-model="newUser.password" type="password" class="form-control" placeholder="password"/>
     </div>
     <div class="form-group">
-    <button ng-click="login(newUser.email, newUser.password)" class="btn btn-login">Login</button>
+    <button ng-click="login(newUser.email, newUser.password)" class="btn btn-default">Login</button>
     <!--<button ng-click="resetPassword(newUser.email)" class="btn btn-reset">Reset Password</button>-->
     </div>
 </div>

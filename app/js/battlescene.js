@@ -61460,17 +61460,17 @@ angular.module("../app/views/shop.page.html", []).run(["$templateCache", functio
   $templateCache.put("../app/views/shop.page.html",
     "<category-filters></category-filters>\n" +
     "<h1>{{page.title}}</h1>\n" +
-    "<div common-mark=\"page.content\" class=\"col-sm-8\"></div>\n" +
+    "<div class=\"row\">\n" +
+    "    <div common-mark=\"page.content\" id=\"page-content\" class=\"col-sm-8\"></div>\n" +
+    "    <ul ng-cloak=\"pages && pages.length > 1\" class=\"sidebar col-sm-4\">\n" +
+    "        <li ng-repeat=\"(key, value) in pages\">\n" +
+    "            <a data-toggle=\"collapse\" class=\"date-link\" data-target=\"#toggleDemo{{key}}\">{{value[0].createdAt | date : 'MMMM, yyyy'}}</a>\n" +
+    "            <ul id=\"toggleDemo{{key}}\" class=\"collapse\" ng-class=\"{'in': key == 0}\">\n" +
+    "                <li ng-repeat=\"page in value\"><a ui-sref=\"shop.page({section: page.section, page: page.$id})\">{{page.title}}</a></li>\n" +
+    "            </ul>\n" +
+    "        </li>\n" +
+    "    </ul>\n" +
     "</div>\n" +
-    "\n" +
-    "<ul ng-cloak=\"pages && pages.length > 1\" class=\"sidebar col-sm-4\">\n" +
-    "    <li ng-repeat=\"(key, value) in pages\">\n" +
-    "        <a data-toggle=\"collapse\" class=\"date-link\" data-target=\"#toggleDemo{{key}}\">{{value[0].createdAt | date : 'MMMM, yyyy'}}</a>\n" +
-    "        <ul id=\"toggleDemo{{key}}\" class=\"collapse\" ng-class=\"{'in': key == 0}\">\n" +
-    "            <li ng-repeat=\"page in value\"><a ui-sref=\"shop.page({section: page.section, page: page.$id})\">{{page.title}}</a></li>\n" +
-    "        </ul>\n" +
-    "    </li>\n" +
-    "</ul>\n" +
     "");
 }]);
 
@@ -61479,7 +61479,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "<product-breadcrumbs></product-breadcrumbs>\n" +
     "<h1>{{product.name}}</h1>\n" +
     "<div class=\"row\" ng-show=\"product.name\">\n" +
-    "    <section class=\"bottom-buffer col-sm-12\" id=\"product-view\">\n" +
+    "    <section class=\"row bottom-buffer col-sm-12\" id=\"product-view\">\n" +
     "        <div class=\"pull-left col-sm-4 gallery\">\n" +
     "            <div class=\"product-image-container\">\n" +
     "                <!--ng-click=\"openLightboxModal($index)\"-->\n" +
@@ -61501,7 +61501,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "            <div class=\"price-qty\">{{product.qty}} per pack <em ng-show=\"product.dimensions\">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : \"&pound;\" }}</em><a ui-sref=\"shop.contact\" alt=\"Contact us about this product\" title=\"Contact us about this product\" class=\"contact-link\"><span class=\"glyphicon glyphicon-envelope\"></span></a></div>\n" +
     "        </div>\n" +
     "    </section>\n" +
-    "    <section class=\"col-sm-12\" ng-show=\"userService.currentUser\">\n" +
+    "    <section class=\"row col-sm-12\" ng-show=\"userService.currentUser\">\n" +
     "        <form class=\"col-sm-7\">\n" +
     "            <div class=\"form-group\">\n" +
     "                <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(newImages)\" ng-multiple=\"false\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
@@ -61551,7 +61551,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "<h2 ng-show=\"products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''\">Sorry, we have no products that match \"{{filters.searchTerm}}\"<span ng-show=\"filters.category\"> in the category you have currently selected</span>.</h2>\n" +
     "<div class=\"row\">\n" +
     "    <!--ng-repeat=\"product in (filteredProducts = (products | filter : search))\">-->\n" +
-    "    <section class=\"product-panel bottom-buffer col-sm-6\" ng-class=\"{notlive : !product.live }\" dir-paginate=\"product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize\"><!--dir-paginate=\"product in products | itemsPerPage : 1\">-->\n" +
+    "    <section class=\"row product-panel bottom-buffer col-sm-6\" ng-class=\"{notlive : !product.live }\" dir-paginate=\"product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize\"><!--dir-paginate=\"product in products | itemsPerPage : 1\">-->\n" +
     "        <div class=\"row\" ng-show=\"userService.currentUser\">\n" +
     "            <a ng-click=\"toggleEdit(product.$id)\" class=\"pull-right edit\"></a>\n" +
     "            <a ng-show=\"canEdit(product.$id)\" ng-click=\"save(product)\" class=\"pull-right save\"></a>\n" +

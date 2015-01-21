@@ -1,4 +1,4 @@
-<div class="col-sm-6">
+<div class="row col-sm-6">
     <h1>Add new category</h1>
     <p>
     To add a sub-category first select a parent category from the dropdown, otherwise the name you enter will be added as a new top level category.
@@ -6,8 +6,7 @@
     <form role="form" ng-submit="addCategory()" ng-show="categories.length">
     	<label for="parentCategory">Parent category</label>
     	<div class="form-group">
-    		<label name="parentCategory" for="parentCategory">
-            <select ng-model="parentCategory" name="parentCategory">
+            <select class="form-control" ng-model="parentCategory" name="parentCategory">
             <option value="">Select a category</option>
             <option  ng-repeat="category in categories" value="{{category.$id}}">{{category.name}}</option>
             </select>
@@ -19,4 +18,3 @@
         <button type="submit" class="btn btn-default">Add category</button>
     </form>
 </div>
-

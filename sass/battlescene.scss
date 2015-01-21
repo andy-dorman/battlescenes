@@ -228,7 +228,10 @@ button, input, optgroup, select, textarea {
 	padding: 10px 30px 30px;
 }
 
-a {
+a,
+a:visited,
+a:active,
+a:link {
 	color: #0F0;
 }
 
@@ -550,6 +553,10 @@ label[name="pageContent"] + textarea {
 	padding: 0;
 }
 
+.sidebar {
+	margin-left: 15px;
+}
+
 .sidebar ul {
 	margin-left: 20px;
 }
@@ -587,4 +594,10 @@ h2.product-saved.saved {
 
 .description .btn-success:hover {
 	background-color: #006600;
+}
+
+#page-content img {
+	display: block;
+	max-width: 100%;
+	height: auto;
 }

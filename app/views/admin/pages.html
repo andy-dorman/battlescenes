@@ -1,20 +1,23 @@
-<div class="col-md-6">
+<div class="row col-md-6">
     <h1>Edit pages</h1>
         <div class="form-group">
-            <select ng-model="newPage.section" class="form-control" id="page-sections" ng-change="getPages()">
+            <label for="pageSection">Select page section</label>
+            <select ng-model="newPage.section" class="form-control" id="page-sections" ng-change="getPages()" name="pageSection">
                 <option value="">Select a section</option>
                 <option ng-repeat="section in sections" value="{{section.title}}">{{section.title}}</option>
             </select>
         </div>
-    <form role="form" class="form-inline">
-        <div class="form-group" style="margin-bottom: 20px;">
+    <form role="form">
+        <div class="form-group" style="margin-bottom: 60px;">
+            <label for="newSection">or add a new section</label>
             <label name="sectionTitle" class="sr-only">New section</label>
-            <input class="form-control" style="width: 250px;" ng-model="newSection.title" type="text" placeholder="New section"/>
-            <button ng-click="addSection()" class="btn">Add section</button>
+            <input class="form-control" style="margin-bottom: 10px;" ng-model="newSection.title" type="text" placeholder="New section"/>
+            <button ng-click="addSection()" class="btn btn-default pull-right">Add section</button>
         </div>
     </form>
     <form role="form">
         <div class="form-group">
+            <label for="page">Select an existing page or create a new page</label>
             <select ng-model="page" ng-change="setPage()" class="form-control">
                 <option value="">new page</option>
                 <option ng-repeat="page in pages" value="{{$index}}">{{page.title}}</option>
@@ -31,10 +34,10 @@
             <input class="form-control" ng-model="newPage.title" type="text" placeholder="Page title"/>
         </div>
         <div class="form-group">
-            <label name="pageContent">Content</label>
+            <label name="pageContent">Content (<a href="https://guides.github.com/features/mastering-markdown/" target="_blank">Commonmark formatting</a>)</label>
             <textarea class="form-control" ng-model="newPage.content" placeholder="Page content"></textarea>
         </div>
-        <div common-mark="newPage.content"></div>
+        <div common-mark="newPage.content" id="page-content"></div>
         <div class="checkbox">
             <label name="pageLive">
                 <input type="checkbox" ng-model="newPage.live"/>Make page live

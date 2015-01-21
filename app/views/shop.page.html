@@ -1,13 +1,13 @@
 <category-filters></category-filters>
 <h1>{{page.title}}</h1>
-<div common-mark="page.content" class="col-sm-8"></div>
+<div class="row">
+    <div common-mark="page.content" id="page-content" class="col-sm-8"></div>
+    <ul ng-cloak="pages && pages.length > 1" class="sidebar col-sm-4">
+        <li ng-repeat="(key, value) in pages">
+            <a data-toggle="collapse" class="date-link" data-target="#toggleDemo{{key}}">{{value[0].createdAt | date : 'MMMM, yyyy'}}</a>
+            <ul id="toggleDemo{{key}}" class="collapse" ng-class="{'in': key == 0}">
+                <li ng-repeat="page in value"><a ui-sref="shop.page({section: page.section, page: page.$id})">{{page.title}}</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
-
-<ul ng-cloak="pages && pages.length > 1" class="sidebar col-sm-4">
-    <li ng-repeat="(key, value) in pages">
-        <a data-toggle="collapse" class="date-link" data-target="#toggleDemo{{key}}">{{value[0].createdAt | date : 'MMMM, yyyy'}}</a>
-        <ul id="toggleDemo{{key}}" class="collapse" ng-class="{'in': key == 0}">
-            <li ng-repeat="page in value"><a ui-sref="shop.page({section: page.section, page: page.$id})">{{page.title}}</a></li>
-        </ul>
-    </li>
-</ul>
