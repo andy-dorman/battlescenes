@@ -1,3 +1,5 @@
+@import "compass";
+
 .bookmark,
 .basket-empty {
 	cursor: pointer;
@@ -575,4 +577,14 @@ h2.product-saved.saved {
 	-webkit-transition: 1s linear all; /* Chrome */
 	transition: 1s linear all;
 	opacity: 0;
+}
+
+
+.description .btn-success {
+	@include background-image(linear-gradient(#00FF00, #006600));
+	border-color: #006600;
+}
+
+.description .btn-success:hover {
+	background-color: #006600;
 }
