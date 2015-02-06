@@ -58467,6 +58467,7 @@ login state (instead of showing them a login form).
                     return false;
                 }
                 $scope.newProduct.images = $scope.productImages;
+                $scope.newProduct.createdAt = Math.floor((new Date()).getTime());
 
                 var safename = ($scope.newProduct.category + "-" + $scope.newProduct.name.replace(/\s/g, "-")).toLowerCase();
                 $scope.productService.create(safename, $scope.newProduct);
