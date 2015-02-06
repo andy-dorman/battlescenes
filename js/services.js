@@ -340,7 +340,8 @@
             };
 
             var addCategoryToParent = function(parentCategory, category) {
-                var safename = (category.key.replace(/\s/g, "-")).toLowerCase();
+                //var safename = (category.key.replace(/\s/g, "-")).toLowerCase();
+                var safename = (category.replace(/\s/g, "-")).toLowerCase();
                 var subCategories = [];
                 subCategories[safename] = category;
 
