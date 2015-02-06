@@ -334,7 +334,8 @@
             var categories = sync.$asArray();
 
             var addCategory = function(category) {
-                var safename = (category.key.replace(/\s/g, "-")).toLowerCase();
+                //var safename = (category.key.replace(/\s/g, "-")).toLowerCase();
+                var safename = (category.replace(/\s/g, "-")).toLowerCase();
                 sync.$set(safename, category);
             };
 
