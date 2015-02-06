@@ -61639,9 +61639,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "            <h3 ng-show=\"!canEdit(product.$id)\"><a href ui-sref=\"shop.product({productId: product.$id})\">{{ product.name }}</a><a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a></h3>\n" +
     "            <input ng-show=\"canEdit(product.$id)\" class=\"titleInput\" ng-model=\"product.name\" size=\"50\" type=\"text\"/>\n" +
     "            <div ng-show=\"!canEdit(product.$id)\" class=\"description\">\n" +
-    "            <p>\n" +
-    "            {{product.description}}\n" +
-    "            </p>\n" +
+    "            <div common-mark=\"product.description\" id=\"page-content\"></div>\n" +
     "            <p>\n" +
     "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
     "            </p>\n" +
