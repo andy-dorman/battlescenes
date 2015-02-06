@@ -1006,15 +1006,17 @@
             $scope.subCategories = [];
             $scope.productImages = {};
             $scope.$watch("images", function() {
-                for (var i = 0; i < $scope.images.length; i++) {
-                    var file = $scope.images[i];
-                    $scope.upload = $upload.upload({
-                        url: "upload.php",
-                        data: { myObj: $scope.myModelObj },
-                        file: file
-                    })
-                    .progress(progress(file)).
-                    success(success);
+                if($scope.images) {
+                    for (var i = 0; i < $scope.images.length; i++) {
+                        var file = $scope.images[i];
+                        $scope.upload = $upload.upload({
+                            url: "upload.php",
+                            data: { myObj: $scope.myModelObj },
+                            file: file
+                        })
+                        .progress(progress(file)).
+                        success(success);
+                    }
                 }
             });
             var progress = function(file) {
@@ -1045,11 +1047,7 @@
             $scope.productErrors = [];
 
             $scope.getSubCategories = function() {
-                $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category).subCategories;
-            };
-
-            $scope.getSubCategories = function() {
-                $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category).subCategories;
+                $scope.subCategories = $scope.categories.$getRecord($scope.newProduct.category.replace(/\s/g, "-").toLowerCase()).subCategories;
             };
 
             $scope.addProduct = function() {
