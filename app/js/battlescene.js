@@ -61556,9 +61556,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "        <div class=\"pull-left col-sm-5\">\n" +
     "            <a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a>\n" +
     "            <div class=\"description\">\n" +
-    "            <p>\n" +
-    "            {{product.description}}\n" +
-    "            </p>\n" +
+    "            <div common-mark=\"product.description\"></div>\n" +
     "            <p>\n" +
     "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
     "            </p>\n" +
