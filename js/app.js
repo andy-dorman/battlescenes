@@ -725,8 +725,8 @@
             };
 
             $scope.getSubCategories = function(category) {
-                if($scope.categories.$getRecord(category)) {
-                    return $scope.categories.$getRecord(category).subCategories;
+                if($scope.categories.$getRecord(category.replace(/\s/g, "-").toLowerCase())) {
+                    return $scope.categories.$getRecord(category.replace(/\s/g, "-").toLowerCase()).subCategories;
                 }
                 return false;
             };
