@@ -696,9 +696,9 @@
                 var query = $scope.filters.searchTerm.toLowerCase(),
                     subcategory = $scope.filters.subcategory.toLowerCase(),
                     category = $scope.filters.category.toLowerCase(),
-                    name = item.name.toLowerCase(),
-                    desc = item.description.toLowerCase(),
-                    itemCat = item.category.toLowerCase(),
+                    name = item.name ? item.name.toLowerCase() : undefined,
+                    desc = item.description ? item.description.toLowerCase() : undefined,
+                    itemCat = item.category ? item.category.toLowerCase() : undefined,
                     itemSub = item.subcategory ? item.subcategory.toLowerCase() : undefined;
 
                 if ($scope.userService.currentUser || item.live !== false) {
