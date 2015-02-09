@@ -58017,7 +58017,6 @@ login state (instead of showing them a login form).
                             // Returning true means that we will only loop through the forEach() one time
                         });
                         $scope.products = products;
-                        console.log($scope.products);
                     });
                 } else {
                     products = ProductService.all.$asArray();
@@ -61652,7 +61651,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "                    </select>\n" +
     "                    <select ng-model=\"product.subcategory\">\n" +
     "                    <option value=\"\"> -- Select a subcategory -- </option>\n" +
-    "                    <option ng-repeat=\"subcategory in getSubCategories(product.category)\" value=\"{{subcategory.name}}\" ng-selected=\"subcategory.name == product.subcategory\">{{subcategory.name}} - {{subcategory.name}} - {{product.subcategory}}</option>\n" +
+    "                    <option ng-repeat=\"subcategory in getSubCategories(product.category)\" value=\"{{subcategory.name}}\" ng-selected=\"subcategory.name == product.subcategory\">{{subcategory.name}}</option>\n" +
     "                </select>\n" +
     "            </div>\n" +
     "            <h3 ng-show=\"!canEdit(product.$id)\"><a href ui-sref=\"shop.product({productId: product.$id})\">{{ product.name }}</a><a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a></h3>\n" +

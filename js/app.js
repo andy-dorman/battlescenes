@@ -637,7 +637,6 @@
                             // Returning true means that we will only loop through the forEach() one time
                         });
                         $scope.products = products;
-                        console.log($scope.products);
                     });
                 } else {
                     products = ProductService.all.$asArray();
