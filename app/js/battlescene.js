@@ -58121,10 +58121,10 @@ login state (instead of showing them a login form).
             $scope.stateParams = $stateParams;
             $scope.saved = false;
 
-            if (UserService.CurrentUser) {
-                $scope.product = ProductService.find($stateParams.productId);
-            } else {
+            if (UserService.currentUser) {
                 $scope.product = ProductService.findAll($stateParams.productId);
+            } else {
+                $scope.product = ProductService.find($stateParams.productId);
             }
 
             $scope.categories = CategoryService.categories;
@@ -58135,7 +58135,7 @@ login state (instead of showing them a login form).
             var loadedImages = 0;
             $scope.imageLoaded = function( image ) {
                 loadedImages++;
-                if(UserService.CurrentUser === null) {
+                if(UserService.currentUser === null) {
                     if (loadedImages === Object.keys($scope.product.images).length) {
                         if(typeof oldIE === "undefined" && Object.keys) {
                             baguetteBox.run(".gallery",
@@ -58203,11 +58203,13 @@ login state (instead of showing them a login form).
                 return defaultResolver(product);
             };
             $scope.removeImage = function(e, image) {
-                e.preventDefault();
-                var index = $scope.images.indexOf(image);
-                $scope.images.splice(index, 1);
-                delete $scope.product.images[image.$id];
-                $scope.saved = false;
+                if (UserService.currentUser) {
+                    e.preventDefault();
+                    var index = $scope.images.indexOf(image);
+                    $scope.images.splice(index, 1);
+                    delete $scope.product.images[image.$id];
+                    $scope.saved = false;
+                }
             };
 
             $scope.search = function(item) {
@@ -58257,8 +58259,10 @@ login state (instead of showing them a login form).
             $scope.subcategory = $stateParams.subcategoryId;
             $scope.categoryService = CategoryService;
             $scope.categories = CategoryService.categories;
+
             //$scope.products = ProductService.getProducts;
-            $scope.products = ProductService.products;
+            //$scope.products = ProductService.products;
+
             UserService.authenticated.on("value", function(snap){
               if (snap.val() === true) {
                 $scope.products = ProductService.all.$asArray();
@@ -58266,10 +58270,15 @@ login state (instead of showing them a login form).
                 $scope.products = ProductService.live.$asArray();
               }
             });
+
             $scope.filters = Filters;
             $scope.filters.category = $stateParams.categoryId || "";
 
-            $scope.getCategoriesFromProducts = function(products) {
+            $scope.$watch('categories', function(){
+                //console.log($scope.categories);
+            });
+
+            $scope.getCategoriesFromProducts = function (products) {
                 var unique = {};
                 var distinctCategories = {};
                 for (var i in products) {
@@ -58285,11 +58294,20 @@ login state (instead of showing them a login form).
                         delete distinctCategories[category];
                     }
                 }
+
+                $scope.distinctCategories = distinctCategories;
                 return distinctCategories;
             };
 
+            $scope.getCategoryName = function(category) {
+                for(var i=0;  i < CategoryService.categories.length; i++) {
+                    if(CategoryService.categories[i].$id === category) {
+                        return CategoryService.categories[i].name;
+                    }
+                }
+            };
+
             $scope.alphaSort = function(cat) {
-                console.log(cat);
                 return 1;
             };
 
@@ -61628,11 +61646,11 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "        <div class=\"col-sm-8\">\n" +
     "            <div class=\"form-group\" ng-show=\"canEdit(product.$id)\">\n" +
     "                    <select ng-model=\"product.category\">\n" +
-    "                        <option ng-repeat=\"category in categories\" value=\"{{category.name}}\" ng-selected=\"category.name == product.category\">{{category.name}}</option>\n" +
+    "                        <option ng-repeat=\"category in categories\" value=\"{{category.$id}}\" ng-selected=\"category.name == product.category\">{{category.name}}</option>\n" +
     "                    </select>\n" +
     "                    <select ng-model=\"product.subcategory\">\n" +
     "                    <option value=\"\"> -- Select a subcategory -- </option>\n" +
-    "                    <option ng-repeat=\"subcategory in getSubCategories(product.category)\" value=\"{{subcategory.name}}\" ng-selected=\"subcategory.name == product.subcategory\">{{subcategory.name}}</option>\n" +
+    "                    <option ng-repeat=\"subcategory in getSubCategories(product.category)\" value=\"{{subcategory.$id}}\" ng-selected=\"subcategory.name == product.subcategory\">{{subcategory.name}}</option>\n" +
     "                </select>\n" +
     "            </div>\n" +
     "            <h3 ng-show=\"!canEdit(product.$id)\"><a href ui-sref=\"shop.product({productId: product.$id})\">{{ product.name }}</a><a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a></h3>\n" +

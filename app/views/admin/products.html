@@ -30,13 +30,13 @@
         <div class="form-group">
             <select ng-model="newProduct.category" ng-change="getSubCategories()" class="form-control">
             <option value="">Select a category</option>
-            <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+            <option ng-repeat="category in categories" value="{{category.$id}}">{{category.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <select ng-model="newProduct.subcategory" class="form-control">
             <option value="">Select a sub-category</option>
-            <option ng-repeat="subcategory in subCategories" value="{{subcategory.name}}">{{subcategory.name}}</option>
+            <option ng-repeat="subcategory in subCategories" value="{{subcategory.$id}}">{{subcategory.name}}</option>
             </select>
         </div>
         <div class="checkbox">

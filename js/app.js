@@ -741,10 +741,10 @@
             $scope.stateParams = $stateParams;
             $scope.saved = false;
 
-            if (UserService.CurrentUser) {
-                $scope.product = ProductService.find($stateParams.productId);
-            } else {
+            if (UserService.currentUser) {
                 $scope.product = ProductService.findAll($stateParams.productId);
+            } else {
+                $scope.product = ProductService.find($stateParams.productId);
             }
 
             $scope.categories = CategoryService.categories;
@@ -755,7 +755,7 @@
             var loadedImages = 0;
             $scope.imageLoaded = function( image ) {
                 loadedImages++;
-                if(UserService.CurrentUser === null) {
+                if(UserService.currentUser === null) {
                     if (loadedImages === Object.keys($scope.product.images).length) {
                         if(typeof oldIE === "undefined" && Object.keys) {
                             baguetteBox.run(".gallery",
@@ -823,11 +823,13 @@
                 return defaultResolver(product);
             };
             $scope.removeImage = function(e, image) {
-                e.preventDefault();
-                var index = $scope.images.indexOf(image);
-                $scope.images.splice(index, 1);
-                delete $scope.product.images[image.$id];
-                $scope.saved = false;
+                if (UserService.currentUser) {
+                    e.preventDefault();
+                    var index = $scope.images.indexOf(image);
+                    $scope.images.splice(index, 1);
+                    delete $scope.product.images[image.$id];
+                    $scope.saved = false;
+                }
             };
 
             $scope.search = function(item) {
@@ -877,8 +879,10 @@
             $scope.subcategory = $stateParams.subcategoryId;
             $scope.categoryService = CategoryService;
             $scope.categories = CategoryService.categories;
+
             //$scope.products = ProductService.getProducts;
-            $scope.products = ProductService.products;
+            //$scope.products = ProductService.products;
+
             UserService.authenticated.on("value", function(snap){
               if (snap.val() === true) {
                 $scope.products = ProductService.all.$asArray();
@@ -886,10 +890,15 @@
                 $scope.products = ProductService.live.$asArray();
               }
             });
+
             $scope.filters = Filters;
             $scope.filters.category = $stateParams.categoryId || "";
 
-            $scope.getCategoriesFromProducts = function(products) {
+            $scope.$watch('categories', function(){
+                //console.log($scope.categories);
+            });
+
+            $scope.getCategoriesFromProducts = function (products) {
                 var unique = {};
                 var distinctCategories = {};
                 for (var i in products) {
@@ -905,11 +914,20 @@
                         delete distinctCategories[category];
                     }
                 }
+
+                $scope.distinctCategories = distinctCategories;
                 return distinctCategories;
             };
 
+            $scope.getCategoryName = function(category) {
+                for(var i=0;  i < CategoryService.categories.length; i++) {
+                    if(CategoryService.categories[i].$id === category) {
+                        return CategoryService.categories[i].name;
+                    }
+                }
+            };
+
             $scope.alphaSort = function(cat) {
-                console.log(cat);
                 return 1;
             };
 

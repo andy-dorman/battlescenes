@@ -3,7 +3,7 @@
         <section class="pull-left category-tabs tabs">
             <ul class="nav nav-pills">
                 <li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
-                <a category-link>{{category}}</a>
+                <a category-link>{{getCategoryName(category)}}</a>
                 </li>
                 <li ng-show="filteredProducts.length > 0 && filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
             </ul>
