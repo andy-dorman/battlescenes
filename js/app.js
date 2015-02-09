@@ -623,6 +623,7 @@
 
             var products,
             queryRef;
+
             if (UserService.currentUser) {
                 if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory ==="") {
                     products = [];
@@ -636,6 +637,7 @@
                             // Returning true means that we will only loop through the forEach() one time
                         });
                         $scope.products = products;
+                        console.log($scope.products);
                     });
                 } else {
                     products = ProductService.all.$asArray();
@@ -725,8 +727,8 @@
             };
 
             $scope.getSubCategories = function(category) {
-                if($scope.categories.$getRecord(category.replace(/\s/g, "-").toLowerCase())) {
-                    return $scope.categories.$getRecord(category.replace(/\s/g, "-").toLowerCase()).subCategories;
+                if (category && $scope.categories.$getRecord(category)) {
+                    return $scope.categories.$getRecord(category).subCategories;
                 }
                 return false;
             };

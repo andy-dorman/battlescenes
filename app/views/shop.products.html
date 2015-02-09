@@ -21,7 +21,7 @@
                     </select>
                     <select ng-model="product.subcategory">
                     <option value=""> -- Select a subcategory -- </option>
-                    <option ng-repeat="subcategory in getSubCategories(product.category)" value="{{subcategory.$id}}" ng-selected="subcategory.name == product.subcategory">{{subcategory.name}}</option>
+                    <option ng-repeat="subcategory in getSubCategories(product.category)" value="{{subcategory.name}}" ng-selected="subcategory.name == product.subcategory">{{subcategory.name}}</option>
                 </select>
             </div>
             <h3 ng-show="!canEdit(product.$id)"><a href ui-sref="shop.product({productId: product.$id})">{{ product.name }}</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)">{{basket.itemCount(product)}}</span></span></a></h3>
