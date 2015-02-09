@@ -778,7 +778,7 @@
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
                     imageObj.$id = image;
-                    imageObj.url = (window.location.host === "bscenes" ? "http://battlescene.aomegasolutions.com" : "") + "/uploads/" + theImage.filename;
+                    imageObj.url = (window.location.host === "bscenes" ? "http://battlescenedesigns.co.uk" : "") + "/uploads/" + theImage.filename;
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }

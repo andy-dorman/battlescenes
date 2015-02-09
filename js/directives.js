@@ -38,7 +38,7 @@
 					var imgUrl = "";
 
 					if(window.location.host === "bscenes") {
-						imgUrl = "http://battlescene.aomegasolutions.com/uploads/" + filename;
+						imgUrl = "http://battlescenedesigns.co.uk/uploads/" + filename;
 					} else {
 						imgUrl = "/uploads/" + filename;
 					}

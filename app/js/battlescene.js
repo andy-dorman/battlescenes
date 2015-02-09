@@ -57148,10 +57148,11 @@ login state (instead of showing them a login form).
                     //Get current live value stored against current prodId
                     //
                     var oldname = $firebase(refByLive.child(product.$id)).$asObject();
+                    //console.log(oldname);
                     //Get current product by current prodId
                     //
                     var currentProduct = $firebase(ref.child(product.$id)).$asObject();
-
+                    //console.log(currentProduct);
                     // If the old ref doesn"t match the new one
                     //
                     if (oldname && oldname.$id !== productId || !product.live) {
@@ -57164,10 +57165,15 @@ login state (instead of showing them a login form).
 
                     if(currentProduct.$id !== productId) {
                         products.$remove(currentProduct.$id);
-
                         return products.$set(productId, angular.copy(productCopy));
                     } else {
-                        return products.$asArray().$save(product);
+                        return products.$set(productId, productCopy);
+                        /*
+                        var productsArray = products.$asArray();
+                        productsArray.$loaded().then(function(array) {
+                            console.log(array.$save(product));
+                            return array.$save(product);
+                        });*/
                     }
                 },
                 find: function (productId) {
@@ -58158,7 +58164,7 @@ login state (instead of showing them a login form).
                     var theImage = $scope.product.images[image];
                     var imageObj = {};
                     imageObj.$id = image;
-                    imageObj.url = (window.location.host === "bscenes" ? "http://battlescene.aomegasolutions.com" : "") + "/uploads/" + theImage.filename;
+                    imageObj.url = (window.location.host === "bscenes" ? "http://battlescenedesigns.co.uk" : "") + "/uploads/" + theImage.filename;
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
@@ -58754,7 +58760,7 @@ login state (instead of showing them a login form).
 					var imgUrl = "";
 
 					if(window.location.host === "bscenes") {
-						imgUrl = "http://battlescene.aomegasolutions.com/uploads/" + filename;
+						imgUrl = "http://battlescenedesigns.co.uk/uploads/" + filename;
 					} else {
 						imgUrl = "/uploads/" + filename;
 					}
