@@ -52,7 +52,7 @@
     </div>
     <br/>
     <div class="form-group">
-        <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
+        <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="true" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
         <ul ng-show="images.length > 0" class="response">
             <li class="sel-file" ng-repeat="f in images">
                 <div ng-thumb="{ file: f, width: 100 }"></div>
