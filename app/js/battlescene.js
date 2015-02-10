@@ -57167,6 +57167,7 @@ login state (instead of showing them a login form).
                         products.$remove(currentProduct.$id);
                         return products.$set(productId, angular.copy(productCopy));
                     } else {
+                        console.log(productCopy);
                         return products.$set(productId, productCopy);
                         /*
                         var productsArray = products.$asArray();
@@ -57177,7 +57178,11 @@ login state (instead of showing them a login form).
                     }
                 },
                 find: function (productId) {
-                  return $firebase(refByLive.child(productId)).$asObject();
+                    var ref = new Firebase(FIREBASE_URI + "/productsByLive/" + productId);
+                    $firebase(ref).$asObject().$loaded().then(function(data){
+                        //ref.setPriority(data.createdAt);
+                    });
+                    return $firebase(refByLive.child(productId)).$asObject();
                 },
                 findAll: function (productId) {
                     return $firebase(ref.child(productId)).$asObject();
@@ -57989,8 +57994,8 @@ login state (instead of showing them a login form).
         }
     ]);
 
-    shop.controller("ShopController", [ "$scope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "currentAuth",
-        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, currentAuth) {
+    shop.controller("ShopController", [ "$scope", "$rootScope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "currentAuth",
+        function($scope, $rootScope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, currentAuth) {
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
@@ -58007,49 +58012,59 @@ login state (instead of showing them a login form).
             $scope.filters.category = $stateParams.categoryId || "";
             $scope.filters.subcategory = $stateParams.subcategoryId || "";
 
-            var products,
-            queryRef;
+            $scope.products = [];
+            var queryRef;
 
             if (UserService.currentUser) {
+                /*
                 if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory ==="") {
                     products = [];
-                    queryRef = ProductService.ref.orderByChild("createdAt");//.limitToLast(3);
-                    queryRef.on("value", function(results) {
+                    queryRef = ProductService.ref.orderByChild('name').on("value", function(results) {
                         //products = results;
+
+                        $scope.products = [];
                         results.forEach(function(product) {
                             var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
-                            products.unshift(prod);
+                            $scope.products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
-                        $scope.products = products;
+                        //$scope.products = products;
                     });
-                } else {
+
+                    //$scope.products = ProductService.ref.orderByPriority();
+                } else {*/
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products;
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
-                }
+                //}
             } else {
-                if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory ==="") {
+                /*if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory === "") {
                     products = [];
-                    queryRef = ProductService.refByLive.orderByChild("createdAt");//.limitToLast(3);
-                    queryRef.on("value", function(results) {
+                    //queryRef = ProductService.refByLive.orderByChild("createdAt");//.limitToLast(3);
+                    queryRef = ProductService.refByLive.orderByPriority().on("value", function(results) {
+                        console.log(results.exportVal());
+                        //console.log("As they come - ", results.val());
+                        console.log(results.getPriority());
                         //products = results;
+                        $scope.products = [];
+                        console.log("Ordered by priority?");
                         results.forEach(function(product) {
+
                             var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
-                            products.unshift(prod);
+                            $scope.products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
-                        $scope.products = products;
+                        //$scope.products = products;
                     });
-                } else {
+                } else {*/
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products;
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
-                }
+                //}
             }
 
 
@@ -58433,10 +58448,8 @@ login state (instead of showing them a login form).
                 file.progress = parseInt(100.0 * evt.loaded / evt.total);
             };
             var success = function(data, status, headers, config) {
-                console.log("success");
                 var image = {};
                 image.filename = config.file.name;
-                console.log(config);
                 var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
                 $scope.productImages[safename] = image;
             };
@@ -58498,6 +58511,8 @@ login state (instead of showing them a login form).
                 $scope.productService.create(safename, $scope.newProduct);
                 $scope.newProduct = {};
                 $scope.productImages = {};
+                $scope.myModelObj = {};
+                $scope.images = {};
             };
         }
     ]);
@@ -58886,6 +58901,65 @@ login state (instead of showing them a login form).
 				link: link,
 				restrict: "A"
 			});
+		}
+	)
+	.directive(
+		'viewTitle',
+		['$rootScope', function ($rootScope) {
+			return {
+				restrict: 'EA',
+				link: function (scope, iElement, iAttrs, controller, transcludeFn) {
+					// If we've been inserted as an element then we detach from the DOM because the caller
+					// doesn't want us to have any visual impact in the document.
+					// Otherwise, we're piggy-backing on an existing element so we'll just leave it alone.
+					var tagName = iElement[0].tagName.toLowerCase();
+					if (tagName === 'view-title' || tagName === 'viewtitle') {
+						iElement.remove();
+					}
+
+					scope.$watch(
+						function () {
+							return iElement.text();
+						},
+						function (newTitle) {
+							$rootScope.viewTitle = newTitle;
+						}
+					);
+					scope.$on(
+						'$destroy',
+						function () {
+							delete $rootScope.viewTitle;
+						}
+					);
+				}
+			};
+		}]
+	)
+	.directive(
+		'viewHead',
+		function () {
+			var head = angular.element(document.head);
+			return {
+				restrict: 'A',
+				link: function (scope, iElement, iAttrs, controller, transcludeFn) {
+					// Move the element into the head of the document.
+					// Although the physical location of the document changes, the element remains
+					// bound to the scope in which it was declared, so it can refer to variables from
+					// the view scope if necessary.
+					head.append(iElement);
+
+					// When the scope is destroyed, remove the element.
+					// This is on the assumption that we're being used in some sort of view scope.
+					// It doesn't make sense to use this directive outside of the view, and nor does it
+					// make sense to use it inside other scope-creating directives like ng-repeat.
+					scope.$on(
+						'$destroy',
+						function () {
+							iElement.remove();
+						}
+					);
+				}
+			};
 		}
 	);
 })();
@@ -61497,7 +61571,7 @@ angular.module("../app/views/navigation.html", []).run(["$templateCache", functi
 angular.module("../app/views/shop.about.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.about.html",
     "<category-filters></category-filters>\n" +
-    "<h1>About Battlescene Designs</h1>\n" +
+    "<h1 view-title>About Battlescene Designs</h1>\n" +
     "<div common-mark=\"html\"></div>\n" +
     "");
 }]);
@@ -61505,20 +61579,20 @@ angular.module("../app/views/shop.about.html", []).run(["$templateCache", functi
 angular.module("../app/views/shop.basket.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.basket.html",
     "<category-filters></category-filters>\n" +
-    "<h1>Your saved items</h1>\n" +
+    "<h1 view-title>Your Basket</h1>\n" +
     "<basket-contents></basket-contents>\n" +
     "\n" +
     "<p style=\"margin-top: 20px;\">\n" +
     "Please <a ui-sref=\"shop.contact\">contact us</a> if you want to make an order.\n" +
     "</p>\n" +
-    "\n" +
     "");
 }]);
 
 angular.module("../app/views/shop.contact.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.contact.html",
     "<category-filters></category-filters>\n" +
-    "<h1>Contact us</h1>\n" +
+    "<h1 view-title>Contact us</h1>\n" +
+    "<meta view-head property=\"og:description\" content=\"You can get in touch by using this form or emailing info@battlescenedesigns.co.uk\" />\n" +
     "<div class=\"row\" ng-controller=\"ContactCtrl\">\n" +
     "    <div ng-repeat=\"error in errors\" class=\"col-sm-12\">\n" +
     "        <h4>{{error.name}}</h4>\n" +
@@ -61543,13 +61617,14 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
     "        </div>\n" +
     "        <button type=\"submit\" class=\"btn btn-default\">Get in touch</button>\n" +
     "    </form>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("../app/views/shop.page.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.page.html",
     "<category-filters></category-filters>\n" +
-    "<h1>{{page.title}}</h1>\n" +
+    "<h1 view-title>{{page.title}}</h1>\n" +
     "<div class=\"row\">\n" +
     "    <div common-mark=\"page.content\" id=\"page-content\" class=\"col-sm-8\"></div>\n" +
     "    <ul ng-cloak=\"pages && pages.length > 1\" class=\"sidebar col-sm-4\">\n" +
@@ -61567,7 +61642,8 @@ angular.module("../app/views/shop.page.html", []).run(["$templateCache", functio
 angular.module("../app/views/shop.product.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.product.html",
     "<product-breadcrumbs></product-breadcrumbs>\n" +
-    "<h1>{{product.name}}</h1>\n" +
+    "<meta view-head property=\"og:description\" content=\"{{product.name + ' - ' + product.description + ', £' + product.price}}\" />\n" +
+    "<h1 view-title>{{product.name}}</h1>\n" +
     "<div class=\"row\" ng-show=\"product.name\">\n" +
     "    <section class=\"row bottom-buffer col-sm-12\" id=\"product-view\">\n" +
     "        <div class=\"pull-left col-sm-4 gallery\">\n" +
@@ -61635,7 +61711,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
 angular.module("../app/views/shop.products.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.products.html",
     "<category-filters></category-filters>\n" +
-    "<h1 class=\"hidden\">Battlescene Designs</h1>\n" +
+    "<h1 class=\"hidden\" view-title>Battlescene Designs</h1>\n" +
     "<h2 ng-show=\"products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''\">Sorry, we have no products that match \"{{filters.searchTerm}}\"<span ng-show=\"filters.category\"> in the category you have currently selected</span>.</h2>\n" +
     "<div class=\"row\">\n" +
     "    <!--ng-repeat=\"product in (filteredProducts = (products | filter : search))\">-->\n" +

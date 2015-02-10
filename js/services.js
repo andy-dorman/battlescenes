@@ -297,6 +297,7 @@
                         products.$remove(currentProduct.$id);
                         return products.$set(productId, angular.copy(productCopy));
                     } else {
+                        console.log(productCopy);
                         return products.$set(productId, productCopy);
                         /*
                         var productsArray = products.$asArray();
@@ -307,7 +308,11 @@
                     }
                 },
                 find: function (productId) {
-                  return $firebase(refByLive.child(productId)).$asObject();
+                    var ref = new Firebase(FIREBASE_URI + "/productsByLive/" + productId);
+                    $firebase(ref).$asObject().$loaded().then(function(data){
+                        //ref.setPriority(data.createdAt);
+                    });
+                    return $firebase(refByLive.child(productId)).$asObject();
                 },
                 findAll: function (productId) {
                     return $firebase(ref.child(productId)).$asObject();

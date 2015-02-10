@@ -1,5 +1,6 @@
 <product-breadcrumbs></product-breadcrumbs>
-<h1>{{product.name}}</h1>
+<meta view-head property="og:description" content="{{product.name + ' - ' + product.description + ', £' + product.price}}" />
+<h1 view-title>{{product.name}}</h1>
 <div class="row" ng-show="product.name">
     <section class="row bottom-buffer col-sm-12" id="product-view">
         <div class="pull-left col-sm-4 gallery">

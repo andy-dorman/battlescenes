@@ -45,6 +45,12 @@
         </label>
         </div>
     </form>
+    <div ng-show="productImages" class="row">
+        <div ng-repeat="image in productImages" class="col-xs-2 image-col product-image-container">
+            <img bscenes-src="{{image.filename}}" class="img-responsive"/>
+        </div>
+    </div>
+    <br/>
     <div class="form-group">
         <button class="btn btn-default" ng-file-select="" ng-model="images" class="upload-button" ng-file-change="upload(images)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
         <ul ng-show="images.length > 0" class="response">

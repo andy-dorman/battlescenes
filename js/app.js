@@ -603,8 +603,8 @@
         }
     ]);
 
-    shop.controller("ShopController", [ "$scope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "currentAuth",
-        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, currentAuth) {
+    shop.controller("ShopController", [ "$scope", "$rootScope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "currentAuth",
+        function($scope, $rootScope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, currentAuth) {
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
@@ -621,49 +621,59 @@
             $scope.filters.category = $stateParams.categoryId || "";
             $scope.filters.subcategory = $stateParams.subcategoryId || "";
 
-            var products,
-            queryRef;
+            $scope.products = [];
+            var queryRef;
 
             if (UserService.currentUser) {
+                /*
                 if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory ==="") {
                     products = [];
-                    queryRef = ProductService.ref.orderByChild("createdAt");//.limitToLast(3);
-                    queryRef.on("value", function(results) {
+                    queryRef = ProductService.ref.orderByChild('name').on("value", function(results) {
                         //products = results;
+
+                        $scope.products = [];
                         results.forEach(function(product) {
                             var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
-                            products.unshift(prod);
+                            $scope.products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
-                        $scope.products = products;
+                        //$scope.products = products;
                     });
-                } else {
+
+                    //$scope.products = ProductService.ref.orderByPriority();
+                } else {*/
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products;
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
-                }
+                //}
             } else {
-                if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory ==="") {
+                /*if ($scope.filters.searchTerm === "" && $scope.filters.category === "" && $scope.filters.subcategory === "") {
                     products = [];
-                    queryRef = ProductService.refByLive.orderByChild("createdAt");//.limitToLast(3);
-                    queryRef.on("value", function(results) {
+                    //queryRef = ProductService.refByLive.orderByChild("createdAt");//.limitToLast(3);
+                    queryRef = ProductService.refByLive.orderByPriority().on("value", function(results) {
+                        console.log(results.exportVal());
+                        //console.log("As they come - ", results.val());
+                        console.log(results.getPriority());
                         //products = results;
+                        $scope.products = [];
+                        console.log("Ordered by priority?");
                         results.forEach(function(product) {
+
                             var prod = product.val();
                             prod.$id = (prod.category + "-" + prod.name.replace(/\s/g, "-")).toLowerCase();
-                            products.unshift(prod);
+                            $scope.products.unshift(prod);
                             // Returning true means that we will only loop through the forEach() one time
                         });
-                        $scope.products = products;
+                        //$scope.products = products;
                     });
-                } else {
+                } else {*/
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products;
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
-                }
+                //}
             }
 
 
@@ -1047,10 +1057,8 @@
                 file.progress = parseInt(100.0 * evt.loaded / evt.total);
             };
             var success = function(data, status, headers, config) {
-                console.log("success");
                 var image = {};
                 image.filename = config.file.name;
-                console.log(config);
                 var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
                 $scope.productImages[safename] = image;
             };
@@ -1112,6 +1120,8 @@
                 $scope.productService.create(safename, $scope.newProduct);
                 $scope.newProduct = {};
                 $scope.productImages = {};
+                $scope.myModelObj = {};
+                $scope.images = {};
             };
         }
     ]);

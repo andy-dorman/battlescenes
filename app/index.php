@@ -7,6 +7,7 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
 <!DOCTYPE html>
 <html lang="en" ng-app="shop" ng-controller="RootController">
     <head>
+        <title ng-bind-template="{{viewTitle}} - Battlescene Designs">Home - Battlescene Designs</title>
         <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/battlescene.css" rel="stylesheet"/>
