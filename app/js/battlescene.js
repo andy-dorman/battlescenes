@@ -9450,7 +9450,7 @@ R.prototype.de=function(a,b){F("Firebase.changeEmail",2,2,arguments.length);J("F
 R.prototype.Me=function(a,b){F("Firebase.resetPassword",2,2,arguments.length);J("Firebase.resetPassword",1,a,!1);K("Firebase.resetPassword",a,"email");H("Firebase.resetPassword",2,b,!1);this.k.Q.Me(a,b)};R.prototype.resetPassword=R.prototype.Me;R.goOffline=function(){F("Firebase.goOffline",0,0,arguments.length);Th.Nb().pb()};R.goOnline=function(){F("Firebase.goOnline",0,0,arguments.length);Th.Nb().hc()};
 function nb(a,b){y(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?lb=q(console.log,console):"object"===typeof console.log&&(lb=function(a){console.log(a)})),b&&v.set("logging_enabled",!0)):a?lb=a:(lb=null,v.remove("logging_enabled"))}R.enableLogging=nb;R.ServerValue={TIMESTAMP:{".sv":"timestamp"}};R.SDK_VERSION="2.1.2";R.INTERNAL=Y;R.Context=Th;R.TEST_ACCESS=$;})();
 ;/**
- * @license AngularJS v1.3.14-build.43+sha.d8dc53d
+ * @license AngularJS v1.3.14-build.45+sha.abfce53
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -9505,7 +9505,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.14-build.43+sha.d8dc53d/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.14-build.45+sha.abfce53/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -11572,7 +11572,7 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.14-build.43+sha.d8dc53d',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.14-build.45+sha.abfce53',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 14,
@@ -29339,7 +29339,7 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     return value;
   });
 
-  if (attr.min || attr.ngMin) {
+  if (isDefined(attr.min) || attr.ngMin) {
     var minVal;
     ctrl.$validators.min = function(value) {
       return ctrl.$isEmpty(value) || isUndefined(minVal) || value >= minVal;
@@ -29355,7 +29355,7 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     });
   }
 
-  if (attr.max || attr.ngMax) {
+  if (isDefined(attr.max) || attr.ngMax) {
     var maxVal;
     ctrl.$validators.max = function(value) {
       return ctrl.$isEmpty(value) || isUndefined(maxVal) || value <= maxVal;
@@ -46421,7 +46421,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         };
     });
 })();;/**
- * @license AngularJS v1.3.14-build.43+sha.d8dc53d
+ * @license AngularJS v1.3.14-build.45+sha.abfce53
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -58162,7 +58162,8 @@ login state (instead of showing them a login form).
                         if(typeof oldIE === "undefined" && Object.keys) {
                             baguetteBox.run(".gallery",
                             {
-                                captions: true
+                                captions: true,
+                                buttons: true
                             });
                         }
                     }
@@ -58531,6 +58532,8 @@ login state (instead of showing them a login form).
                 var file = $scope.images[i];
                 $scope.upload = $upload.upload({
                     url: "upload.php",
+                    headers: {'Content-Type': file.type},
+                    method: 'POST',
                     data: { myObj: $scope.myModelObj },
                     file: file
                 })
@@ -61646,7 +61649,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "<h1 view-title>{{product.name}}</h1>\n" +
     "<div class=\"row\" ng-show=\"product.name\">\n" +
     "    <section class=\"row bottom-buffer col-sm-12\" id=\"product-view\">\n" +
-    "        <div class=\"pull-left col-sm-4 gallery\">\n" +
+    "        <div class=\"col-sm-4 gallery\">\n" +
     "            <div class=\"product-image-container\">\n" +
     "                <!--ng-click=\"openLightboxModal($index)\"-->\n" +
     "                <a ng-repeat=\"image in images\" class=\"gallery-thumbnail\" href=\"{{ image.url }}\" ng-click=\"removeImage($event, image)\">\n" +
@@ -61654,7 +61657,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "                </a>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div class=\"pull-left col-sm-5\">\n" +
+    "        <div class=\"col-sm-5\">\n" +
     "            <a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a>\n" +
     "            <div class=\"description\">\n" +
     "            <div common-mark=\"product.description\"></div>\n" +

@@ -771,7 +771,8 @@
                         if(typeof oldIE === "undefined" && Object.keys) {
                             baguetteBox.run(".gallery",
                             {
-                                captions: true
+                                captions: true,
+                                buttons: true
                             });
                         }
                     }
@@ -1140,6 +1141,8 @@
                 var file = $scope.images[i];
                 $scope.upload = $upload.upload({
                     url: "upload.php",
+                    headers: {'Content-Type': file.type},
+                    method: 'POST',
                     data: { myObj: $scope.myModelObj },
                     file: file
                 })
