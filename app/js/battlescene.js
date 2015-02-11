@@ -61655,7 +61655,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "<h1 view-title>{{product.name}}</h1>\n" +
     "<div class=\"row\" ng-show=\"product.name\">\n" +
     "    <section class=\"row bottom-buffer col-sm-12\" id=\"product-view\">\n" +
-    "        <div class=\"col-sm-4 gallery\">\n" +
+    "        <div class=\"col-xs-12 col-md-4 gallery\">\n" +
     "            <div class=\"product-image-container\">\n" +
     "                <!--ng-click=\"openLightboxModal($index)\"-->\n" +
     "                <a ng-repeat=\"image in images\" class=\"gallery-thumbnail\" href=\"{{ image.url }}\" ng-click=\"removeImage($event, image)\">\n" +
@@ -61663,7 +61663,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "                </a>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div class=\"col-sm-5\">\n" +
+    "        <div class=\"col-xs-12 col-md-5\">\n" +
     "            <a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a>\n" +
     "            <div class=\"description\">\n" +
     "            <div common-mark=\"product.description\"></div>\n" +

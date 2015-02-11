@@ -3,7 +3,7 @@
 <h1 view-title>{{product.name}}</h1>
 <div class="row" ng-show="product.name">
     <section class="row bottom-buffer col-sm-12" id="product-view">
-        <div class="col-sm-4 gallery">
+        <div class="col-xs-12 col-md-4 gallery">
             <div class="product-image-container">
                 <!--ng-click="openLightboxModal($index)"-->
                 <a ng-repeat="image in images" class="gallery-thumbnail" href="{{ image.url }}" ng-click="removeImage($event, image)">
@@ -11,7 +11,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-xs-12 col-md-5">
             <a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)">{{basket.itemCount(product)}}</span></span></a>
             <div class="description">
             <div common-mark="product.description"></div>
