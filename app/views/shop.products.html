@@ -1,5 +1,6 @@
 <category-filters></category-filters>
-<h1 class="hidden" view-title>Battlescene Designs</h1>
+<h1 class="hidden" view-title>{{pageTitle}}</h1>
+<meta view-head property="og:description" content="Battlescene Designs create practical and affordable wargaming scenery." />
 <h2 ng-show="products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''">Sorry, we have no products that match "{{filters.searchTerm}}"<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
 <div class="row">
     <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->

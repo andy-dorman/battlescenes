@@ -58123,6 +58123,7 @@ login state (instead of showing them a login form).
                         }
                     }
                 }
+                generatePageTitle();
                 return false;
             };
 
@@ -58132,6 +58133,11 @@ login state (instead of showing them a login form).
                 }
                 return false;
             };
+
+            function generatePageTitle() {
+                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
+            }
+            generatePageTitle();
         }
     ]);
 
@@ -61714,7 +61720,8 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
 angular.module("../app/views/shop.products.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.products.html",
     "<category-filters></category-filters>\n" +
-    "<h1 class=\"hidden\" view-title>Battlescene Designs</h1>\n" +
+    "<h1 class=\"hidden\" view-title>{{pageTitle}}</h1>\n" +
+    "<meta view-head property=\"og:description\" content=\"Battlescene Designs create practical and affordable wargaming scenery.\" />\n" +
     "<h2 ng-show=\"products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''\">Sorry, we have no products that match \"{{filters.searchTerm}}\"<span ng-show=\"filters.category\"> in the category you have currently selected</span>.</h2>\n" +
     "<div class=\"row\">\n" +
     "    <!--ng-repeat=\"product in (filteredProducts = (products | filter : search))\">-->\n" +

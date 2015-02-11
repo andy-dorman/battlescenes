@@ -732,6 +732,7 @@
                         }
                     }
                 }
+                generatePageTitle();
                 return false;
             };
 
@@ -741,6 +742,11 @@
                 }
                 return false;
             };
+
+            function generatePageTitle() {
+                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
+            }
+            generatePageTitle();
         }
     ]);
 
