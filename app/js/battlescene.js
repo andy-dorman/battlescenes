@@ -61667,7 +61667,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "            <a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-show=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a>\n" +
     "            <div class=\"description\">\n" +
     "            <div common-mark=\"product.description\"></div>\n" +
-    "            <p>\n" +
+    "            <p class=\"buy\">\n" +
     "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
     "            </p>\n" +
     "            </div>\n" +
@@ -61750,7 +61750,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "            <input ng-show=\"canEdit(product.$id)\" class=\"titleInput\" ng-model=\"product.name\" size=\"50\" type=\"text\"/>\n" +
     "            <div ng-show=\"!canEdit(product.$id)\" class=\"description\">\n" +
     "            <div common-mark=\"product.description\" id=\"page-content\"></div>\n" +
-    "            <p>\n" +
+    "            <p class=\"buy\">\n" +
     "                <button class=\"btn btn-success btn-xs pull-right\" ng-click=\"basket.add(product)\">Add to basket</button>\n" +
     "            </p>\n" +
     "            </div>\n" +

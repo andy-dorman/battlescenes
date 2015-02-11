@@ -29,7 +29,7 @@
             <input ng-show="canEdit(product.$id)" class="titleInput" ng-model="product.name" size="50" type="text"/>
             <div ng-show="!canEdit(product.$id)" class="description">
             <div common-mark="product.description" id="page-content"></div>
-            <p>
+            <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
             </div>

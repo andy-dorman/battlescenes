@@ -297,6 +297,11 @@ a:hover {
 .description {
 	padding-bottom: 60px;
 	min-height: 150px;
+	& > p.buy {
+		position: absolute;
+		right: 0px;
+		bottom: 40px;
+	}
 }
 
 
