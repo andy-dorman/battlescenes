@@ -626,6 +626,12 @@
             $scope.filters.subcategory = $stateParams.subcategoryId || "";
 
             $scope.products = [];
+
+            $scope.$watch('products', function (val) {
+                if(val.length > 0) {
+                    $rootScope.status = 'ready';
+                }
+            });
             var queryRef;
 
             if (UserService.currentUser) {
@@ -649,8 +655,8 @@
                 } else {*/
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                         $rootScope.status = "ready";
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}
             } else {
@@ -676,8 +682,8 @@
                 } else {*/
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
-                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                         $rootScope.status = "ready";
+                        $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}
             }
