@@ -609,6 +609,7 @@
 
     shop.controller("ShopController", [ "$scope", "$rootScope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "currentAuth",
         function($scope, $rootScope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, currentAuth) {
+            console.log('You must have been the shop controller...');
             $scope.greeting = "Welcome to Battlescenes designs";
             $scope.userService = UserService;
             $scope.productService = ProductService;
