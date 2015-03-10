@@ -58879,7 +58879,7 @@ login state (instead of showing them a login form).
 	                if(category === scope.filters.category) {
 	                    return "/";
 	                } else {
-	                    return "/category/" + category;
+	                    return "/#!/category/" + category;
 	                }
 	            };
 				elem.attr("href", getUiSref(scope.category));
@@ -58892,9 +58892,9 @@ login state (instead of showing them a login form).
 			link: function (scope, elem, attrs) {
 				var getUiSref = function(subcategory){
 	                if(subcategory === scope.filters.subcategory) {
-	                    return "/category/" + scope.category;
+	                    return "/#!/category/" + scope.category;
 	                } else {
-	                    return "/category/" + scope.category + "/" + subcategory;
+	                    return "/#!/category/" + scope.category + "/" + subcategory;
 	                }
 	            };
 				elem.attr("href", getUiSref(scope.subcategory));
