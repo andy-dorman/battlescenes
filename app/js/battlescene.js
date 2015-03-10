@@ -58255,7 +58255,7 @@ login state (instead of showing them a login form).
                 $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
             }
             generatePageTitle();
-            $scope.status = "ready";
+            $rootScope.status = "ready";
         }
     ]);
 
