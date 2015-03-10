@@ -58132,6 +58132,7 @@ login state (instead of showing them a login form).
             $scope.products = [];
 
             $scope.$watch('products', function (val) {
+                console.log(val);
                 if(val.length > 0) {
                     $rootScope.status = 'ready';
                 }
