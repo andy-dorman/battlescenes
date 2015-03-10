@@ -1,0 +1,144 @@
+html <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}" data-status="">
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
+  <img src="/img/battlescene_logo.png" class="center-block img-responsive">
+</a>
+<nav class="navbar navbar-default ng-scope" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <form role="search" ui-keypress="{13:'doSearch($event)'}" class="ng-pristine ng-valid">
+        <div>
+          <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search">
+        </div>
+        <basket><div class="row basket-row">
+    <div class="col-sm-12">
+    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
+</div></basket>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </form>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- ngRepeat: section in sections -->
+        <!-- ngRepeat: page in pageLocs -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- uiView: content --><div ui-view="content" class="ng-scope"><category-filters class="ng-scope"><div class="row">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
+                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
+        </section>
+        <section class="subcategory-tabs category-tabs tabs">
+            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
+                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
+            </ul>
+        </section>
+    </div>
+</div>
+</category-filters>
+<h1 class="hidden ng-binding ng-scope" view-title="">Home</h1>
+
+<h2 ng-show="products.length &gt; 0 &amp;&amp; filteredProducts.length == 0 &amp;&amp; filters.searchTerm != ''" class="ng-binding ng-scope ng-hide">Sorry, we have no products that match ""<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
+<div class="row ng-scope">
+    <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
+    <!-- ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize -->
+</div>
+<div class="row text-center ng-scope">
+<dir-pagination-controls class="ng-isolate-scope"><!-- ngIf: 1 < pages.length --></dir-pagination-controls>
+</div>
+</div>
+</div>
+        <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
+        <script type="text/javascript" src="js/battlescene.js"></script>
+    
+
+
+</body>
+<body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}" data-status="">
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
+  <img src="/img/battlescene_logo.png" class="center-block img-responsive">
+</a>
+<nav class="navbar navbar-default ng-scope" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <form role="search" ui-keypress="{13:'doSearch($event)'}" class="ng-pristine ng-valid">
+        <div>
+          <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search">
+        </div>
+        <basket><div class="row basket-row">
+    <div class="col-sm-12">
+    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
+</div></basket>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </form>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- ngRepeat: section in sections -->
+        <!-- ngRepeat: page in pageLocs -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- uiView: content --><div ui-view="content" class="ng-scope"><category-filters class="ng-scope"><div class="row">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
+                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
+        </section>
+        <section class="subcategory-tabs category-tabs tabs">
+            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
+                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
+            </ul>
+        </section>
+    </div>
+</div>
+</category-filters>
+<h1 class="hidden ng-binding ng-scope" view-title="">Home</h1>
+
+<h2 ng-show="products.length &gt; 0 &amp;&amp; filteredProducts.length == 0 &amp;&amp; filters.searchTerm != ''" class="ng-binding ng-scope ng-hide">Sorry, we have no products that match ""<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
+<div class="row ng-scope">
+    <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
+    <!-- ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize -->
+</div>
+<div class="row text-center ng-scope">
+<dir-pagination-controls class="ng-isolate-scope"><!-- ngIf: 1 < pages.length --></dir-pagination-controls>
+</div>
+</div>
+</div>
+        <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
+        <script type="text/javascript" src="js/battlescene.js"></script>
+    
+
+
+</body>
