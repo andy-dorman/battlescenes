@@ -57564,9 +57564,9 @@ login state (instead of showing them a login form).
         }
     ]);
     shop.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
-    function($stateProvider, $urlRouterProvider, $location, $state) {
-        //$locationProvider.html5Mode(true);
-        $location.hashPrefix("!");
+    function($stateProvider, $urlRouterProvider, $locationProvider, $state) {
+        $locationProvider.html5Mode(true).hashPrefix("!");
+        //$location.hashPrefix("!");
         window.routes = {
             "shop":
             {
@@ -61849,7 +61849,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "<h1 class=\"hidden\" view-title>{{pageTitle}}</h1>\n" +
     "<meta view-head property=\"og:description\" content=\"Battlescene Designs create practical and affordable wargaming scenery.\" />\n" +
     "<h2 ng-show=\"products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != ''\">Sorry, we have no products that match \"{{filters.searchTerm}}\"<span ng-show=\"filters.category\"> in the category you have currently selected</span>.</h2>\n" +
-    "<div class=\"row\">\n" +
+    "<div class=\"row\" id=\"products\">\n" +
     "    <!--ng-repeat=\"product in (filteredProducts = (products | filter : search))\">-->\n" +
     "    <section class=\"row product-panel bottom-buffer col-sm-6\" ng-class=\"{notlive : !product.live }\" dir-paginate=\"product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize\"><!--dir-paginate=\"product in products | itemsPerPage : 1\">-->\n" +
     "        <div class=\"row\" ng-show=\"userService.currentUser\">\n" +

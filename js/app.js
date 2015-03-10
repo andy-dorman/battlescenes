@@ -60,9 +60,9 @@
         }
     ]);
     shop.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
-    function($stateProvider, $urlRouterProvider, $location, $state) {
-        //$locationProvider.html5Mode(true);
-        $location.hashPrefix("!");
+    function($stateProvider, $urlRouterProvider, $locationProvider, $state) {
+        $locationProvider.html5Mode(true).hashPrefix("!");
+        //$location.hashPrefix("!");
         window.routes = {
             "shop":
             {
