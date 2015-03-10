@@ -60,8 +60,9 @@
         }
     ]);
     shop.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
-    function($stateProvider, $urlRouterProvider, $locationProvider, $state) {
+    function($stateProvider, $urlRouterProvider, $location, $state) {
         //$locationProvider.html5Mode(true);
+        $location.hashPrefix("!");
         window.routes = {
             "shop":
             {
@@ -437,7 +438,7 @@
     ]);
 
     shop.controller("ContactCtrl", ["$scope", "$location", "$http", "ContactService", "Filters", "BasketService",
-        function($scope, $location, $http, ContactService, Filters, BasketService){
+        function($scope, $location, $http, ContactService, Filters, BasketService) {
             $scope.Filters = Filters;
             $scope.http = $http;
             $scope.contactService = ContactService;
@@ -451,14 +452,14 @@
                 message: ""
             };
 
-            if($scope.basket.count() > 0) {
+            if ($scope.basket.count() > 0) {
                 var basket = $scope.basket.items;
-                for(var basketItem in basket) {
+                for (var basketItem in basket) {
                     var item = basket[basketItem];
                     $scope.newContact.message += item.count + " x " + item.name + (item.count > 1 ? "s" : "") + " (" + item.category + ") - \u00a3" + ((parseFloat(item.price)*item.count).toFixed(2)) + "\n";
                 }
 
-                if($scope.newContact.message !== "") {
+                if ($scope.newContact.message !== "") {
                     $scope.newContact.message = "Hi there,\n\nI'm interested in the following items:\n\n" + $scope.newContact.message + "\nTotal: \u00a3" + (parseFloat($scope.basket.total()).toFixed(2));
                 }
             }
@@ -494,6 +495,7 @@
 
                 });
             };
+            $scope.status = "ready";
         }
     ]);
 
@@ -552,6 +554,7 @@
             $scope.doSearch = function() {
                 $state.go("shop.search",{ query: $scope.filters.searchTerm});
             };
+            $scope.status = "ready";
         }
     ]);
 
@@ -600,6 +603,7 @@
           $scope.resetForm = function(){
             $scope.newUser = { email: "", password: "" };
           };
+          $scope.status = "ready";
         }
     ]);
 
@@ -747,6 +751,7 @@
                 $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
             }
             generatePageTitle();
+            $scope.status = "ready";
         }
     ]);
 
@@ -888,6 +893,7 @@
                 $scope.newImages = {};
                 $scope.saved = true;
             };
+            $scope.status = "ready";
         }
     ]);
 
@@ -1026,12 +1032,14 @@
             };
 
             $scope.selectedIndex = "";
+            $scope.status = "ready";
         }
     ]);
 
     shop.controller("BasketController", [ "$scope", "BasketService",
         function($scope, BasketService) {
             $scope.basket = BasketService;
+            $scope.status = "ready";
         }
     ]);
 
@@ -1130,6 +1138,7 @@
                 $scope.myModelObj = {};
                 $scope.images = {};
             };
+            $scope.status = "ready";
         }
     ]);
 
@@ -1266,6 +1275,7 @@
             $scope.images = {};
             //$scope.uploader.clearQueue();
         };
+        $scope.status = "ready";
     }
     ]);
 
@@ -1317,6 +1327,7 @@
                 });
                 return pages;
             };
+            $scope.status = "ready";
         }
     ]);
 })();

@@ -25,7 +25,7 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
     </head>
-    <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+    <body class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}" data-status="{{status}}">
         <div ui-view></div>
         <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
         <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
