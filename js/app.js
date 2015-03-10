@@ -627,11 +627,6 @@
 
             $scope.products = [];
 
-            $scope.$watch('products', function (val) {
-                if(val.length > 0) {
-                    $rootScope.status = 'ready';
-                }
-            });
             var queryRef;
 
             if (UserService.currentUser) {
@@ -656,6 +651,7 @@
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -682,6 +678,7 @@
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             }

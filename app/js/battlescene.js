@@ -58131,12 +58131,6 @@ login state (instead of showing them a login form).
 
             $scope.products = [];
 
-            $scope.$watch('products', function (val) {
-                console.log(val);
-                if(val.length > 0) {
-                    $rootScope.status = 'ready';
-                }
-            });
             var queryRef;
 
             if (UserService.currentUser) {
@@ -58161,6 +58155,7 @@ login state (instead of showing them a login form).
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -58187,6 +58182,7 @@ login state (instead of showing them a login form).
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             }
