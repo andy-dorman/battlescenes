@@ -1,0 +1,188 @@
+<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+        <title ng-bind-template="Battlescene Designs - Shipping" class="ng-binding">Battlescene Designs - Shipping</title>
+        <base href="/">
+        <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/battlescene.css" rel="stylesheet">
+        <!--[if lte IE 9]>
+        <script>
+        document.createElement('header');
+        document.createElement('nav');
+        document.createElement('section');
+        document.createElement('article');
+        document.createElement('aside');
+        document.createElement('footer');
+        document.createElement('hgroup');
+        </script>
+        <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
+        <![endif]-->
+    </head>
+    <body data-status="ready" class="container-fluid jumbotron ready" ng-class="{admin : userService.currentUser}">
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
+  <img src="/img/battlescene_logo.png" class="center-block img-responsive">
+</a>
+<nav class="navbar navbar-default ng-scope" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <form role="search" ui-keypress="{13:'doSearch($event)'}" class="ng-pristine ng-valid">
+        <div>
+          <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search">
+        </div>
+        <basket><div class="row basket-row">
+    <div class="col-sm-12">
+    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
+</div></basket>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </form>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding">About</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope active">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding">Shipping</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding">Terms &amp; Conditions</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding">Workbench</a>
+        </li><!-- end ngRepeat: section in sections -->
+        <!-- ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.contact" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding">Contact</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addProduct" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/products" class="ng-binding ng-hide">Products</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addCategory" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/categories" class="ng-binding ng-hide">Categories</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addPage" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/pages" class="ng-binding ng-hide">Pages</a>
+        </li><!-- end ngRepeat: page in pageLocs -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- uiView: content --><div ui-view="content" class="ng-scope"><category-filters class="ng-scope"><div class="row">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
+                <a category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">6mm Sci Fi</a>
+                </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
+                <li ng-show="filteredProducts.length > 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
+        </section>
+        <section class="subcategory-tabs category-tabs tabs">
+            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length > 0 &amp;&amp; filters.category">
+                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
+            </ul>
+        </section>
+    </div>
+</div>
+</category-filters>
+<h1 view-title="" class="ng-binding ng-scope">Shipping</h1>
+<div class="row ng-scope">
+    <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"><h4>UK</h4>
+<p>Shipping method is at my discretion, but under normal circumstances I ship by Royal Mail, First Class post.</p>
+<p>I generate my shipping information from the information you provide, so please ensure you provide full and correct name and address details.</p>
+<p>Once payment has been cleared, I am normally able to ship your order within 5 - 10 working days.</p>
+<p>Please note there may be the occasional production delay which may result in an extra day or two to ship your order. If there is likely to be a delay in shipping your order, I will advise you by email at the earliest opportunity.</p>
+<h4>Overseas Shipping</h4>
+<p>We are happy to ship our products worldwide, however, it should be noted that the maximum weight is 2kg per package for standard airmail. Anything over 2kg would be shipped by Parcelforce Worldwide. Shipping costs would be advised when overall weight is known.</p>
+<p>As the costs can add a large chunk to your overall order value, especially on larger orders the table below should give you an idea what you can expect to pay for delivery of your order.</p>
+<p>Under normal circumstances, I ship through Royal Mail using standard Airmail. However, this is not a tracked system, and delivery can take between 10 and 14 working days to arrive.</p>
+<p>As an alternative, I use the Royal Mail 'Airsure' service. This is a tracked service and delivery is usually a little faster, though this service does cost extra. The chart below shows current Royal Mail shipping costs for standard Airmail and Airsure options.</p>
+<p>(Airsure will only be used at your request, so please let me know if you want to use Airsure when you place your order.)</p>
+<p>(Prices as at March 2014)</p>
+<h5>Standard Airmail</h5>
+<table class="table">
+<tbody><tr>
+<td>Weight not over...</td>
+<td>Europe</td>
+<td>World Zone 1</td>
+<td>World Zone 2</td>
+</tr>
+<tr>
+<td>100g</td>
+<td>£3.20</td>
+<td>£3.83</td>
+<td>£4.00</td>
+</tr>
+<tr>
+<td>250g</td>
+<td>£3.70</td>
+<td>£4.75</td>
+<td>£5.05</td>
+</tr>
+<tr>
+<td>500g    </td>
+<td>£5.15</td>
+<td>£7.45</td>
+<td>£7.90</td>
+</tr>
+<tr>
+<td>750g    </td>
+<td>£6.60</td>
+<td>£10.15</td>
+<td>£10.75</td>
+</tr>
+<tr>
+<td>1000g</td>
+<td>£8.05</td>
+<td>£12.85</td>
+<td>£13.60</td>
+</tr>
+<tr>
+<td>1250g</td>
+<td>£9.50</td>
+<td>£15.55</td>
+<td>£16.45</td>
+</tr>
+<tr>
+<td>1500g</td>
+<td>£10.95</td>
+<td>£18.25</td>
+<td>£19.30</td>
+</tr>
+<tr>
+<td>1750g</td>
+<td>£12.40</td>
+<td>£20.95</td>
+<td>£22.15</td>
+</tr>
+<tr>
+<td>2000g</td>
+<td>£13.85</td>
+<td>£23.65</td>
+<td>£25.00</td>
+</tr>
+<tr>
+ <td>Airsure: (add)</td>
+<td>£5.30 (plus VAT)</td>
+<td>£5.70</td>
+<td>£5.90</td>
+</tr>
+ </tbody></table>
+<p>I am happy to adjust your order to suit your requirements at any point up to shipping, so if you feel that you would rather do without a couple of items to reduce the overall weight and shipping costs, just let me know.</p>
+</div>
+    <ul class="sidebar col-sm-4">
+        <!-- ngRepeat: (key, value) in pages -->
+    </ul>
+</div>
+</div>
+</div>
+        <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
+        <script type="text/javascript" src="js/battlescene.js"></script>
+    
+
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i; } else { d.textContent=i; } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

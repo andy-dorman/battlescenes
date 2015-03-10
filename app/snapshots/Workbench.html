@@ -1,0 +1,89 @@
+http://battlescenedesigns.co.uk/#!/Workbench
+<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+        <title ng-bind-template="Battlescene Designs - " class="ng-binding">Battlescene Designs - </title>
+        <base href="/">
+        <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/battlescene.css" rel="stylesheet">
+        <!--[if lte IE 9]>
+        <script>
+        document.createElement('header');
+        document.createElement('nav');
+        document.createElement('section');
+        document.createElement('article');
+        document.createElement('aside');
+        document.createElement('footer');
+        document.createElement('hgroup');
+        </script>
+        <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
+        <![endif]-->
+    </head>
+    <body data-status="" class=" container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
+  <img src="/img/battlescene_logo.png" class="center-block img-responsive">
+</a>
+<nav class="navbar navbar-default ng-scope" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <form role="search" ui-keypress="{13:'doSearch($event)'}" class="ng-pristine ng-valid">
+        <div>
+          <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search">
+        </div>
+        <basket><div class="row basket-row">
+    <div class="col-sm-12">
+    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
+</div></basket>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </form>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- ngRepeat: section in sections -->
+        <!-- ngRepeat: page in pageLocs -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- uiView: content --><div ui-view="content" class="ng-scope"><category-filters class="ng-scope"><div class="row">
+    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
+        <section class="pull-left category-tabs tabs">
+            <ul class="nav nav-pills">
+                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
+                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+            </ul>
+        </section>
+        <section class="subcategory-tabs category-tabs tabs">
+            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
+                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
+            </ul>
+        </section>
+    </div>
+</div>
+</category-filters>
+<h1 view-title="" class="ng-binding ng-scope"></h1>
+<div class="row ng-scope">
+    <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"></div>
+    <ul class="sidebar col-sm-4">
+        <!-- ngRepeat: (key, value) in pages -->
+    </ul>
+</div>
+</div>
+</div>
+        <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
+        <script type="text/javascript" src="js/battlescene.js"></script>
+    
+
+
+</body></html>
