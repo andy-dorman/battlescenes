@@ -495,7 +495,7 @@
 
                 });
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -554,7 +554,7 @@
             $scope.doSearch = function() {
                 $state.go("shop.search",{ query: $scope.filters.searchTerm});
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -603,7 +603,7 @@
           $scope.resetForm = function(){
             $scope.newUser = { email: "", password: "" };
           };
-          $scope.status = "ready";
+          //$scope.status = "ready";
         }
     ]);
 
@@ -895,7 +895,7 @@
                 $scope.newImages = {};
                 $scope.saved = true;
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -1034,14 +1034,14 @@
             };
 
             $scope.selectedIndex = "";
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
     shop.controller("BasketController", [ "$scope", "BasketService",
         function($scope, BasketService) {
             $scope.basket = BasketService;
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -1140,7 +1140,7 @@
                 $scope.myModelObj = {};
                 $scope.images = {};
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -1277,7 +1277,7 @@
             $scope.images = {};
             //$scope.uploader.clearQueue();
         };
-        $scope.status = "ready";
+        //$scope.status = "ready";
     }
     ]);
 
@@ -1329,7 +1329,7 @@
                 });
                 return pages;
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 })();

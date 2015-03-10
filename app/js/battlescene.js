@@ -57999,7 +57999,7 @@ login state (instead of showing them a login form).
 
                 });
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -58058,7 +58058,7 @@ login state (instead of showing them a login form).
             $scope.doSearch = function() {
                 $state.go("shop.search",{ query: $scope.filters.searchTerm});
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -58107,7 +58107,7 @@ login state (instead of showing them a login form).
           $scope.resetForm = function(){
             $scope.newUser = { email: "", password: "" };
           };
-          $scope.status = "ready";
+          //$scope.status = "ready";
         }
     ]);
 
@@ -58399,7 +58399,7 @@ login state (instead of showing them a login form).
                 $scope.newImages = {};
                 $scope.saved = true;
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -58538,14 +58538,14 @@ login state (instead of showing them a login form).
             };
 
             $scope.selectedIndex = "";
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
     shop.controller("BasketController", [ "$scope", "BasketService",
         function($scope, BasketService) {
             $scope.basket = BasketService;
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -58644,7 +58644,7 @@ login state (instead of showing them a login form).
                 $scope.myModelObj = {};
                 $scope.images = {};
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 
@@ -58781,7 +58781,7 @@ login state (instead of showing them a login form).
             $scope.images = {};
             //$scope.uploader.clearQueue();
         };
-        $scope.status = "ready";
+        //$scope.status = "ready";
     }
     ]);
 
@@ -58833,7 +58833,7 @@ login state (instead of showing them a login form).
                 });
                 return pages;
             };
-            $scope.status = "ready";
+            //$scope.status = "ready";
         }
     ]);
 })();
