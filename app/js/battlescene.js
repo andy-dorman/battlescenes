@@ -58154,6 +58154,7 @@ login state (instead of showing them a login form).
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -58180,6 +58181,7 @@ login state (instead of showing them a login form).
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             }
@@ -58255,7 +58257,6 @@ login state (instead of showing them a login form).
                 $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
             }
             generatePageTitle();
-            $rootScope.status = "ready";
         }
     ]);
 

@@ -650,6 +650,7 @@
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -676,6 +677,7 @@
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
+                        $rootScope.status = "ready";
                     });
                 //}
             }
@@ -751,7 +753,6 @@
                 $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
             }
             generatePageTitle();
-            $rootScope.status = "ready";
         }
     ]);
 
