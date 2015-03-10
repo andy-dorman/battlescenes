@@ -58159,7 +58159,6 @@ login state (instead of showing them a login form).
                 } else {*/
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
-                        $rootScope.status = "ready";
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}
@@ -58186,7 +58185,6 @@ login state (instead of showing them a login form).
                 } else {*/
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
-                        $rootScope.status = "ready";
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}

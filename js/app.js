@@ -655,7 +655,6 @@
                 } else {*/
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
-                        $rootScope.status = "ready";
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}
@@ -682,7 +681,6 @@
                 } else {*/
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
-                        $rootScope.status = "ready";
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
                     });
                 //}
