@@ -9,11 +9,10 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
     <head>
         <title ng-bind-template="Battlescene Designs - {{viewTitle}}">Home - Battlescene Designs</title>
         <base href="/">
-        <meta name="fragment" content="!"/>
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4"/>
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="css/battlescene.css" rel="stylesheet"/>
+        <link href="css/battlescene.css" rel="stylesheet" type="text/css"/>
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
