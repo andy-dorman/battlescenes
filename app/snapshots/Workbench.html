@@ -1,10 +1,10 @@
-http://battlescenedesigns.co.uk/#!/Workbench
 <html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
-        <title ng-bind-template="Battlescene Designs - " class="ng-binding">Battlescene Designs - </title>
+        <title ng-bind-template="Battlescene Designs - Test with video" class="ng-binding">Battlescene Designs - Test with video</title>
         <base href="/">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
+        <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/battlescene.css" rel="stylesheet">
+        <link href="css/battlescene.css" rel="stylesheet" type="text/css">
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -18,7 +18,7 @@ http://battlescenedesigns.co.uk/#!/Workbench
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
     </head>
-    <body data-status="" class=" container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
 </a>
@@ -46,8 +46,24 @@ http://battlescenedesigns.co.uk/#!/Workbench
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <!-- ngRepeat: section in sections -->
-        <!-- ngRepeat: page in pageLocs -->
+        <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding">About</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding">Shipping</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding">Terms &amp; Conditions</a>
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope active">
+          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding">Workbench</a>
+        </li><!-- end ngRepeat: section in sections -->
+        <!-- ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.contact" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding">Contact</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addProduct" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/products" class="ng-binding ng-hide">Products</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addCategory" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/categories" class="ng-binding ng-hide">Categories</a>
+        </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
+        <a ui-sref="shop.addPage" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/pages" class="ng-binding ng-hide">Pages</a>
+        </li><!-- end ngRepeat: page in pageLocs -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
@@ -59,7 +75,9 @@ http://battlescenedesigns.co.uk/#!/Workbench
     <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
         <section class="pull-left category-tabs tabs">
             <ul class="nav nav-pills">
-                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
+                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
+                <a category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">6mm Sci Fi</a>
+                </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
                 <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
             </ul>
         </section>
@@ -71,9 +89,15 @@ http://battlescenedesigns.co.uk/#!/Workbench
     </div>
 </div>
 </category-filters>
-<h1 view-title="" class="ng-binding ng-scope"></h1>
+<h1 view-title="" class="ng-binding ng-scope">Test with video</h1>
 <div class="row ng-scope">
-    <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"></div>
+    <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"><p>So.. if this works, you should be able to include videos on the site if you really wanted to...</p>
+<video width="100%" height="240" controls="">
+  <source src="uploads/big_buck_bunny.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<p>Now that's pretty cool, even I do say so myself!!</p>
+</div>
     <ul class="sidebar col-sm-4">
         <!-- ngRepeat: (key, value) in pages -->
     </ul>

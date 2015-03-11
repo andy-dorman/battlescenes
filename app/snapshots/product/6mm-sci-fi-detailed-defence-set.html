@@ -1,5 +1,5 @@
 <html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
-        <title ng-bind-template="Battlescene Designs - About Battlescene Designs" class="ng-binding">Battlescene Designs - About Battlescene Designs</title>
+        <title ng-bind-template="Battlescene Designs - Detailed Defence Set" class="ng-binding">Battlescene Designs - Detailed Defence Set</title>
         <base href="/">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
@@ -17,7 +17,13 @@
         </script>
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
-    </head>
+    <meta view-head="" property="og:description" content="Detailed Defence Set - Each Set includes:
+
+1x Damaged Straight section    (approx.80mm)  \
+1x Damaged Gun position        (approx. 80mm)  \
+1x Damaged Inside corner        (approx. 60mm)  \
+1x Damaged Outside corner     (approx. 60mm)  \
+1x Damaged 45 Angle               (approx. 20mm), £6.00" class="ng-scope"></head>
     <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
@@ -46,7 +52,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope active">
+        <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
           <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding">About</a>
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
           <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding">Shipping</a>
@@ -71,38 +77,52 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<!-- uiView: content --><div ui-view="content" class="ng-scope"><category-filters class="ng-scope"><div class="row">
-    <div id="categoryFilters" ng-controller="CategoryController as categoryCtrl" class="ng-scope">
-        <section class="pull-left category-tabs tabs">
-            <ul class="nav nav-pills">
-                <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
-                <a category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">6mm Sci Fi</a>
-                </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
-                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
-            </ul>
-        </section>
-        <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
-                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
-            </ul>
-        </section>
-    </div>
+<!-- uiView: content --><div ui-view="content" class="ng-scope"><product-breadcrumbs class="ng-scope"><ul class="breadcrumbs" ng-show="product">
+    <li><a ui-sref="shop.products" href="#!/">View all</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+    <!-- ngIf: product.category --><li ng-if="product.category" class="ng-scope"><a ui-sref="shop.category({categoryId: saferize(product.category)})" class="ng-binding" href="#!/category/6mm-sci-fi">6mm-sci-fi</a><span class="glyphicon glyphicon-chevron-right"></span></li><!-- end ngIf: product.category -->
+    <!-- ngIf: product.subcategory --><li ng-if="product.subcategory" class="ng-scope"><a ui-sref="shop.subcategory({categoryId: saferize(product.category), subcategoryId: saferize(product.subcategory)})" class="ng-binding" href="#!/category/6mm-sci-fi/defences">Defences</a><span class="glyphicon glyphicon-chevron-right"></span></li><!-- end ngIf: product.subcategory -->
+    <li class="ng-binding">Detailed Defence Set</li>
+</ul></product-breadcrumbs>
+
+<h1 view-title="" class="ng-binding ng-scope">Detailed Defence Set</h1>
+<div class="row ng-scope" ng-show="product.name">
+    <section class="row bottom-buffer col-sm-12" id="product-view">
+        <div class="col-xs-12 col-md-4 gallery">
+            <div class="product-image-container">
+                <!--ng-click="openLightboxModal($index)"-->
+                <!-- ngRepeat: image in images --><a ng-repeat="image in images" class="gallery-thumbnail ng-scope" href="/uploads/detailed-defence-set_1.jpg" ng-click="removeImage($event, image)">
+                    <img ng-src="/uploads/detailed-defence-set_1.jpg" title="Detailed Defence Set 1" bn-load="imageLoaded( image )" class="pull-left" src="/uploads/detailed-defence-set_1.jpg">
+                </a><!-- end ngRepeat: image in images -->
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a>
+            <div class="description">
+            <div common-mark="product.description" class="ng-isolate-scope"><p>Each Set includes:</p>
+<p>1x Damaged Straight section    (approx.80mm)  <br>
+1x Damaged Gun position        (approx. 80mm)  <br>
+1x Damaged Inside corner        (approx. 60mm)  <br>
+1x Damaged Outside corner     (approx. 60mm)  <br>
+1x Damaged 45 Angle               (approx. 20mm)</p>
 </div>
-</category-filters>
-<h1 view-title="" class="ng-binding ng-scope">About Battlescene Designs</h1>
-<div class="row ng-scope">
-    <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"><p>Welcome to Battlescene Designs.</p>
-<p>We are a sole trader company set up after many years of making our own model scenery for various wargame systems.</p>
-<p>Originally, I only intended to make 'one off' individual pieces of scenery for sale, but decided to go down the line of sculpting, moulding and casting each piece for sale instead.</p>
-<p>As gamers ourselves, we also believe that wargaming should be as affordable as possible.  We design all of our models so as to enable our margin to be as low as possible, hence allowing us to sell our models at as low a price as possible.</p>
-<p>Here you will find the start of the Battlescene Designs range which I'm sure will grow quite rapidly, so please keep watching for new products appearing on this site.</p>
-<p>I hope you enjoy!</p>
-<p>Paul</p>
-<p><em>PS. All of our products (unless stated otherwise) come unpainted and un-assembled.  Due to the nature of the resin hand-casting process we use and the intricate detail on our items, there is a possibility that a few small defects may be apparent in the final casts.  The nature of these will be in the form of tiny air bubbles or mould lines/flashing.  Unfortunately this cannot be helped but if any significant bubbling occurs, it will be repaired before being dispatched.  These repairs will be in the form of Green Stuff or Miliput.</em></p>
-</div>
-    <ul class="sidebar col-sm-4">
-        <!-- ngRepeat: (key, value) in pages -->
-    </ul>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div>
+            <div class="price-qty ng-binding">4 pieces per pack <em ng-show="product.dimensions" class="ng-binding">(approx 300mm long)</em><em class="ng-binding">&nbsp;- £6.00</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a></div>
+        </div>
+    </section>
+    <section class="row col-sm-12 ng-hide" ng-show="userService.currentUser">
+        <form class="col-sm-7 ng-pristine ng-valid">
+            <div class="form-group">
+                <button class="btn btn-default ng-pristine ng-untouched ng-valid" ng-file-select="" ng-model="newImages" ng-file-change="upload(newImages)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0" accept="image/*,application/pdf" style="overflow-x: hidden; overflow-y: hidden; ">Attach an Image<input type="file" accept="image/*,application/pdf" style="width: 1px; height: 1px; opacity: 0; position: absolute; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; overflow-x: hidden; overflow-y: hidden; " tabindex="-1" ng-file-generated-elem="true"></button>
+                <ul ng-show="newImages.length &gt; 0" class="response ng-hide">
+                    <!-- ngRepeat: f in newImages -->
+                </ul>
+            </div>
+        </form>
+        <button ng-click="saveProduct(product)" class="btn btn-success col-sm-2">Save<span ng-show="saved" class="ng-hide">d...</span></button>
+    </section>
 </div>
 </div>
 </div>
@@ -112,4 +132,4 @@
     
 
 
-</body></html>
+<div id="baguetteBox-overlay"><div id="baguetteBox-slider"></div><button id="previous-button" class="baguetteBox-button"><svg width="44" height="60"><polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button><button id="next-button" class="baguetteBox-button"><svg width="44" height="60"><polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button><button id="close-button" class="baguetteBox-button"><svg width="30" height="30"><g stroke="rgb(160, 160, 160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg></button></div></body></html>

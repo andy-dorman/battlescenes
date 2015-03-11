@@ -1,6 +1,8 @@
 <html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
         <title ng-bind-template="Battlescene Designs - Home" class="ng-binding">Battlescene Designs - Home</title>
         <base href="/">
+        <meta name="fragment" content="!">
+        <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/battlescene.css" rel="stylesheet">
@@ -17,7 +19,7 @@
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
     <meta view-head="" property="og:description" content="Battlescene Designs create practical and affordable wargaming scenery." class="ng-scope"></head>
-    <body data-status="ready" class="container-fluid jumbotron ready" ng-class="{admin : userService.currentUser}">
+    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
 </a>
@@ -77,14 +79,14 @@
                 <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope active"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
                 <a category-link="" class="ng-binding" href="/">6mm Sci Fi</a>
                 </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
-                <li ng-show="filteredProducts.length > 0 &amp;&amp; filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
             </ul>
         </section>
         <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 &amp;&amp; filters.category">
+            <ul class="nav nav-pills" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
                 <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope active">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
-                <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">Buildings</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
+                <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi/Buildings">Buildings</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
                 <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi/Defences">Defences</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
@@ -98,7 +100,7 @@
 </category-filters>
 <h1 class="hidden ng-binding ng-scope" view-title="">Home</h1>
 
-<h2 ng-show="products.length > 0 &amp;&amp; filteredProducts.length == 0 &amp;&amp; filters.searchTerm != ''" class="ng-binding ng-scope ng-hide">Sorry, we have no products that match ""<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
+<h2 ng-show="products.length &gt; 0 &amp;&amp; filteredProducts.length == 0 &amp;&amp; filters.searchTerm != ''" class="ng-binding ng-scope ng-hide">Sorry, we have no products that match ""<span ng-show="filters.category"> in the category you have currently selected</span>.</h2>
 <div class="row ng-scope" id="products">
     <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
     <!-- ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
@@ -492,4 +494,4 @@
     
 
 
-<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i; } else { d.textContent=i; } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
+</body></html>

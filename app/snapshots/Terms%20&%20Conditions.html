@@ -2,8 +2,9 @@
         <title ng-bind-template="Battlescene Designs - General" class="ng-binding">Battlescene Designs - General</title>
         <base href="/">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
+        <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/battlescene.css" rel="stylesheet">
+        <link href="css/battlescene.css" rel="stylesheet" type="text/css">
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -17,7 +18,7 @@
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
     </head>
-    <body data-status="ready" class="container-fluid jumbotron ready" ng-class="{admin : userService.currentUser}">
+    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
 </a>
@@ -77,11 +78,11 @@
                 <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
                 <a category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">6mm Sci Fi</a>
                 </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
-                <li ng-show="filteredProducts.length > 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
             </ul>
         </section>
         <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length > 0 &amp;&amp; filters.category">
+            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
                 <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
             </ul>
         </section>
@@ -134,4 +135,4 @@ February 2015</p>
     
 
 
-<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i; } else { d.textContent=i; } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
+</body></html>
