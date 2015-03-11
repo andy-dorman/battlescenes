@@ -806,6 +806,7 @@
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
+                $rootScope.status = "ready";
             };
 
             $scope.$watch("newImages", function() {
@@ -1313,6 +1314,7 @@
                         $scope.pages = sortPages(data);
                     }
                 }
+                $rootScope.status = "ready";
             });
 
             var sortPages = function(data) {
