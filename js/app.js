@@ -757,8 +757,8 @@
         }
     ]);
 
-    shop.controller("ItemController", ["$scope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "$upload",
-        function($scope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, $upload) {
+    shop.controller("ItemController", ["$scope", "$rootScope", "$http", "$state", "$stateParams", "ProductService", "CategoryService", "UserService", "Filters", "BasketService", "$upload",
+        function($scope, $rootScope, $http, $state, $stateParams, ProductService, CategoryService, UserService, Filters, BasketService, $upload) {
             $scope.userService = UserService;
             $scope.productId = $stateParams.productId;
             $scope.productService = ProductService;
@@ -1282,8 +1282,8 @@
     }
     ]);
 
-    shop.controller("PageController", [ "$scope", "$stateParams", "commonMark", "PageService",
-        function($scope, $stateParams, commonMark, PageService) {
+    shop.controller("PageController", [ "$scope", "$rootScope", "$stateParams", "commonMark", "PageService",
+        function($scope, $rootScope, $stateParams, commonMark, PageService) {
             var section = $stateParams.section,
                 page = $stateParams.page ?
                 PageService.getLivePageBySection(section, $stateParams.page).$asObject() :
