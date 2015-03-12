@@ -58840,6 +58840,7 @@ login state (instead of showing them a login form).
                         $scope.pages = sortPages(data);
                     }
                 }
+                $scope.title = $scope.page.title !== $scope.page.section ? $scope.page.section + "-" + $scope.page.title : $scope.page.title;
                 //$rootScope.status = "ready";
             });
 
@@ -61784,7 +61785,7 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
 angular.module("../app/views/shop.page.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/views/shop.page.html",
     "<category-filters></category-filters>\n" +
-    "<h1 view-title>{{page.title}}</h1>\n" +
+    "<h1 view-title>{{title}}</h1>\n" +
     "<div class=\"row\">\n" +
     "    <div common-mark=\"page.content\" id=\"page-content\" class=\"col-sm-8\"></div>\n" +
     "    <ul ng-cloak=\"pages && pages.length > 1\" class=\"sidebar col-sm-4\">\n" +

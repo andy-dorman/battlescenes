@@ -1314,6 +1314,7 @@
                         $scope.pages = sortPages(data);
                     }
                 }
+                $scope.title = $scope.page.title !== $scope.page.section ? $scope.page.section + "-" + $scope.page.title : $scope.page.title;
                 //$rootScope.status = "ready";
             });
 
