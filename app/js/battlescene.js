@@ -59097,7 +59097,7 @@ login state (instead of showing them a login form).
 	)
 	.directive(
 		'viewHead',
-		function () {
+		['$rootScope', function ($rootScope) {
 			var head = angular.element(document.head);
 			return {
 				restrict: 'A',
@@ -59106,6 +59106,7 @@ login state (instead of showing them a login form).
 					// Although the physical location of the document changes, the element remains
 					// bound to the scope in which it was declared, so it can refer to variables from
 					// the view scope if necessary.
+					head.find('meta[property='+iElement.attr('property')+']').remove();
 					head.append(iElement);
 					$rootScope.status = "ready";
 
@@ -59121,7 +59122,7 @@ login state (instead of showing them a login form).
 					);
 				}
 			};
-		}
+		}]
 	);
 })();
 ;;(function() {

@@ -200,7 +200,7 @@
 	)
 	.directive(
 		'viewHead',
-		function () {
+		['$rootScope', function ($rootScope) {
 			var head = angular.element(document.head);
 			return {
 				restrict: 'A',
@@ -225,6 +225,6 @@
 					);
 				}
 			};
-		}
+		}]
 	);
 })();
