@@ -9450,7 +9450,7 @@ R.prototype.de=function(a,b){F("Firebase.changeEmail",2,2,arguments.length);J("F
 R.prototype.Me=function(a,b){F("Firebase.resetPassword",2,2,arguments.length);J("Firebase.resetPassword",1,a,!1);K("Firebase.resetPassword",a,"email");H("Firebase.resetPassword",2,b,!1);this.k.Q.Me(a,b)};R.prototype.resetPassword=R.prototype.Me;R.goOffline=function(){F("Firebase.goOffline",0,0,arguments.length);Th.Nb().pb()};R.goOnline=function(){F("Firebase.goOnline",0,0,arguments.length);Th.Nb().hc()};
 function nb(a,b){y(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?lb=q(console.log,console):"object"===typeof console.log&&(lb=function(a){console.log(a)})),b&&v.set("logging_enabled",!0)):a?lb=a:(lb=null,v.remove("logging_enabled"))}R.enableLogging=nb;R.ServerValue={TIMESTAMP:{".sv":"timestamp"}};R.SDK_VERSION="2.1.2";R.INTERNAL=Y;R.Context=Th;R.TEST_ACCESS=$;})();
 ;/**
- * @license AngularJS v1.3.15-build.77+sha.528cf09
+ * @license AngularJS v1.3.15-build.79+sha.36eacb1
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -9505,7 +9505,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.15-build.77+sha.528cf09/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.15-build.79+sha.36eacb1/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -11579,7 +11579,7 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.15-build.77+sha.528cf09',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.15-build.79+sha.36eacb1',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 15,
@@ -19947,7 +19947,15 @@ function $LocaleProvider() {
         mediumDate: 'MMM d, y',
         shortDate: 'M/d/yy',
         mediumTime: 'h:mm:ss a',
-        shortTime: 'h:mm a'
+        shortTime: 'h:mm a',
+        ERANAMES: [
+          "Before Christ",
+          "Anno Domini"
+        ],
+        ERAS: [
+          "BC",
+          "AD"
+        ]
       },
 
       pluralCat: function(num) {
@@ -26555,6 +26563,14 @@ function ampmGetter(date, formats) {
   return date.getHours() < 12 ? formats.AMPMS[0] : formats.AMPMS[1];
 }
 
+function eraGetter(date, formats) {
+  return date.getFullYear() <= 0 ? formats.ERAS[0] : formats.ERAS[1];
+}
+
+function longEraGetter(date, formats) {
+  return date.getFullYear() <= 0 ? formats.ERANAMES[0] : formats.ERANAMES[1];
+}
+
 var DATE_FORMATS = {
   yyyy: dateGetter('FullYear', 4),
     yy: dateGetter('FullYear', 2, 0, true),
@@ -26581,10 +26597,14 @@ var DATE_FORMATS = {
      a: ampmGetter,
      Z: timeZoneGetter,
     ww: weekGetter(2),
-     w: weekGetter(1)
+     w: weekGetter(1),
+     G: eraGetter,
+     GG: eraGetter,
+     GGG: eraGetter,
+     GGGG: longEraGetter
 };
 
-var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEw']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+|H+|h+|m+|s+|a|Z|w+))(.*)/,
+var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+|H+|h+|m+|s+|a|Z|G+|w+))(.*)/,
     NUMBER_STRING = /^\-?\d+$/;
 
 /**
@@ -26621,6 +26641,8 @@ var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEw']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d
  *   * `'Z'`: 4 digit (+sign) representation of the timezone offset (-1200-+1200)
  *   * `'ww'`: Week of year, padded (00-53). Week 01 is the week with the first Thursday of the year
  *   * `'w'`: Week of year (0-53). Week 1 is the week with the first Thursday of the year
+ *   * `'G'`, `'GG'`, `'GGG'`: The abbreviated form of the era string (e.g. 'AD')
+ *   * `'GGGG'`: The long form of the era string (e.g. 'Anno Domini')
  *
  *   `format` string can also be one of the following predefined
  *   {@link guide/i18n localizable formats}:
@@ -46533,7 +46555,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         };
     });
 })();;/**
- * @license AngularJS v1.3.15-build.77+sha.528cf09
+ * @license AngularJS v1.3.15-build.79+sha.36eacb1
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -58155,7 +58177,7 @@ login state (instead of showing them a login form).
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
-                        $rootScope.status = "ready";
+                        //$rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -58182,7 +58204,7 @@ login state (instead of showing them a login form).
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
-                        $rootScope.status = "ready";
+                        //$rootScope.status = "ready";
                     });
                 //}
             }
@@ -58310,7 +58332,7 @@ login state (instead of showing them a login form).
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
-                $rootScope.status = "ready";
+                //$rootScope.status = "ready";
             };
 
             $scope.$watch("newImages", function() {
@@ -58818,7 +58840,7 @@ login state (instead of showing them a login form).
                         $scope.pages = sortPages(data);
                     }
                 }
-                $rootScope.status = "ready";
+                //$rootScope.status = "ready";
             });
 
             var sortPages = function(data) {
@@ -59084,6 +59106,7 @@ login state (instead of showing them a login form).
 					// bound to the scope in which it was declared, so it can refer to variables from
 					// the view scope if necessary.
 					head.append(iElement);
+					$rootScope.status = "ready";
 
 					// When the scope is destroyed, remove the element.
 					// This is on the assumption that we're being used in some sort of view scope.
