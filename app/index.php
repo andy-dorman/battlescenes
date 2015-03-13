@@ -13,6 +13,7 @@ setcookie('XSRF-TOKEN', $_SESSION['XSRF-TOKEN']);
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="css/battlescene.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" type="image/png" href="http://battlescenedesigns.co.uk/img/favicon.png">
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
