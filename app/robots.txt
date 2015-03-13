@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /?_escaped_fragment_=/admin
+Disallow: /?_escaped_fragment_=/admin/categories
+Disallow: /?_escaped_fragment_=/admin/products
 Disallow: /#!/admin
 Disallow: /#!/admin/categories
 Disallow: /#!/admin/products
