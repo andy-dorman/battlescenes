@@ -210,7 +210,6 @@
 					// bound to the scope in which it was declared, so it can refer to variables from
 					// the view scope if necessary.
 					head.append(iElement);
-					$rootScope.status = "ready";
 
 					// When the scope is destroyed, remove the element.
 					// This is on the assumption that we're being used in some sort of view scope.

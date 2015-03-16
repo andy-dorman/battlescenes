@@ -626,6 +626,7 @@
             $scope.filters.subcategory = $stateParams.subcategoryId || "";
 
             $scope.products = [];
+            $scope.pageTitle = "";
 
             var queryRef;
 
@@ -651,7 +652,7 @@
                     products = ProductService.all.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
-                        //$rootScope.status = "ready";
+                        $rootScope.status = "ready";
                     });
                 //}
             } else {
@@ -678,7 +679,7 @@
                     products = ProductService.live.$asArray();
                     products.$loaded().then(function() {
                         $scope.products = products.sort(function(a, b) { return b.createdAt - a.createdAt; } );
-                        //$rootScope.status = "ready";
+                        $rootScope.status = "ready";
                     });
                 //}
             }
@@ -806,7 +807,7 @@
                     imageObj.caption = $scope.product.name + " " + parseInt($scope.images.length + 1, 0);
                     $scope.images.push(imageObj);
                 }
-                //$rootScope.status = "ready";
+                $rootScope.status = "ready";
             };
 
             $scope.$watch("newImages", function() {
@@ -1315,7 +1316,7 @@
                     }
                 }
                 $scope.title = $scope.page.title !== $scope.page.section ? $scope.page.section + "-" + $scope.page.title : $scope.page.title;
-                //$rootScope.status = "ready";
+                $rootScope.status = "ready";
             });
 
             var sortPages = function(data) {
