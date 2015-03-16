@@ -2,7 +2,7 @@
 <meta view-head property="og:keywords" content="Battlescene,Designs,Battle,Scene,wargaming,wargames,terrain,scenery,6mm,sci-fi,sci,fi,buildings,roads,ruins" />
 <meta view-head property="og:description" content="{{product.name + ' - ' + product.description + ', £' + product.price}}" />
 <h1 view-title>{{product.name}}</h1>
-<div class="row" ng-show="product.name">
+<div class="row" ng-if="product.name">
     <section class="row bottom-buffer col-sm-12" id="product-view">
         <div class="col-xs-12 col-md-4 gallery">
             <div class="product-image-container">
@@ -13,24 +13,24 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-5">
-            <a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)">{{basket.itemCount(product)}}</span></span></a>
+            <a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-if="basket.contains(product)">{{basket.itemCount(product)}}</span></span></a>
             <div class="description">
             <div common-mark="product.description"></div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
             </div>
-            <div class="price-qty">{{product.qty}} per pack <em ng-show="product.dimensions">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : "&pound;" }}</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link"><span class="glyphicon glyphicon-envelope"></span></a></div>
+            <div class="price-qty">{{product.qty}} per pack <em ng-if="product.dimensions">(approx {{product.dimensions}})</em><em>&nbsp;- {{ product.price | currency : "&pound;" }}</em><a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link"><span class="glyphicon glyphicon-envelope"></span></a></div>
         </div>
     </section>
-    <section class="row col-sm-12" ng-show="userService.currentUser">
+    <section class="row col-sm-12" ng-if="userService.currentUser">
         <form class="col-sm-7">
             <div class="form-group">
                 <button class="btn btn-default" ng-file-select="" ng-model="newImages" class="upload-button" ng-file-change="upload(newImages)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>
-                <ul ng-show="newImages.length > 0" class="response">
+                <ul ng-if="newImages.length > 0" class="response">
                     <li class="sel-file" ng-repeat="f in newImages">
                         <div ng-thumb="{ file: f, width: 100 }"></div>
-                        <div id="image-queue" ng-show="f.progress > 0">
+                        <div id="image-queue" ng-if="f.progress > 0">
                             <div>
                                 <div class="progress" style="">
                                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
@@ -38,28 +38,28 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-default" ng-click="f.upload.abort();f.upload.aborted=true" ng-show="f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted">Abort</button>
+                        <button class="btn btn-default" ng-click="f.upload.abort();f.upload.aborted=true" ng-if="f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted">Abort</button>
                         <div class="image-details">
                             {{f.name}}
                         </div>
-                        <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail" class="">details</a>
-                        <div ng-show="f.showDetail">
+                        <a ng-if="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail" class="">details</a>
+                        <div ng-if="f.showDetail">
                             <br>
-                            <div data-ng-show="f.result.result == null" class="ng-binding"></div>
+                            <div data-ng-if="f.result.result == null" class="ng-binding"></div>
                             <ul>
                                 <li ng-repeat="item in f.result.result" class="ng-scope">
-                                    <div data-ng-show="item.name" class="ng-binding">{{item.name}}</div>
-                                    <div data-ng-show="item.fieldName" class="ng-binding">{{item.fieldName}}</div>
-                                    <div data-ng-show="item.size" class="ng-binding">size on the server: {{item.size}}</div>
-                                    <div data-ng-show="item.value" class="ng-binding ng-hide">value: {{item.value}}</div>
+                                    <div data-ng-if="item.name" class="ng-binding">{{item.name}}</div>
+                                    <div data-ng-if="item.fieldName" class="ng-binding">{{item.fieldName}}</div>
+                                    <div data-ng-if="item.size" class="ng-binding">size on the server: {{item.size}}</div>
+                                    <div data-ng-if="item.value" class="ng-binding ng-hide">value: {{item.value}}</div>
                                 </li><!-- end ngRepeat: item in f.result.result -->
                             </ul>
-                            <div data-ng-show="f.result.requestHeaders" class="reqh ng-binding">request headers: {{f.result.requestHeders}}</div>
+                            <div data-ng-if="f.result.requestHeaders" class="reqh ng-binding">request headers: {{f.result.requestHeders}}</div>
                         </div>
                     </li>
                 </ul>
             </div>
         </form>
-        <button ng-click="saveProduct(product)" class="btn btn-success col-sm-2">Save<span ng-show="saved">d...</span></button>
+        <button ng-click="saveProduct(product)" class="btn btn-success col-sm-2">Save<span ng-if="saved">d...</span></button>
     </section>
 </div>

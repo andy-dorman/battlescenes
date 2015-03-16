@@ -1,5 +1,5 @@
 <div class="row basket-row">
     <div class="col-sm-12">
-    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()">{{ basket.count()}}</span></span>
-    <a ui-sref="shop.basket" class="basket-contents" ng-if="basket.count()"><span class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()">{{ basket.count()}}</span></span></a><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
+    <span ng-if="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-if="basket.count()">{{ basket.count()}}</span></span>
+    <a ui-sref="shop.basket" class="basket-contents" ng-if="basket.count()"><span class="glyphicon glyphicon-shopping-cart"><span ng-if="basket.count()">{{ basket.count()}}</span></span></a><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
 </div>

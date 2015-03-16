@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-8 table-responsive">
-		<table class="table" ng-show="basket.count()">
+		<table class="table" ng-if="basket.count()">
 			<thead>
 				<tr>
 					<td></td>
@@ -25,7 +25,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<a id="clear-basket" ng-click="basket.empty()" class="btn btn-default" ng-show="basket.count()">Empty basket</a>
+		<a id="clear-basket" ng-click="basket.empty()" class="btn btn-default" ng-if="basket.count()">Empty basket</a>
 	</div>
 </div>
-<h4 ng-show="!basket.count()">You have no items in your basket.</h4>
+<h4 ng-if="!basket.count()">You have no items in your basket.</h4>

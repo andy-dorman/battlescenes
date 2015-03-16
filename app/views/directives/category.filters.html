@@ -5,11 +5,11 @@
                 <li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
                 <a category-link>{{getCategoryName(category)}}</a>
                 </li>
-                <li ng-show="filteredProducts.length > 0 && filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+                <li ng-if="filteredProducts.length > 0 && filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
             </ul>
         </section>
-        <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills" ng-show="filteredProducts.length > 0 && filters.category">
+        <section ng-if="filteredProducts.length > 0 && filters.category" class="subcategory-tabs category-tabs tabs">
+            <ul class="nav nav-pills">
                 <li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
                 <a sub-category-link>{{subcategory}}</a></li>
