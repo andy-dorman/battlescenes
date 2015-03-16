@@ -1,12 +1,12 @@
-<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
-        <title ng-bind-template="Battlescene Designs - Home" class="ng-binding">Battlescene Designs - Home</title>
-        <base href="/">
-        <meta name="fragment" content="!">
+
+<!DOCTYPE html>
+<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><base href="http://battlescenedesigns.co.uk/"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+        <title ng-bind-template="Battlescene Designs - 6mm-sci-fi - Buildings" class="ng-binding">Battlescene Designs - 6mm-sci-fi - Buildings</title>
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/battlescene.css" rel="stylesheet">
-        <link rel="canonical" href="http://battlescenedesigns.co.uk/#!/category/6mm-sci-fi/Buildings" />
+        <link href="css/battlescene.css" rel="stylesheet" type="text/css">
+        <link rel="icon" type="image/png" href="http://battlescenedesigns.co.uk/img/favicon.png">
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -19,8 +19,8 @@
         </script>
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
-    <meta view-head="" property="og:description" content="Battlescene Designs create practical and affordable wargaming scenery." class="ng-scope"></head>
-    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+    <meta view-head="" property="og:keywords" content="Battlescene,Designs,Battle,Scene,wargaming,wargames,terrain,scenery,6mm,sci-fi,sci,fi,buildings,roads,ruins" class="ng-scope"><meta view-head="" property="og:description" content="Battlescene Designs create practical and affordable wargaming scenery." class="ng-scope"></head>
+    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}" style="">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
 </a>
@@ -34,41 +34,36 @@
         </div>
         <basket><div class="row basket-row">
     <div class="col-sm-12">
-    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: !basket.count() --><span ng-if="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart ng-scope"><!-- ngIf: basket.count() --></span><!-- end ngIf: !basket.count() -->
     <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
-</div></basket>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+</div>
+</basket>
       </form>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding">About</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding ng-scope">About</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding">Shipping</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding ng-scope">Shipping</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding">Terms &amp; Conditions</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding ng-scope">Terms &amp; Conditions</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding">Workbench</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding ng-scope">Workbench</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections -->
         <!-- ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.contact" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding">Contact</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin --><a ui-sref="shop.contact" ng-if="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding ng-scope">Contact</a><!-- end ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addProduct" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/products" class="ng-binding ng-hide">Products</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addCategory" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/categories" class="ng-binding ng-hide">Categories</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addPage" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/pages" class="ng-binding ng-hide">Pages</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+        <!-- ngIf: userService.currentUser -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -80,14 +75,14 @@
                 <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope active"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
                 <a category-link="" class="ng-binding" href="/">6mm Sci Fi</a>
                 </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
-                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+                <!-- ngIf: filteredProducts.length > 0 && filters.category --><li ng-if="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-scope"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li><!-- end ngIf: filteredProducts.length > 0 && filters.category -->
             </ul>
         </section>
-        <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
+        <!-- ngIf: filteredProducts.length > 0 && filters.category --><section ng-if="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcategory-tabs category-tabs tabs ng-scope">
+            <ul class="nav nav-pills">
                 <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope active">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
-                <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi/Buildings">Buildings</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
+                <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">Buildings</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
                 <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi/Defences">Defences</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) --><li ng-class="{ active : saferize(subcategory) == saferize(filters.subcategory)}" ng-repeat="(subcategory, count) in getSubCategoriesFromProducts(products, filters.category)" class="ng-scope">
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
@@ -95,391 +90,212 @@
                 <!--<a ng-click="setsubcategory(subcategory, $index)" href>{{subcategory}}</a>-->
                 <a sub-category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi/Ruins">Ruins</a></li><!-- end ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
             </ul>
-        </section>
+        </section><!-- end ngIf: filteredProducts.length > 0 && filters.category -->
     </div>
 </div>
 </category-filters>
-<h1 class="hidden ng-binding ng-scope" view-title="">Home</h1>
+<h1 class="hidden ng-binding ng-scope" view-title="">6mm-sci-fi - Buildings</h1>
+<!-- ngIf: products.length > 0 && filteredProducts.length == 0 && filters.searchTerm != '' -->
 <div class="row ng-scope" id="products">
     <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
     <!-- ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-gothic-guild-hall" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="gothic-guild-hall_1.jpg" class="img-responsive" src="/uploads/gothic-guild-hall_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-gothic-guild-hall" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Gothic Guild Hall</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-gothic-guild-hall" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Gothic Guild Hall</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding ng-hide">(approx )</em><em class="ng-binding">&nbsp;- £18.50</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £18.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-gothic-cathedral" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="gothic-cathedral_1.jpg" class="img-responsive" src="/uploads/gothic-cathedral_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-gothic-cathedral" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Gothic Cathedral</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-gothic-cathedral" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Gothic Cathedral</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 110mm (h) x 200mm (w) x 215mm (l))</em><em class="ng-binding">&nbsp;- £25.00</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 200mm (w) x 215mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £25.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-precinct-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="precint-1.jpg" class="img-responsive" src="/uploads/precint-1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-precinct-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Precinct Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-precinct-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Precinct Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 110mm (h) x 90mm (w) x 90mm (l))</em><em class="ng-binding">&nbsp;- £10.00</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 90mm (w) x 90mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £10.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="large-t_1.jpg" class="img-responsive" src="/uploads/large-t_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-large-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'T' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'T' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 110mm (h) x 100mm (w) x 150mm (l))</em><em class="ng-binding">&nbsp;- £7.50</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 100mm (w) x 150mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £7.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="large-x_gothic_1.jpg" class="img-responsive" src="/uploads/large-x_gothic_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-large-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'X' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'X' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut  MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 110mm (h) x 160mm (w) x 160mm (l))</em><em class="ng-binding">&nbsp;- £8.50</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 160mm (w) x 160mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £8.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut  MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="large-gothic-admin_1.jpg" class="img-responsive" src="/uploads/large-gothic-admin_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-large-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 110mm (h) x 50mm (w) x 90mm (l))</em><em class="ng-binding">&nbsp;- £5.00</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 50mm (w) x 90mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £5.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="small-gothic-admin_1.jpg" class="img-responsive" src="/uploads/small-gothic-admin_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-small-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut  MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 70mm (h) x 50mm (w) x 90mm (l))</em><em class="ng-binding">&nbsp;- £4.50</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 90mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut  MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="large-gothic-tower_1.jpg" class="img-responsive" src="/uploads/large-gothic-tower_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-large-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><em class="ng-binding">&nbsp;- £4.00</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <div class="row ng-hide" ng-show="userService.currentUser">
-            <a ng-click="toggleEdit(product.$id)" class="pull-right edit"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="save(product)" class="pull-right save ng-hide"></a>
-            <a ng-show="canEdit(product.$id)" ng-click="delete(product)" class="delete pull-right ng-hide"><span class="glyphicon glyphicon-trash"></span></a>
-        </div>
+        <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
                 <img bscenes-src="small-gothic-tower_1.jpg" class="img-responsive" src="/uploads/small-gothic-tower_1.jpg">
             </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
         </div>
         <div class="col-sm-8">
-            <div class="form-group ng-hide" ng-show="canEdit(product.$id)">
-                    <select ng-model="product.category" class="ng-pristine ng-untouched ng-valid">
-                        <!-- ngRepeat: category in categories --><option ng-repeat="category in categories" value="6mm-sci-fi" ng-selected="category.name == product.category" class="ng-binding ng-scope">6mm Sci Fi</option><!-- end ngRepeat: category in categories -->
-                    </select>
-                    <select ng-model="product.subcategory" class="ng-pristine ng-untouched ng-valid">
-                    <option value=""> -- Select a subcategory -- </option>
-                    <!-- ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Buildings" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope" selected="selected">Buildings</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Defences" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Defences</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Roads" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Roads</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) --><option ng-repeat="subcategory in getSubCategories(product.category)" value="Ruins" ng-selected="subcategory.name == product.subcategory" class="ng-binding ng-scope">Ruins</option><!-- end ngRepeat: subcategory in getSubCategories(product.category) -->
-                </select>
-            </div>
-            <h3 ng-show="!canEdit(product.$id)"><a href="#!/product/6mm-sci-fi-small-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><span ng-show="basket.contains(product)" class="ng-binding ng-hide"></span></span></a></h3>
-            <input ng-show="canEdit(product.$id)" class="titleInput ng-pristine ng-untouched ng-valid ng-hide" ng-model="product.name" size="50" type="text">
-            <div ng-show="!canEdit(product.$id)" class="description">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
             </p>
-            </div>
-
-            <div ng-show="!canEdit(product.$id)" class="price-qty ng-binding">1 per pack <em ng-show="product.dimensions" class="ng-binding">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><em class="ng-binding">&nbsp;- £3.50</em></div>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £3.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <textarea class="description ng-pristine ng-untouched ng-valid ng-binding ng-hide" cols="55" ng-show="canEdit(product.$id)" ng-model="product.description">Multi part laser cut MDF kit</textarea>
-            <div ng-show="canEdit(product.$id)" class="form-group price-qty ng-hide">
-            <div class="form-group"><input size="2" type="text" ng-model="product.qty" class="ng-pristine ng-untouched ng-valid"> per pack
-            </div>
-            <div class="form-group">(approx <input type="text" ng-model="product.dimensions" size="10" class="ng-pristine ng-untouched ng-valid">) - £<input size="5" style="margin-left: 4px;" ng-model="product.price" class="ng-pristine ng-untouched ng-valid"></div>
-            <div class="checkbox">
-                <label ng-show="canEdit(product.$id)" for="live" class="ng-hide"><input type="checkbox" ng-model="product.live" name="live" class="ng-pristine ng-untouched ng-valid">Live</label>
-            </div>
-        </div>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize -->
 </div>
 <div class="row text-center ng-scope">
@@ -489,8 +305,4 @@
 </div>
         <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
         <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
-        <script type="text/javascript" src="js/battlescene.js"></script>
-
-
-
 </body></html>
