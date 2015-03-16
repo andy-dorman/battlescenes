@@ -58323,7 +58323,7 @@ login state (instead of showing them a login form).
             };
 
             function generatePageTitle() {
-                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : "Home";
+                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : ($scope.filters.category || $scope.filters.subcategory) ? $scope.filters.category + ($scope.filters.subcategory ? $scope.filters.subcategory : "") : "Home";
             }
             generatePageTitle();
         }

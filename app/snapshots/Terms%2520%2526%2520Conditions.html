@@ -1,11 +1,12 @@
-<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
-        <title ng-bind-template="Battlescene Designs - Terms & Conditions - General" class="ng-binding">Battlescene Designs - General</title>
-        <base href="/">
+
+<!DOCTYPE html>
+<html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><base href="http://battlescenedesigns.co.uk/"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+        <title ng-bind-template="Battlescene Designs - General" class="ng-binding">Battlescene Designs - General</title>
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="google-site-verification" content="G20ybNMLVIRjTEjxRQSTyZEeBCka5yYits_6xF8nNz4">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/battlescene.css" rel="stylesheet" type="text/css">
-        <link rel="canonical" href="http://battlescenedesigns.co.uk/#!/Terms & Conditions" />
+        <link rel="icon" type="image/png" href="http://battlescenedesigns.co.uk/img/favicon.png">
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -18,9 +19,8 @@
         </script>
         <script src="/js/old_browser_warning.js"></script><script>window.onload = function () { var is_root = location.pathname == "/"; if(is_root) { e("/img/browser_upgrade/") } }</script>
         <![endif]-->
-        <meta view-head="" property="og:keywords" content="Battlescene,Designs,Battle,Scene,wargaming,wargames,terrain,scenery,6mm,sci-fi,sci,fi,buildings,roads,ruins" class="ng-scope">
-    </head>
-    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}">
+    <meta view-head="" property="og:keywords" content="Battlescene,Designs,Battle,Scene,wargaming,wargames,terrain,scenery,6mm,sci-fi,sci,fi,buildings,roads,ruins" class="ng-scope"></head>
+    <body data-status="ready" class="container-fluid jumbotron" ng-class="{admin : userService.currentUser}" style="">
         <!-- uiView:  --><div ui-view="" class="ng-scope"><a class="logo col-sm-12 row ng-scope" ui-sref="shop.products" href="#!/">
   <img src="/img/battlescene_logo.png" class="center-block img-responsive">
 </a>
@@ -34,41 +34,36 @@
         </div>
         <basket><div class="row basket-row">
     <div class="col-sm-12">
-    <span ng-show="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart"><span ng-show="basket.count()" class="ng-binding ng-hide">0</span></span>
+    <!-- ngIf: !basket.count() --><span ng-if="!basket.count()" id="empty-basket" class="glyphicon glyphicon-shopping-cart ng-scope"><!-- ngIf: basket.count() --></span><!-- end ngIf: !basket.count() -->
     <!-- ngIf: basket.count() --><!--<a ng-click="basket.empty()" class="basket-empty" ng-if="basket.count()"><span class="glyphicon glyphicon-remove"></span></a>--></div>
-</div></basket>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+</div>
+</basket>
       </form>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding">About</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding ng-scope">About</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding">Shipping</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding ng-scope">Shipping</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope active">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding">Terms &amp; Conditions</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding ng-scope">Terms &amp; Conditions</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <a ui-sref="shop.section(section.params)" ng-show="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding">Workbench</a>
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding ng-scope">Workbench</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections -->
         <!-- ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.contact" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding">Contact</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin --><a ui-sref="shop.contact" ng-if="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding ng-scope">Contact</a><!-- end ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addProduct" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/products" class="ng-binding ng-hide">Products</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addCategory" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/categories" class="ng-binding ng-hide">Categories</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
-        <a ui-sref="shop.addPage" ng-show="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/admin/pages" class="ng-binding ng-hide">Pages</a>
+        <!-- ngIf: (userService.currentUser && page.admin) || !page.admin -->
         </li><!-- end ngRepeat: page in pageLocs -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-show="userService.currentUser" class="ng-hide"><a ng-click="logout()" style="padding: 8px;" href=""><button class="btn btn-danger" role="button">logout <span class="glyphicon glyphicon-log-out"></span><span></span></button></a></li>
+        <!-- ngIf: userService.currentUser -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -80,18 +75,15 @@
                 <!-- ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category --><li ng-class="{ active : saferize(category) == saferize(filters.category) }" ng-repeat="(category, count) in getCategoriesFromProducts(products) | orderBy : category" class="ng-scope"><!--<a ng-click="setCategory(category, $index)" href>{{category}}</a>-->
                 <a category-link="" class="ng-binding" href="/#!/category/6mm-sci-fi">6mm Sci Fi</a>
                 </li><!-- end ngRepeat: (category, count) in getCategoriesFromProducts(products) | orderBy : category -->
-                <li ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category" class="subcat-indicator ng-hide"><span style="top: 8px" class="glyphicon glyphicon-chevron-right"></span></li>
+                <!-- ngIf: filteredProducts.length > 0 && filters.category -->
             </ul>
         </section>
-        <section class="subcategory-tabs category-tabs tabs">
-            <ul class="nav nav-pills ng-hide" ng-show="filteredProducts.length &gt; 0 &amp;&amp; filters.category">
-                <!-- ngRepeat: (subcategory, count) in getSubCategoriesFromProducts(products, filters.category) -->
-            </ul>
-        </section>
+        <!-- ngIf: filteredProducts.length > 0 && filters.category -->
     </div>
 </div>
 </category-filters>
-<h1 view-title="" class="ng-binding ng-scope">General</h1>
+<h1 class="hidden ng-binding ng-scope" view-title="">Terms &amp; Conditions-General</h1>
+<h2 view-title="" class="ng-binding ng-scope">General</h2>
 <div class="row ng-scope">
     <div common-mark="page.content" id="page-content" class="col-sm-8 ng-isolate-scope"><p>By placing an order from this site, you are agreeing to the Terms and Conditions as listed below. These Terms &amp; Conditions may be updated from time to time to reflect current legislation, and it is suggested to read them carefully.</p>
 <h4>Orders</h4>
@@ -133,8 +125,4 @@ February 2015</p>
 </div>
         <!--<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
         <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>-->
-        <script type="text/javascript" src="js/battlescene.js"></script>
-
-
-
 </body></html>
