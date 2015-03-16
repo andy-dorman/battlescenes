@@ -752,7 +752,7 @@
             };
 
             function generatePageTitle() {
-                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : ($scope.filters.category || $scope.filters.subcategory) ? $scope.filters.category + ($scope.filters.subcategory ? $scope.filters.subcategory : "") : "Home";
+                $scope.pageTitle = $scope.filters.searchTerm !== "" ? "Product search \"" + $scope.filters.searchTerm + "\": " + ($scope.filteredProducts ? $scope.filteredProducts.length : $scope.products.length) + " products found" : ($scope.filters.category || $scope.filters.subcategory) ? $scope.filters.category + ($scope.filters.subcategory ? " - " + $scope.filters.subcategory : "") : "Home";
             }
             generatePageTitle();
         }
