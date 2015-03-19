@@ -831,7 +831,6 @@
               file.progress = parseInt(100.0 * evt.loaded / evt.total);
           };
           var success = function(data, status, headers, config) {
-            console.log("success!!");
               var image = {};
               image.filename = config.file.name;
               var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
