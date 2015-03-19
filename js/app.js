@@ -814,7 +814,7 @@
               for (var i = 0; i < $scope.newImages.length; i++) {
                   var file = $scope.newImages[i];
                   $scope.upload = $upload.upload({
-                      url: "upload.php",
+                      url: "http://battlescenedesigns.co.uk/upload.php",
                       data: { myObj: $scope.myModelObj },
                       file: file
                   })
