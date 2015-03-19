@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><base href="http://battlescenedesigns.co.uk/"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
         <title ng-bind-template="Battlescene Designs - Home" class="ng-binding">Battlescene Designs - Home</title>
@@ -7,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/battlescene.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/png" href="http://battlescenedesigns.co.uk/img/favicon.png">
-        <link rel="canonical" href="http://battlescenedesigns.co.uk" />
         <!--[if lte IE 9]>
         <script>
         document.createElement('header');
@@ -88,6 +86,138 @@
 <div class="row ng-scope" id="products">
     <!--ng-repeat="product in (filteredProducts = (products | filter : search))">-->
     <!-- ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="small-gothic-t-2.jpg" class="img-responsive" src="/uploads/small-gothic-t-2.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic 'T' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-hab" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="large-gothic-hab-2.jpg" class="img-responsive" src="/uploads/large-gothic-hab-2.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-hab" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Hab</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.95</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-medium-gothic-hab" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="medium-gothic-hab-2.jpg" class="img-responsive" src="/uploads/medium-gothic-hab-2.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-medium-gothic-hab" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Medium Gothic Hab</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="small-gothic-x.jpg" class="img-responsive" src="/uploads/small-gothic-x.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic 'X' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-landing-pad" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="small-landing-pad-1.jpg" class="img-responsive" src="/uploads/small-landing-pad-1.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-landing-pad" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Landing Pad</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 25mm (h) x 115mm (w) x 115mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.95</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
+        <!-- ngIf: userService.currentUser -->
+        <div class="col-sm-4">
+            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-landing-pad" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
+                <img bscenes-src="large-landing-pad.jpg" class="img-responsive" src="/uploads/large-landing-pad.jpg">
+            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
+        </div>
+        <div class="col-sm-8">
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-landing-pad" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Landing Pad</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
+            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+</div>
+            <p class="buy">
+                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
+            </p>
+            </div><!-- end ngIf: !canEdit(product.$id) -->
+            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 25mm (h) x 115mm (w) x 165mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £5.95</em></div><!-- end ngIf: !canEdit(product.$id) -->
+            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- ngIf: canEdit(product.$id) -->
+            <!-- ngIf: canEdit(product.$id) -->
+    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
         <!-- ngIf: userService.currentUser -->
         <div class="col-sm-4">
             <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-gothic-guild-hall" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
@@ -175,138 +305,6 @@
             <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
             <!-- ngIf: canEdit(product.$id) -->
             <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="large-t_1.jpg" class="img-responsive" src="/uploads/large-t_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-'t'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'T' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 100mm (w) x 150mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £7.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="large-x_gothic_1.jpg" class="img-responsive" src="/uploads/large-x_gothic_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-'x'-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic 'X' Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut  MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 160mm (w) x 160mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £8.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="large-gothic-admin_1.jpg" class="img-responsive" src="/uploads/large-gothic-admin_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 110mm (h) x 50mm (w) x 90mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £5.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="small-gothic-admin_1.jpg" class="img-responsive" src="/uploads/small-gothic-admin_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-admin-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Admin Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut  MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 90mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-large-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="large-gothic-tower_1.jpg" class="img-responsive" src="/uploads/large-gothic-tower_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-large-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Large Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £4.00</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-    </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize --><section class="row product-panel bottom-buffer col-sm-6 ng-scope" ng-class="{notlive : !product.live }" dir-paginate="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize" ng-repeat="product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize"><!--dir-paginate="product in products | itemsPerPage : 1">-->
-        <!-- ngIf: userService.currentUser -->
-        <div class="col-sm-4">
-            <!-- ngRepeat: image in product.images | obj2Arr | limitTo: 1 --><a href="#!/product/6mm-sci-fi-small-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" ng-repeat="image in product.images | obj2Arr | limitTo: 1" class="product-image-container ng-scope">
-                <img bscenes-src="small-gothic-tower_1.jpg" class="img-responsive" src="/uploads/small-gothic-tower_1.jpg">
-            </a><!-- end ngRepeat: image in product.images | obj2Arr | limitTo: 1 -->
-        </div>
-        <div class="col-sm-8">
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><h3 ng-if="!canEdit(product.$id)" class="ng-scope"><a href="#!/product/6mm-sci-fi-small-gothic-tower-building" ui-sref="shop.product({productId: product.$id})" class="ng-binding">Small Gothic Tower Building</a><a ng-click="basket.add(product)" ng-class="{active : basket.contains(product)}" class="pull-right bookmark" alt="Add to basket" title="Add to basket"><span class=" glyphicon glyphicon-bookmark"><!-- ngIf: basket.contains(product) --></span></a></h3><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
-            <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
-</div>
-            <p class="buy">
-                <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
-            </p>
-            </div><!-- end ngIf: !canEdit(product.$id) -->
-            <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="price-qty ng-binding ng-scope">1 per pack <!-- ngIf: product.dimensions --><em ng-if="product.dimensions" class="ng-binding ng-scope">(approx 70mm (h) x 50mm (w) x 50mm (l))</em><!-- end ngIf: product.dimensions --><em class="ng-binding">&nbsp;- £3.50</em></div><!-- end ngIf: !canEdit(product.$id) -->
-            <a ui-sref="shop.contact" alt="Contact us about this product" title="Contact us about this product" class="contact-link" href="#!/contact"><span class="glyphicon glyphicon-envelope"></span></a>
-            <!-- ngIf: canEdit(product.$id) -->
-            <!-- ngIf: canEdit(product.$id) -->
     </div></section><!-- end ngRepeat: product in (filteredProducts = (products | filter : search)) | itemsPerPage: pageSize -->
 </div>
 <div class="row text-center ng-scope">
@@ -319,6 +317,8 @@
         <a href="" ng-click="setCurrent(pageNumber)" class="ng-binding">1</a>
     </li><!-- end ngRepeat: pageNumber in pages track by $index --><li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }" class="ng-scope">
         <a href="" ng-click="setCurrent(pageNumber)" class="ng-binding">2</a>
+    </li><!-- end ngRepeat: pageNumber in pages track by $index --><li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }" class="ng-scope">
+        <a href="" ng-click="setCurrent(pageNumber)" class="ng-binding">3</a>
     </li><!-- end ngRepeat: pageNumber in pages track by $index -->
     <!-- ngIf: directionLinks --><li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }" class="ng-scope">
         <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding">›</a>
