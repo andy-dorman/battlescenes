@@ -776,7 +776,7 @@
           $scope.filters = Filters;
           $scope.basket = BasketService;
           $scope.images = [];
-          $scope.newImages = [];
+          $scope.newImages = {};
           var loadedImages = 0;
           $scope.imageLoaded = function( image ) {
               loadedImages++;
