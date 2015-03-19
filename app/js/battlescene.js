@@ -58408,7 +58408,9 @@ login state (instead of showing them a login form).
               for (var i = 0; i < $scope.newImages.length; i++) {
                   var file = $scope.newImages[i];
                   $scope.upload = $upload.upload({
-                      url: "http://battlescenedesigns.co.uk/upload.php",
+                      url: "upload.php",
+                      headers: {'Content-Type': file.type},
+                      method: 'POST',
                       data: { myObj: $scope.myModelObj },
                       file: file
                   })
@@ -58653,6 +58655,8 @@ login state (instead of showing them a login form).
                       var file = $scope.images[i];
                       $scope.upload = $upload.upload({
                           url: "upload.php",
+                          headers: {'Content-Type': file.type},
+                          method: 'POST',
                           data: { myObj: $scope.myModelObj },
                           file: file
                       })
