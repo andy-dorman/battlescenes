@@ -24,6 +24,7 @@
         </div>
     </section>
     <section class="row col-sm-12" ng-if="userService.currentUser">
+      {{newImages}}
         <form class="col-sm-7">
             <div class="form-group">
                 <button class="btn btn-default" ng-file-select="" ng-model="newImages" class="upload-button" ng-file-change="upload(newImages)" ng-multiple="false" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image</button>

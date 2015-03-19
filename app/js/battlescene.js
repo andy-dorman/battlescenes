@@ -58425,6 +58425,7 @@ login state (instead of showing them a login form).
               file.progress = parseInt(100.0 * evt.loaded / evt.total);
           };
           var success = function(data, status, headers, config) {
+            console.log("success!!");
               var image = {};
               image.filename = config.file.name;
               var safename = image.filename.replace(/\.|\#|\$|\[|\]|-|\//g, "");
@@ -61910,6 +61911,7 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "        </div>\n" +
     "    </section>\n" +
     "    <section class=\"row col-sm-12\" ng-if=\"userService.currentUser\">\n" +
+    "      {{newImages}}\n" +
     "        <form class=\"col-sm-7\">\n" +
     "            <div class=\"form-group\">\n" +
     "                <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(newImages)\" ng-multiple=\"false\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
