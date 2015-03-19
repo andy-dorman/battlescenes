@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app="shop" ng-controller="RootController" class="ng-scope"><head><base href="http://battlescenedesigns.co.uk/"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
         <title ng-bind-template="Battlescene Designs - Home" class="ng-binding">Battlescene Designs - Home</title>
@@ -45,11 +46,11 @@
         <!-- ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
           <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/About" class="ng-binding ng-scope">About</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
+          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Downloads" class="ng-binding ng-scope">Downloads</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
+        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
           <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Shipping" class="ng-binding ng-scope">Shipping</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
           <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Terms%20%26%20Conditions" class="ng-binding ng-scope">Terms &amp; Conditions</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
-        </li><!-- end ngRepeat: section in sections --><li ng-repeat="section in sections" ui-sref-active="active" class="ng-scope">
-          <!-- ngIf: (userService.currentUser && section.admin) || !section.admin --><a ui-sref="shop.section(section.params)" ng-if="(userService.currentUser &amp;&amp; section.admin) || !section.admin" href="#!/Workbench" class="ng-binding ng-scope">Workbench</a><!-- end ngIf: (userService.currentUser && section.admin) || !section.admin -->
         </li><!-- end ngRepeat: section in sections -->
         <!-- ngRepeat: page in pageLocs --><li ng-repeat="page in pageLocs" ui-sref-active="active" class="ng-scope">
         <!-- ngIf: (userService.currentUser && page.admin) || !page.admin --><a ui-sref="shop.contact" ng-if="(userService.currentUser &amp;&amp; page.admin) || !page.admin" href="#!/contact" class="ng-binding ng-scope">Contact</a><!-- end ngIf: (userService.currentUser && page.admin) || !page.admin -->
@@ -230,6 +231,7 @@
             <!-- ngIf: canEdit(product.$id) -->
             <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+<p><a href="/uploads/guild-hall-instructions.jpg">Assembly guide</a></p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
@@ -274,6 +276,7 @@
             <!-- ngIf: canEdit(product.$id) -->
             <!-- ngIf: !canEdit(product.$id) --><div ng-if="!canEdit(product.$id)" class="description ng-scope">
             <div common-mark="product.description" id="page-content" class="ng-isolate-scope"><p>Multi part laser cut MDF kit</p>
+<p><a href="/uploads/cathedral-instructions.jpg">Assembly guide</a></p>
 </div>
             <p class="buy">
                 <button class="btn btn-success btn-xs pull-right" ng-click="basket.add(product)">Add to basket</button>
