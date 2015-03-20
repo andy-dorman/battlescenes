@@ -294,6 +294,17 @@ a:hover {
 	margin-top: 20px;
 }
 
+form[name='contactForm'] {
+	.form-group {
+		.help-block {
+			display: none;
+		}
+		&.has-error .help-block {
+			display: block;
+		}
+	}
+}
+
 .description {
 	padding-bottom: 60px;
 	min-height: 150px;

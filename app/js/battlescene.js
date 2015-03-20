@@ -58070,28 +58070,30 @@ login state (instead of showing them a login form).
           {
               return string.charAt(0).toUpperCase() + string.slice(1);
           };
-          $scope.sendMessage = function() {
+          $scope.sendMessage = function(isValid) {
               $scope.errors = [];
 
-              $http.post("contact.php", $scope.newContact).error(function(err){
-                  alert(err);
-              }).success(function(data){
-                  if(data.success) {
-                      $scope.contacts.$push($scope.newContact);
-                      $scope.newContact = {};
-                      $scope.msgSuccess = true;
-                  } else {
-                      if(data.errors) {
-                          for(var error in data.errors) {
-                              $scope.errors.push({
-                                  "name": capitalise(error),
-                                  "message": data.errors[error]
-                              });
-                          }
-                      }
-                  }
+              if(isValid) {
+                $http.post("contact.php", $scope.newContact).error(function(err){
+                    alert(err);
+                }).success(function(data){
+                    if(data.success) {
+                        $scope.contacts.$push($scope.newContact);
+                        $scope.newContact = {};
+                        $scope.msgSuccess = true;
+                    } else {
+                        if(data.errors) {
+                            for(var error in data.errors) {
+                                $scope.errors.push({
+                                    "name": capitalise(error),
+                                    "message": data.errors[error]
+                                });
+                            }
+                        }
+                    }
 
-              });
+                });
+              }
           };
           //$scope.status = "ready";
       }
@@ -61851,14 +61853,16 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
     "        <h3>Thank you for your enquiry</h3>\n" +
     "        <p>We will be in touch shortly...</p>\n" +
     "    </section>\n" +
-    "    <form role=\"form\" novalidate ng-submit=\"sendMessage()\" ng-show=\"!msgSuccess\" class=\"col-sm-6\">\n" +
-    "        <div class=\"form-group\">\n" +
+    "    <form role=\"form\" name=\"contactForm\" novalidate ng-submit=\"sendMessage(contactForm.$valid)\" ng-show=\"!msgSuccess\" class=\"col-sm-6\">\n" +
+    "        <div class=\"form-group\" ng-class=\"(contactForm.$submitted && !contactForm.name.$valid) ? 'has-error' : ''\">\n" +
     "            <label name=\"contactName\">Name *</label>\n" +
     "            <input name=\"name\" class=\"form-control\" ng-model=\"newContact.name\" type=\"text\" placeholder=\"Name\" required/>\n" +
+    "            <p class=\"help-block\">You need to enter your name.</p>\n" +
     "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
+    "        <div class=\"form-group\" ng-class=\"(contactForm.$submitted && !contactForm.email.$valid) ? 'has-error' : ''\">\n" +
     "            <label name=\"contactEmail\">Email *</label>\n" +
     "            <input name=\"email\" class=\"form-control\" ng-model=\"newContact.email\" type=\"email\" placeholder=\"Email\" required/>\n" +
+    "            <p class=\"help-block\">You need to enter a valid email address.</p>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label name=\"contactAddress1\">Address 1</label>\n" +
@@ -61876,9 +61880,10 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
     "            <label name=\"contactPostcode\">Postcode</label>\n" +
     "            <input name=\"postcode\" class=\"form-control\" ng-model=\"newContact.postcode\" type=\"text\" placeholder=\"Postcode/Zip\"/>\n" +
     "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
+    "        <div class=\"form-group\" ng-class=\"(contactForm.$submitted && !contactForm.message.$valid) ? 'has-error' : ''\">\n" +
     "            <label name=\"contactMsg\">Message</label>\n" +
     "            <textarea rows=\"10\" name=\"message\" class=\"form-control\" ng-model=\"newContact.message\" placeholder=\"Message\" required></textarea>\n" +
+    "            <p class=\"help-block\">You need to enter a message.</p>\n" +
     "        </div>\n" +
     "        <button type=\"submit\" class=\"btn btn-default\">Get in touch</button>\n" +
     "    </form>\n" +

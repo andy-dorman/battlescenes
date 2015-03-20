@@ -20,7 +20,7 @@
         <div class="form-group" ng-class="(contactForm.$submitted && !contactForm.email.$valid) ? 'has-error' : ''">
             <label name="contactEmail">Email *</label>
             <input name="email" class="form-control" ng-model="newContact.email" type="email" placeholder="Email" required/>
-            <p class="help-block error">You need to enter a valid email address.</p>
+            <p class="help-block">You need to enter a valid email address.</p>
         </div>
         <div class="form-group">
             <label name="contactAddress1">Address 1</label>
@@ -38,9 +38,10 @@
             <label name="contactPostcode">Postcode</label>
             <input name="postcode" class="form-control" ng-model="newContact.postcode" type="text" placeholder="Postcode/Zip"/>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="(contactForm.$submitted && !contactForm.message.$valid) ? 'has-error' : ''">
             <label name="contactMsg">Message</label>
             <textarea rows="10" name="message" class="form-control" ng-model="newContact.message" placeholder="Message" required></textarea>
+            <p class="help-block">You need to enter a message.</p>
         </div>
         <button type="submit" class="btn btn-default">Get in touch</button>
     </form>
