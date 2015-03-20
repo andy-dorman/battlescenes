@@ -7,7 +7,7 @@ function verifyXSRF() {
     foreach ($headers as $header => $value) {
         if ($header == "X-XSRF-TOKEN") {
             $headerToken = $value;
-            break;          
+            break;
         }
     }
     */
@@ -55,22 +55,22 @@ if(empty($_POST['message'])) {
 if(empty($errors)) {
 	$data['success'] = true;
 	$data['message'] = "Hooray!";
-	
+
 	$customerEmail = $_POST['email'];
 	$customerName = $_POST['name'];
-	$customerMsg = $_POST['message'];
+	$customerMsg = nl2br($_POST['message']);
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$customerHeaders = $headers . 'From: ' . BSCENES_EMAIL . "\r\n" .
-    'Reply-To: ' . $customerEmail . "\r\n" . 
-    'cc:' . MY_EMAIL . "\r\n";
+    'Reply-To: ' . BSCENES_EMAIL . "\r\n" .
+    'bcc:' . MY_EMAIL . "\r\n";
 	$bscenesHeaders = $headers . 'From: ' . $customerEmail . "\r\n" .
-    'Reply-To: ' . BSCENES_EMAIL . "\r\n" . 
-    'cc:' . MY_EMAIL . "\r\n";
-    $thankyouMsg = "<p>Thank you for for enquiry.</p><p>We will be in touch shortly</p>";
+    'Reply-To: ' . $customerEmail . "\r\n" .
+    'bcc:' . MY_EMAIL . "\r\n";
+    $thankyouMsg = "<p>Thank you for for enquiry.</p><p>We will be in touch shortly</p><p>Battlescene Designs</p>";
 	//mail(to,subject,message,headers,parameters)
-	$customerEmailSuccess = mail(BSCENES_EMAIL, "New customer enquiry", $customerMsg, $bscenesHeaders);
-	$thankyouEmailSuccess = mail($customerEmail, BSCENES_THANKS_SUBJECT, $thankyouMsg, $bscenesHeaders);
+	$customerEmailSuccess = mail(BSCENES_EMAIL, "New customer enquiry", $customerMsg . "<p>" . $customerName . "</p>", $bscenesHeaders);
+	$thankyouEmailSuccess = mail($customerEmail, BSCENES_THANKS_SUBJECT, $thankyouMsg, $customerHeaders);
 	//mail($customerEmail, BSCENES_THANKS_SUBJECT, )
 
 	$data['success'] == $customerEmailSuccess && $thankyouEmailSuccess;
