@@ -20,7 +20,7 @@
 				<tr ng-repeat="item in basket.items">
 					<td><img bscenes-src="{{item.img}}" class="basket-img" /></td>
 					<td>{{item.name}}</td>
-					<td>{{item.count}}</td>
+					<td><input size="3" ng-model="item.count" type="text"/></td>
 					<td>{{item.price | currency : "&pound;"}}</td>
 				</tr>
 			</tbody>

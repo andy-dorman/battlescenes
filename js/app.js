@@ -449,6 +449,10 @@
           $scope.newContact = {
               name: "",
               email: "",
+              address1: "",
+              address2: "",
+              town: "",
+              postcode: "",
               message: ""
           };
 
@@ -472,28 +476,30 @@
           {
               return string.charAt(0).toUpperCase() + string.slice(1);
           };
-          $scope.sendMessage = function() {
+          $scope.sendMessage = function(isValid) {
               $scope.errors = [];
 
-              $http.post("contact.php", $scope.newContact).error(function(err){
-                  alert(err);
-              }).success(function(data){
-                  if(data.success) {
-                      $scope.contacts.$push($scope.newContact);
-                      $scope.newContact = {};
-                      $scope.msgSuccess = true;
-                  } else {
-                      if(data.errors) {
-                          for(var error in data.errors) {
-                              $scope.errors.push({
-                                  "name": capitalise(error),
-                                  "message": data.errors[error]
-                              });
-                          }
-                      }
-                  }
+              if(isValid) {
+                $http.post("contact.php", $scope.newContact).error(function(err){
+                    alert(err);
+                }).success(function(data){
+                    if(data.success) {
+                        $scope.contacts.$push($scope.newContact);
+                        $scope.newContact = {};
+                        $scope.msgSuccess = true;
+                    } else {
+                        if(data.errors) {
+                            for(var error in data.errors) {
+                                $scope.errors.push({
+                                    "name": capitalise(error),
+                                    "message": data.errors[error]
+                                });
+                            }
+                        }
+                    }
 
-              });
+                });
+              }
           };
           //$scope.status = "ready";
       }

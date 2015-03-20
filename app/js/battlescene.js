@@ -9450,7 +9450,7 @@ R.prototype.de=function(a,b){F("Firebase.changeEmail",2,2,arguments.length);J("F
 R.prototype.Me=function(a,b){F("Firebase.resetPassword",2,2,arguments.length);J("Firebase.resetPassword",1,a,!1);K("Firebase.resetPassword",a,"email");H("Firebase.resetPassword",2,b,!1);this.k.Q.Me(a,b)};R.prototype.resetPassword=R.prototype.Me;R.goOffline=function(){F("Firebase.goOffline",0,0,arguments.length);Th.Nb().pb()};R.goOnline=function(){F("Firebase.goOnline",0,0,arguments.length);Th.Nb().hc()};
 function nb(a,b){y(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?lb=q(console.log,console):"object"===typeof console.log&&(lb=function(a){console.log(a)})),b&&v.set("logging_enabled",!0)):a?lb=a:(lb=null,v.remove("logging_enabled"))}R.enableLogging=nb;R.ServerValue={TIMESTAMP:{".sv":"timestamp"}};R.SDK_VERSION="2.1.2";R.INTERNAL=Y;R.Context=Th;R.TEST_ACCESS=$;})();
 ;/**
- * @license AngularJS v1.3.16-build.91+sha.f231dda
+ * @license AngularJS v1.3.16-build.92+sha.3bdb39f
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -9505,7 +9505,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.16-build.91+sha.f231dda/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.16-build.92+sha.3bdb39f/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -11581,7 +11581,7 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.16-build.91+sha.f231dda',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.16-build.92+sha.3bdb39f',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 16,
@@ -46623,7 +46623,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         };
     });
 })();;/**
- * @license AngularJS v1.3.16-build.91+sha.f231dda
+ * @license AngularJS v1.3.16-build.92+sha.3bdb39f
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -58043,6 +58043,10 @@ login state (instead of showing them a login form).
           $scope.newContact = {
               name: "",
               email: "",
+              address1: "",
+              address2: "",
+              town: "",
+              postcode: "",
               message: ""
           };
 
@@ -61847,18 +61851,34 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
     "        <h3>Thank you for your enquiry</h3>\n" +
     "        <p>We will be in touch shortly...</p>\n" +
     "    </section>\n" +
-    "    <form role=\"form\" ng-submit=\"sendMessage()\" ng-show=\"!msgSuccess\" class=\"col-sm-6\">\n" +
+    "    <form role=\"form\" novalidate ng-submit=\"sendMessage()\" ng-show=\"!msgSuccess\" class=\"col-sm-6\">\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label name=\"contactName\">Name</label>\n" +
-    "            <input name=\"name\" class=\"form-control\" ng-model=\"newContact.name\" type=\"text\" placeholder=\"Name\"/>\n" +
+    "            <label name=\"contactName\">Name *</label>\n" +
+    "            <input name=\"name\" class=\"form-control\" ng-model=\"newContact.name\" type=\"text\" placeholder=\"Name\" required/>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "            <label name=\"contactEmail\">Email</label>\n" +
-    "            <input name=\"email\" class=\"form-control\" ng-model=\"newContact.email\" type=\"email\" placeholder=\"Email\"/>\n" +
+    "            <label name=\"contactEmail\">Email *</label>\n" +
+    "            <input name=\"email\" class=\"form-control\" ng-model=\"newContact.email\" type=\"email\" placeholder=\"Email\" required/>\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label name=\"contactAddress1\">Address 1</label>\n" +
+    "            <input name=\"address1\" class=\"form-control\" ng-model=\"newContact.address1\" type=\"text\" placeholder=\"Address 1\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label name=\"contactAddress2\">Address 2</label>\n" +
+    "            <input name=\"address2\" class=\"form-control\" ng-model=\"newContact.address2\" type=\"text\" placeholder=\"Address 2\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label name=\"contactTown\">Town</label>\n" +
+    "            <input name=\"town\" class=\"form-control\" ng-model=\"newContact.town\" type=\"text\" placeholder=\"Town/City\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label name=\"contactPostcode\">Postcode</label>\n" +
+    "            <input name=\"postcode\" class=\"form-control\" ng-model=\"newContact.postcode\" type=\"text\" placeholder=\"Postcode/Zip\"/>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label name=\"contactMsg\">Message</label>\n" +
-    "            <textarea rows=\"10\" name=\"message\" class=\"form-control\" ng-model=\"newContact.message\" placeholder=\"Message\"/></textarea>\n" +
+    "            <textarea rows=\"10\" name=\"message\" class=\"form-control\" ng-model=\"newContact.message\" placeholder=\"Message\" required></textarea>\n" +
     "        </div>\n" +
     "        <button type=\"submit\" class=\"btn btn-default\">Get in touch</button>\n" +
     "    </form>\n" +
@@ -61914,40 +61934,40 @@ angular.module("../app/views/shop.product.html", []).run(["$templateCache", func
     "        </div>\n" +
     "    </section>\n" +
     "    <section class=\"row col-sm-12\" ng-if=\"userService.currentUser\">\n" +
-    "        <form class=\"col-sm-7\">\n" +
+    "        <form role=\"form\" class=\"col-sm-7\">\n" +
     "            <div class=\"form-group\">\n" +
-    "                <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(newImages)\" ng-multiple=\"false\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
-    "                <ul ng-if=\"newImages.length > 0\" class=\"response\">\n" +
-    "                    <li class=\"sel-file\" ng-repeat=\"f in newImages\">\n" +
-    "                        <div ng-thumb=\"{ file: f, width: 100 }\"></div>\n" +
-    "                        <div id=\"image-queue\" ng-if=\"f.progress > 0\">\n" +
-    "                            <div>\n" +
-    "                                <div class=\"progress\" style=\"\">\n" +
-    "                                    <div class=\"progress-bar\" role=\"progressbar\" ng-style=\"{ 'width': f.progress + '%' }\"></div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
+    "              <button class=\"btn btn-default\" ng-file-select=\"\" ng-model=\"newImages\" class=\"upload-button\" ng-file-change=\"upload(newImages)\" ng-multiple=\"true\" ng-accept=\"'image/*,application/pdf'\" tabindex=\"0\">Attach an Image</button>\n" +
+    "              <ul ng-show=\"newImages.length > 0\" class=\"response\">\n" +
+    "                  <li class=\"sel-file\" ng-repeat=\"f in newImages\">\n" +
+    "                      <div ng-thumb=\"{ file: f, width: 100 }\"></div>\n" +
+    "                      <div id=\"image-queue\" ng-show=\"f.progress > 0\">\n" +
+    "                          <div>\n" +
+    "                              <div class=\"progress\" style=\"\">\n" +
+    "                                  <div class=\"progress-bar\" role=\"progressbar\" ng-style=\"{ 'width': f.progress + '%' }\"></div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
     "\n" +
-    "                        <button class=\"btn btn-default\" ng-click=\"f.upload.abort();f.upload.aborted=true\" ng-if=\"f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted\">Abort</button>\n" +
-    "                        <div class=\"image-details\">\n" +
-    "                            {{f.name}}\n" +
-    "                        </div>\n" +
-    "                        <a ng-if=\"f.result\" href=\"javascript:void(0)\" ng-click=\"f.showDetail = !f.showDetail\" class=\"\">details</a>\n" +
-    "                        <div ng-if=\"f.showDetail\">\n" +
-    "                            <br>\n" +
-    "                            <div data-ng-if=\"f.result.result == null\" class=\"ng-binding\"></div>\n" +
-    "                            <ul>\n" +
-    "                                <li ng-repeat=\"item in f.result.result\" class=\"ng-scope\">\n" +
-    "                                    <div data-ng-if=\"item.name\" class=\"ng-binding\">{{item.name}}</div>\n" +
-    "                                    <div data-ng-if=\"item.fieldName\" class=\"ng-binding\">{{item.fieldName}}</div>\n" +
-    "                                    <div data-ng-if=\"item.size\" class=\"ng-binding\">size on the server: {{item.size}}</div>\n" +
-    "                                    <div data-ng-if=\"item.value\" class=\"ng-binding ng-hide\">value: {{item.value}}</div>\n" +
-    "                                </li><!-- end ngRepeat: item in f.result.result -->\n" +
-    "                            </ul>\n" +
-    "                            <div data-ng-if=\"f.result.requestHeaders\" class=\"reqh ng-binding\">request headers: {{f.result.requestHeders}}</div>\n" +
-    "                        </div>\n" +
-    "                    </li>\n" +
-    "                </ul>\n" +
+    "                      <button class=\"btn btn-default\" ng-click=\"f.upload.abort();f.upload.aborted=true\" ng-show=\"f.upload != null &amp;&amp; f.progress < 100 &amp;&amp; !f.upload.aborted\">Abort</button>\n" +
+    "                      <div class=\"image-details\">\n" +
+    "                          {{f.name}}\n" +
+    "                      </div>\n" +
+    "                      <a ng-show=\"f.result\" href=\"javascript:void(0)\" ng-click=\"f.showDetail = !f.showDetail\" class=\"\">details</a>\n" +
+    "                      <div ng-show=\"f.showDetail\">\n" +
+    "                          <br>\n" +
+    "                          <div data-ng-show=\"f.result.result == null\" class=\"ng-binding\"></div>\n" +
+    "                          <ul>\n" +
+    "                              <li ng-repeat=\"item in f.result.result\" class=\"ng-scope\">\n" +
+    "                                  <div data-ng-show=\"item.name\" class=\"ng-binding\">{{item.name}}</div>\n" +
+    "                                  <div data-ng-show=\"item.fieldName\" class=\"ng-binding\">{{item.fieldName}}</div>\n" +
+    "                                  <div data-ng-show=\"item.size\" class=\"ng-binding\">size on the server: {{item.size}}</div>\n" +
+    "                                  <div data-ng-show=\"item.value\" class=\"ng-binding ng-hide\">value: {{item.value}}</div>\n" +
+    "                              </li><!-- end ngRepeat: item in f.result.result -->\n" +
+    "                          </ul>\n" +
+    "                          <div data-ng-show=\"f.result.requestHeaders\" class=\"reqh ng-binding\">request headers: {{f.result.requestHeders}}</div>\n" +
+    "                      </div>\n" +
+    "                  </li>\n" +
+    "              </ul>\n" +
     "            </div>\n" +
     "        </form>\n" +
     "        <button ng-click=\"saveProduct(product)\" class=\"btn btn-success col-sm-2\">Save<span ng-if=\"saved\">d...</span></button>\n" +

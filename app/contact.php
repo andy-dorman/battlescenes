@@ -53,12 +53,28 @@ if(empty($_POST['message'])) {
 }
 
 if(empty($errors)) {
+  $address = "";
 	$data['success'] = true;
 	$data['message'] = "Hooray!";
 
 	$customerEmail = $_POST['email'];
 	$customerName = $_POST['name'];
 	$customerMsg = nl2br($_POST['message']);
+  if(!empty($_POST['address1'])) {
+    $address = $address . $_POST['address1'] . '<br/>';
+  }
+  if(!empty($_POST['address2'])) {
+    $address = $address . $_POST['address2'] . '<br/>';
+  }
+  if(!empty($_POST['town'])) {
+    $address = $address . $_POST['town'] . '<br/>';
+  }
+  if(!empty($_POST['postcode'])) {
+    $address = $address . $_POST['postcode'] . '<br/>';
+  }
+  if($address != "") {
+    $customerMsg = $customerMsg . "<p>Address:</p>" . "<p>" . $address . "</p>";
+  }
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$customerHeaders = $headers . 'From: ' . BSCENES_EMAIL . "\r\n" .
