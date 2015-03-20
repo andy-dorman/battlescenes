@@ -487,6 +487,7 @@
                         $scope.contacts.$push($scope.newContact);
                         $scope.newContact = {};
                         $scope.msgSuccess = true;
+                        BasketService.empty();
                     } else {
                         if(data.errors) {
                             for(var error in data.errors) {
@@ -1052,6 +1053,16 @@
       function($scope, BasketService) {
           $scope.basket = BasketService;
           //$scope.status = "ready";
+
+          $scope.addItem = function (item) {
+            item.count++;
+          };
+
+          $scope.removeItem = function (item) {
+            if(item.count > 0) {
+              item.count--;
+            }
+          };
       }
   ]);
 

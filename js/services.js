@@ -469,7 +469,7 @@
                     count = 0;
                 for (var item in basket) {
                     if (basket[item] !== undefined) {
-                        count += basket[item].count;
+                        count += parseInt(basket[item].count, 10);
                     }
                 }
                 return count;
@@ -491,6 +491,10 @@
 
             contains: function(product) {
                 return items[product.$id];
+            },
+
+            hasItems: function() {
+              return Object.keys(items).length > 0;
             }
         };
 

@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-8 table-responsive">
-		<table class="table" ng-if="basket.count()">
+		<table class="table basket-table" ng-if="basket.hasItems()">
 			<thead>
 				<tr>
 					<td></td>
@@ -20,12 +20,12 @@
 				<tr ng-repeat="item in basket.items">
 					<td><img bscenes-src="{{item.img}}" class="basket-img" /></td>
 					<td>{{item.name}}</td>
-					<td><input size="3" ng-model="item.count" type="text"/></td>
+					<td>{{item.count}}<button class="btn btn-success" ng-click="addItem(item)">+</button><button ng-if="item.count > 1" class="btn btn-success" ng-click="removeItem(item)">-</button><button ng-if="item.count == 1" class="btn btn-danger" ng-click="removeItem(item)">-</button></td>
 					<td>{{item.price | currency : "&pound;"}}</td>
 				</tr>
 			</tbody>
 		</table>
-		<a id="clear-basket" ng-click="basket.empty()" class="btn btn-default" ng-if="basket.count()">Empty basket</a>
+		<a id="clear-basket" ng-click="basket.empty()" class="btn btn-default" ng-if="basket.hasItems()">Empty basket</a>
 	</div>
 </div>
-<h4 ng-if="!basket.count()">You have no items in your basket.</h4>
+<h4 ng-if="!basket.hasItems()">You have no items in your basket.</h4>

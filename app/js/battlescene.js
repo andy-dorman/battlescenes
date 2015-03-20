@@ -57542,7 +57542,7 @@ login state (instead of showing them a login form).
                     count = 0;
                 for (var item in basket) {
                     if (basket[item] !== undefined) {
-                        count += basket[item].count;
+                        count += parseInt(basket[item].count, 10);
                     }
                 }
                 return count;
@@ -57564,6 +57564,10 @@ login state (instead of showing them a login form).
 
             contains: function(product) {
                 return items[product.$id];
+            },
+
+            hasItems: function() {
+              return Object.keys(items).length > 0;
             }
         };
 
@@ -58081,6 +58085,7 @@ login state (instead of showing them a login form).
                         $scope.contacts.$push($scope.newContact);
                         $scope.newContact = {};
                         $scope.msgSuccess = true;
+                        BasketService.empty();
                     } else {
                         if(data.errors) {
                             for(var error in data.errors) {
@@ -58646,6 +58651,16 @@ login state (instead of showing them a login form).
       function($scope, BasketService) {
           $scope.basket = BasketService;
           //$scope.status = "ready";
+
+          $scope.addItem = function (item) {
+            item.count++;
+          };
+
+          $scope.removeItem = function (item) {
+            if(item.count > 0) {
+              item.count--;
+            }
+          };
       }
   ]);
 
@@ -62011,7 +62026,7 @@ angular.module("../app/views/shop.products.html", []).run(["$templateCache", fun
     "                    <option ng-repeat=\"subcategory in getSubCategories(product.category)\" value=\"{{subcategory.name}}\" ng-selected=\"subcategory.name == product.subcategory\">{{subcategory.name}}</option>\n" +
     "                </select>\n" +
     "            </div>\n" +
-    "            <h3 ng-if=\"!canEdit(product.$id)\"><a href ui-sref=\"shop.product({productId: product.$id})\">{{ product.name }}</a><a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product)}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-if=\"basket.contains(product)\">{{basket.itemCount(product)}}</span></span></a></h3>\n" +
+    "            <h3 ng-if=\"!canEdit(product.$id)\"><a href ui-sref=\"shop.product({productId: product.$id})\">{{ product.name }}</a><a ng-click=\"basket.add(product)\" ng-class=\"{active : basket.contains(product) && basket.itemCount(product) > 0}\" class=\"pull-right bookmark\" alt=\"Add to basket\" title=\"Add to basket\"><span class=\" glyphicon glyphicon-bookmark\"><span ng-if=\"basket.contains(product) && basket.itemCount(product) > 0\">{{basket.itemCount(product)}}</span></span></a></h3>\n" +
     "            <input ng-if=\"canEdit(product.$id)\" class=\"titleInput\" ng-model=\"product.name\" size=\"50\" type=\"text\"/>\n" +
     "            <div ng-if=\"!canEdit(product.$id)\" class=\"description\">\n" +
     "            <div common-mark=\"product.description\" id=\"page-content\"></div>\n" +
