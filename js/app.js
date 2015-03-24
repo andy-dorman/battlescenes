@@ -452,6 +452,7 @@
               address1: "",
               address2: "",
               town: "",
+              county: "",
               postcode: "",
               message: ""
           };

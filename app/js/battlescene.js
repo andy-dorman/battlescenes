@@ -9450,7 +9450,7 @@ R.prototype.de=function(a,b){F("Firebase.changeEmail",2,2,arguments.length);J("F
 R.prototype.Me=function(a,b){F("Firebase.resetPassword",2,2,arguments.length);J("Firebase.resetPassword",1,a,!1);K("Firebase.resetPassword",a,"email");H("Firebase.resetPassword",2,b,!1);this.k.Q.Me(a,b)};R.prototype.resetPassword=R.prototype.Me;R.goOffline=function(){F("Firebase.goOffline",0,0,arguments.length);Th.Nb().pb()};R.goOnline=function(){F("Firebase.goOnline",0,0,arguments.length);Th.Nb().hc()};
 function nb(a,b){y(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?lb=q(console.log,console):"object"===typeof console.log&&(lb=function(a){console.log(a)})),b&&v.set("logging_enabled",!0)):a?lb=a:(lb=null,v.remove("logging_enabled"))}R.enableLogging=nb;R.ServerValue={TIMESTAMP:{".sv":"timestamp"}};R.SDK_VERSION="2.1.2";R.INTERNAL=Y;R.Context=Th;R.TEST_ACCESS=$;})();
 ;/**
- * @license AngularJS v1.3.16-build.94+sha.6198c0d
+ * @license AngularJS v1.3.16-build.97+sha.5b26521
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -9505,7 +9505,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.16-build.94+sha.6198c0d/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.16-build.97+sha.5b26521/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -11364,10 +11364,17 @@ function setupModuleLoader(window) {
            * @ngdoc method
            * @name angular.Module#filter
            * @module ng
-           * @param {string} name Filter name.
+           * @param {string} name Filter name - this must be a valid angular expression identifier
            * @param {Function} filterFactory Factory function for creating new instance of filter.
            * @description
            * See {@link ng.$filterProvider#register $filterProvider.register()}.
+           *
+           * <div class="alert alert-warning">
+           * **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+           * Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+           * your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+           * (`myapp_subsection_filterx`).
+           * </div>
            */
           filter: invokeLater('$filterProvider', 'register'),
 
@@ -11581,7 +11588,7 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.16-build.94+sha.6198c0d',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.16-build.97+sha.5b26521',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 16,
@@ -15277,7 +15284,8 @@ function $TemplateCacheProvider() {
  *       templateNamespace: 'html',
  *       scope: false,
  *       controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
- *       controllerAs: 'stringAlias',
+ *       controllerAs: 'stringIdentifier',
+ *       bindToController: false,
  *       require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
  *       compile: function compile(tElement, tAttrs, transclude) {
  *         return {
@@ -15596,9 +15604,15 @@ function $TemplateCacheProvider() {
  *   * `iAttrs` - instance attributes - Normalized list of attributes declared on this element shared
  *     between all directive linking functions.
  *
- *   * `controller` - a controller instance - A controller instance if at least one directive on the
- *     element defines a controller. The controller is shared among all the directives, which allows
- *     the directives to use the controllers as a communication channel.
+ *   * `controller` - the directive's required controller instance(s) - Instances are shared
+ *     among all directives, which allows the directives to use the controllers as a communication
+ *     channel. The exact value depends on the directive's `require` property:
+ *       * `string`: the controller instance
+ *       * `array`: array of controller instances
+ *       * no controller(s) required: `undefined`
+ *
+ *     If a required controller cannot be found, and it is optional, the instance is `null`,
+ *     otherwise the {@link error:$compile:ctreq Missing Required Controller} error is thrown.
  *
  *   * `transcludeFn` - A transclude linking function pre-bound to the correct transclusion scope.
  *     This is the same as the `$transclude`
@@ -18435,7 +18449,7 @@ function $HttpProvider() {
      *  headers: {
      *    'Content-Type': undefined
      *  },
-     *  data: { test: 'test' },
+     *  data: { test: 'test' }
      * }
      *
      * $http(req).success(function(){...}).error(function(){...});
@@ -25978,6 +25992,13 @@ function $WindowProvider() {
  * Dependency Injected. To achieve this a filter definition consists of a factory function which is
  * annotated with dependencies and is responsible for creating a filter function.
  *
+ * <div class="alert alert-warning">
+ * **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+ * Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+ * your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+ * (`myapp_subsection_filterx`).
+ * </div>
+ *
  * ```js
  *   // Filter registration
  *   function MyModule($provide, $filterProvider) {
@@ -26059,6 +26080,13 @@ function $FilterProvider($provide) {
    * @name $filterProvider#register
    * @param {string|Object} name Name of the filter function, or an object map of filters where
    *    the keys are the filter names and the values are the filter factories.
+   *
+   *    <div class="alert alert-warning">
+   *    **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+   *    Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+   *    your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+   *    (`myapp_subsection_filterx`).
+   *    </div>
    * @returns {Object} Registered filter instance, or if a map of filters was provided then a map
    *    of the registered filter instances.
    */
@@ -27023,7 +27051,7 @@ function limitToFilter() {
  *    Can be one of:
  *
  *    - `function`: Getter function. The result of this function will be sorted using the
- *      `<`, `=`, `>` operator.
+ *      `<`, `===`, `>` operator.
  *    - `string`: An Angular expression. The result of this expression is used to compare elements
  *      (for example `name` to sort by a property called `name` or `name.substr(0, 3)` to sort by
  *      3 first characters of a property called `name`). The result of a constant expression
@@ -46623,7 +46651,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         };
     });
 })();;/**
- * @license AngularJS v1.3.16-build.94+sha.6198c0d
+ * @license AngularJS v1.3.16-build.97+sha.5b26521
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -58050,6 +58078,7 @@ login state (instead of showing them a login form).
               address1: "",
               address2: "",
               town: "",
+              county: "",
               postcode: "",
               message: ""
           };
@@ -61890,6 +61919,10 @@ angular.module("../app/views/shop.contact.html", []).run(["$templateCache", func
     "        <div class=\"form-group\">\n" +
     "            <label name=\"contactTown\">Town</label>\n" +
     "            <input name=\"town\" class=\"form-control\" ng-model=\"newContact.town\" type=\"text\" placeholder=\"Town/City\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label name=\"contactCounty\">County/State</label>\n" +
+    "            <input name=\"county\" class=\"form-control\" ng-model=\"newContact.county\" type=\"text\" placeholder=\"County/State\"/>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
     "            <label name=\"contactPostcode\">Postcode</label>\n" +

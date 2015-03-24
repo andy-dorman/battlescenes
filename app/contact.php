@@ -69,6 +69,9 @@ if(empty($errors)) {
   if(!empty($_POST['town'])) {
     $address = $address . $_POST['town'] . '<br/>';
   }
+  if(!empty($_POST['county'])) {
+    $address = $address . $_POST['county'] . '<br/>';
+  }
   if(!empty($_POST['postcode'])) {
     $address = $address . $_POST['postcode'] . '<br/>';
   }
@@ -83,7 +86,8 @@ if(empty($errors)) {
 	$bscenesHeaders = $headers . 'From: ' . $customerEmail . "\r\n" .
     'Reply-To: ' . $customerEmail . "\r\n" .
     'bcc:' . MY_EMAIL . "\r\n";
-    $thankyouMsg = "<p>Thank you for for enquiry.</p><p>We will be in touch shortly.</p><p>Battlescene Designs</p>";
+
+  $thankyouMsg = "<p>Thank you for for enquiry.</p><p>We will be in touch shortly.</p><p>Battlescene Designs</p>";
 	//mail(to,subject,message,headers,parameters)
 	$customerEmailSuccess = mail(BSCENES_EMAIL, "New customer enquiry", $customerMsg . "<p>" . $customerName . "</p>", $bscenesHeaders);
 	$thankyouEmailSuccess = mail($customerEmail, BSCENES_THANKS_SUBJECT, $thankyouMsg, $customerHeaders);
