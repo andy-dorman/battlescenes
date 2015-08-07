@@ -454,6 +454,7 @@
               town: "",
               county: "",
               postcode: "",
+              country: "",
               message: ""
           };
 
@@ -477,13 +478,18 @@
           {
               return string.charAt(0).toUpperCase() + string.slice(1);
           };
+          $scope.loading = false;
           $scope.sendMessage = function(isValid) {
-              $scope.errors = [];
+            $scope.errors = [];
 
-              if(isValid) {
+            if(isValid) {
+              $scope.loading = true;
+              $http.get("cookie.php").success(function(data) {
                 $http.post("contact.php", $scope.newContact).error(function(err){
+                  $scope.loading = false;
                     alert(err);
-                }).success(function(data){
+                }).success(function(data) {
+                  $scope.loading = false;
                     if(data.success) {
                         $scope.contacts.$push($scope.newContact);
                         $scope.newContact = {};
@@ -499,9 +505,9 @@
                             }
                         }
                     }
-
                 });
-              }
+              });
+            }
           };
           //$scope.status = "ready";
       }

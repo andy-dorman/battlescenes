@@ -3,6 +3,8 @@
 <meta view-head property="og:description" content="You can get in touch by using this form or emailing info@battlescenedesigns.co.uk" />
 <meta view-head property="og:keywords" content="Battlescene,Designs,Battle,Scene,wargaming,wargames,terrain,scenery,6mm,sci-fi,sci,fi,buildings,roads,ruins" />
 <div class="row" ng-controller="ContactCtrl">
+  <h1 ng-if="loading" class="glyphicon glyphicon-refresh glyphicon-spin"></h1>
+  <div ng-if="!loading">
     <div ng-repeat="error in errors" class="col-sm-12">
         <h4>{{error.name}}</h4>
         <p>{{error.message}}</p>
@@ -42,6 +44,10 @@
             <label name="contactPostcode">Postcode</label>
             <input name="postcode" class="form-control" ng-model="newContact.postcode" type="text" placeholder="Postcode/Zip"/>
         </div>
+        <div class="form-group">
+            <label name="contactCountry">Country</label>
+            <input name="country" class="form-control" ng-model="newContact.country" type="text" placeholder="Country"/>
+        </div>
         <div class="form-group" ng-class="(contactForm.$submitted && !contactForm.message.$valid) ? 'has-error' : ''">
             <label name="contactMsg">Message</label>
             <textarea rows="10" name="message" class="form-control" ng-model="newContact.message" placeholder="Message" required></textarea>
@@ -49,4 +55,5 @@
         </div>
         <button type="submit" class="btn btn-default">Get in touch</button>
     </form>
+  </div>
 </div>

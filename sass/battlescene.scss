@@ -626,3 +626,31 @@ h2.product-saved.saved {
 		padding-right: 60px;
 	}
 }
+
+.jumbotron .glyphicon-spin {
+  -webkit-animation: spin 2000ms infinite linear;
+  animation: spin 2000ms infinite linear;
+	font-size: 50px;
+	width: 100%;
+	text-align: center;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
